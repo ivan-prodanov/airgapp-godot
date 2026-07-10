@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Defrost_Front.obj-603592a74f88b29a53951818aaebb387.mesh"
+
+[deps]
+
+files=[ "res://.import/Defrost_Front.obj-603592a74f88b29a53951818aaebb387.mesh" ]
+
+source_file="res://Ego/Y_High/Objects/Defrost_Front.obj"
+dest_files=[ "res://.import/Defrost_Front.obj-603592a74f88b29a53951818aaebb387.mesh", "res://.import/Defrost_Front.obj-603592a74f88b29a53951818aaebb387.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
