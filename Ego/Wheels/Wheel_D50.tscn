@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Ego/Wheels/Objects/Wheel_D50.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Ego/Wheels/D50_CarbonFiber_Wheel.tres" type="Material" id=2]
+[ext_resource path="res://Ego/Wheels/D50_Cover_Wheel.tres" type="Material" id=3]
+[ext_resource path="res://Ego/Wheels_Bayberry/BayberryE41/Pirelli.tres" type="Material" id=4]
+[ext_resource path="res://Ego/Wheels/D50_Rim_Wheel.tres" type="Material" id=5]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Wheel_D50" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 4 )
+material/1 = ExtResource( 3 )
+material/2 = ExtResource( 5 )
+material/3 = ExtResource( 3 )
+material/4 = ExtResource( 2 )

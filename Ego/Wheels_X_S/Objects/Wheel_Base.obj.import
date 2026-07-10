@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wheel_Base.obj-1b2de3819fa176fa479a2e8591f6d071.mesh"
+
+[deps]
+
+files=[ "res://.import/Wheel_Base.obj-1b2de3819fa176fa479a2e8591f6d071.mesh" ]
+
+source_file="res://Ego/Wheels_X_S/Objects/Wheel_Base.obj"
+dest_files=[ "res://.import/Wheel_Base.obj-1b2de3819fa176fa479a2e8591f6d071.mesh", "res://.import/Wheel_Base.obj-1b2de3819fa176fa479a2e8591f6d071.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

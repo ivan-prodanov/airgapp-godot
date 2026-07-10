@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Stiletto_Dark_BC.png-8082e17e7ef0cc59db75e1a1601a7a8b.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Ego/Wheels/Textures/Stiletto_Dark_BC.png"
+dest_files=[ "res://.import/Stiletto_Dark_BC.png-8082e17e7ef0cc59db75e1a1601a7a8b.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=1
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

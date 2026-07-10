@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wheel_Arachnid.obj-74a3b0333aca953104e3bd242e52d255.mesh"
+
+[deps]
+
+files=[ "res://.import/Wheel_Arachnid.obj-74a3b0333aca953104e3bd242e52d255.mesh" ]
+
+source_file="res://Ego/Wheels_X_S/Objects/Wheel_Arachnid.obj"
+dest_files=[ "res://.import/Wheel_Arachnid.obj-74a3b0333aca953104e3bd242e52d255.mesh", "res://.import/Wheel_Arachnid.obj-74a3b0333aca953104e3bd242e52d255.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

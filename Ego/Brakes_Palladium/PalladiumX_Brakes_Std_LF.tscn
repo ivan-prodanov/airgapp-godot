@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Ego/Brakes_Palladium/Brakes_PalladiumX_Std_L.material" type="Material" id=1]
+[ext_resource path="res://Ego/Brakes_Palladium/PalladiumX_Brakes_Perf_F.fbx" type="PackedScene" id=2]
+
+[node name="PalladiumX_Brakes_Perf_F" instance=ExtResource( 2 )]
+
+[node name="Caliper_Std_F2" parent="." index="0"]
+material/0 = ExtResource( 1 )
+
+[node name="Rotor_Std_F2" parent="." index="1"]
+material/0 = ExtResource( 1 )

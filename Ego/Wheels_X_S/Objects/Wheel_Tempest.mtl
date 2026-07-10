@@ -1,0 +1,9 @@
+# Exported from Godot Engine
+
+newmtl Tempest
+Kd 0.500000 0.500000 0.500000
+Ks 1.000000 1.000000 1.000000
+
+newmtl Tire
+Kd 0.104895 0.104895 0.104895
+Ks 1.000000 1.000000 1.000000

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wheel_Apollo.obj-7edc0ffc97c2eda343f32381f31fdb96.mesh"
+
+[deps]
+
+files=[ "res://.import/Wheel_Apollo.obj-7edc0ffc97c2eda343f32381f31fdb96.mesh" ]
+
+source_file="res://Ego/Wheels/Objects/Wheel_Apollo.obj"
+dest_files=[ "res://.import/Wheel_Apollo.obj-7edc0ffc97c2eda343f32381f31fdb96.mesh", "res://.import/Wheel_Apollo.obj-7edc0ffc97c2eda343f32381f31fdb96.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

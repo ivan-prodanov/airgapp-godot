@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wheel_Pinwheel_No_Cap.obj-92204810a6427cafe2d2b3dbf3c4a1bd.mesh"
+
+[deps]
+
+files=[ "res://.import/Wheel_Pinwheel_No_Cap.obj-92204810a6427cafe2d2b3dbf3c4a1bd.mesh" ]
+
+source_file="res://Ego/Wheels/Objects/Wheel_Pinwheel_No_Cap.obj"
+dest_files=[ "res://.import/Wheel_Pinwheel_No_Cap.obj-92204810a6427cafe2d2b3dbf3c4a1bd.mesh", "res://.import/Wheel_Pinwheel_No_Cap.obj-92204810a6427cafe2d2b3dbf3c4a1bd.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ego/Wheels_Bayberry/Machina2/LongWheel.tres" type="Material" id=1]
+[ext_resource path="res://Ego/Wheels_Bayberry/Machina2/Tire.tres" type="Material" id=2]
+[ext_resource path="res://Ego/Wheels_Bayberry/Machina2/Machina2.glb" type="PackedScene" id=3]
+
+
+
+[node name="e80wheel" instance=ExtResource( 3 )]
+
+[node name="LongWheel" parent="." index="0"]
+material/0 = ExtResource( 1 )
+material/1 = ExtResource( 2 )

@@ -1,0 +1,133 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+uniform vec4 base_color : hint_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform float blob_freq : hint_range(1.0, 5.0) = 15.0;
+uniform float contrast : hint_range(0.5, 10.0) = 2.5;
+uniform float streak_bias : hint_range(0.2, 5.0) = 1.0;
+uniform float fresnel_power : hint_range(1.0, 8.0) = 3.0;
+uniform float reflectivity : hint_range(0.0, 1.0) = 0.8;
+uniform vec4 env_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform int octaves : hint_range(1, 5) = 3;
+
+// Gradient noise hash - returns pseudo-random gradient vector
+vec3 hash3(vec3 p) {
+	p = vec3(dot(p, vec3(127.1, 311.7, 74.7)),
+	         dot(p, vec3(269.5, 183.3, 246.1)),
+	         dot(p, vec3(113.5, 271.9, 124.6)));
+	return fract(sin(p) * 43758.5453123) * 2.0 - 1.0;
+}
+
+// Gradient noise - spherically uniform, no axis artifacts
+float gradientNoise(vec3 p) {
+	vec3 i = floor(p);
+	vec3 f = fract(p);
+	vec3 u = f * f * (3.0 - 2.0 * f);
+	
+	return mix(mix(mix(dot(hash3(i + vec3(0,0,0)), f - vec3(0,0,0)),
+	                   dot(hash3(i + vec3(1,0,0)), f - vec3(1,0,0)), u.x),
+	               mix(dot(hash3(i + vec3(0,1,0)), f - vec3(0,1,0)),
+	                   dot(hash3(i + vec3(1,1,0)), f - vec3(1,1,0)), u.x), u.y),
+	           mix(mix(dot(hash3(i + vec3(0,0,1)), f - vec3(0,0,1)),
+	                   dot(hash3(i + vec3(1,0,1)), f - vec3(1,0,1)), u.x),
+	               mix(dot(hash3(i + vec3(0,1,1)), f - vec3(0,1,1)),
+	                   dot(hash3(i + vec3(1,1,1)), f - vec3(1,1,1)), u.x), u.y), u.z);
+}
+
+// Rotation to break axis alignment
+vec3 rotateVec(vec3 p) {
+	float c1 = 0.8, s1 = 0.6;
+	float c2 = 0.7, s2 = 0.714;
+	p = vec3(p.x, c1*p.y - s1*p.z, s1*p.y + c1*p.z);
+	p = vec3(c2*p.x + s2*p.z, p.y, -s2*p.x + c2*p.z);
+	return p;
+}
+
+// Procedural environment map
+float proceduralEnv(vec3 R) {
+	R = rotateVec(R);
+	
+	vec3 freqScale = vec3(blob_freq * streak_bias, blob_freq, blob_freq * 0.8);
+	
+	float v = 0.0;
+	float amplitude = 1.0;
+	float totalAmp = 0.0;
+	
+	// Unrolled loop for GLES2 compatibility
+	if (octaves >= 1) {
+		vec3 p = rotateVec(R * freqScale + 0.0);
+		v += (gradientNoise(p) * 0.5 + 0.5) * amplitude;
+		totalAmp += amplitude;
+		amplitude *= 0.5;
+	}
+	if (octaves >= 2) {
+		vec3 p = rotateVec(R * freqScale * 2.0 + 7.3);
+		v += (gradientNoise(p) * 0.5 + 0.5) * amplitude;
+		totalAmp += amplitude;
+		amplitude *= 0.5;
+	}
+	if (octaves >= 3) {
+		vec3 p = rotateVec(R * freqScale * 4.0 + 14.6);
+		v += (gradientNoise(p) * 0.5 + 0.5) * amplitude;
+		totalAmp += amplitude;
+		amplitude *= 0.5;
+	}
+	if (octaves >= 4) {
+		vec3 p = rotateVec(R * freqScale * 8.0 + 21.9);
+		v += (gradientNoise(p) * 0.5 + 0.5) * amplitude;
+		totalAmp += amplitude;
+		amplitude *= 0.5;
+	}
+	if (octaves >= 5) {
+		vec3 p = rotateVec(R * freqScale * 16.0 + 29.2);
+		v += (gradientNoise(p) * 0.5 + 0.5) * amplitude;
+		totalAmp += amplitude;
+	}
+	
+	v /= totalAmp;
+	v = pow(v, contrast);
+	
+	return v;
+}
+
+void fragment() {
+	// View direction in view space (Godot provides VIEW already normalized)
+	vec3 V = VIEW;
+	vec3 N = NORMAL;
+	
+	// Reflection vector in world space for environment lookup
+	// Convert normal to world space, reflect, then sample
+	vec3 world_normal = (INV_CAMERA_MATRIX * vec4(N, 0.0)).xyz;
+	vec3 world_view = (INV_CAMERA_MATRIX * vec4(V, 0.0)).xyz;
+	vec3 R = reflect(-world_view, world_normal);
+	
+	// Fresnel
+	float fresnel = pow(1.0 - max(dot(N, V), 0.0), fresnel_power);
+	
+	// Procedural environment reflection
+	vec3 envColor = proceduralEnv(R) * env_color.rgb * (100.0 * env_color.a);
+	
+	// Combine
+	float reflectAmount = mix(reflectivity * 0.3, reflectivity, fresnel);
+	vec3 finalColor = mix(base_color.rgb, envColor, reflectAmount);
+	
+	ALBEDO = base_color.rgb * base_color.a * finalColor;
+	METALLIC = reflectivity;
+	ROUGHNESS = 1.0 - reflectivity * 0.8;
+	SPECULAR = 0.5;
+}
+"
+
+[resource]
+resource_name = "Badging"
+shader = SubResource( 1 )
+shader_param/base_color = Color( 0.509804, 0.509804, 0.509804, 0.0784314 )
+shader_param/blob_freq = 2.437
+shader_param/contrast = 3.379
+shader_param/streak_bias = 5.0
+shader_param/fresnel_power = 1.0
+shader_param/reflectivity = 0.274
+shader_param/env_color = Color( 0.57, 0.57, 0.57, 0.462745 )
+shader_param/octaves = 1

@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Wheel_Tire_Normal.png-d3deeae4cae7bc97d69e8ec1916f0281.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Ego/Wheels_P3/Textures/Wheel_Tire_Normal.png"
+dest_files=[ "res://.import/Wheel_Tire_Normal.png-d3deeae4cae7bc97d69e8ec1916f0281.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=1
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

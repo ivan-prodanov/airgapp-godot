@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ego/Wheels_Palladium/Tire_Palladium.material" type="Material" id=1]
+[ext_resource path="res://Ego/Wheels_Palladium/Cardenio.material" type="Material" id=2]
+[ext_resource path="res://Ego/Wheels_Palladium/Cardenio.fbx" type="PackedScene" id=3]
+
+[node name="Cardenio" instance=ExtResource( 3 )]
+
+[node name="Wheel_Cardenio2" parent="." index="0"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 1 )

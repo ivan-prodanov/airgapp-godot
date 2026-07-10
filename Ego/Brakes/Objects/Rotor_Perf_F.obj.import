@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Rotor_Perf_F.obj-728d2af671296447575fce6d74e8bea0.mesh"
+
+[deps]
+
+files=[ "res://.import/Rotor_Perf_F.obj-728d2af671296447575fce6d74e8bea0.mesh" ]
+
+source_file="res://Ego/Brakes/Objects/Rotor_Perf_F.obj"
+dest_files=[ "res://.import/Rotor_Perf_F.obj-728d2af671296447575fce6d74e8bea0.mesh", "res://.import/Rotor_Perf_F.obj-728d2af671296447575fce6d74e8bea0.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

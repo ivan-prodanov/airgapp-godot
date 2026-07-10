@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ego/Wheels_Bayberry/GeminiDark/GeminiDark.tres" type="Material" id=1]
+[ext_resource path="res://Ego/Wheels_Bayberry/GeminiDark/GeminiDark.glb" type="PackedScene" id=2]
+[ext_resource path="res://Ego/Wheels_Bayberry/GeminiDark/Conti.tres" type="Material" id=3]
+
+[node name="GeminiDark" instance=ExtResource( 2 )]
+
+[node name="GeminiDark" parent="." index="0"]
+material/0 = ExtResource( 1 )
+material/1 = ExtResource( 3 )

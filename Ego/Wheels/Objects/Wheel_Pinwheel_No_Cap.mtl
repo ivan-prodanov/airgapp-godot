@@ -1,0 +1,9 @@
+# Exported from Godot Engine
+
+newmtl Pinwheel_No_Cap
+Kd 0.500000 0.500000 0.500000
+Ks 1.000000 1.000000 1.000000
+
+newmtl Tires
+Kd 0.038710 0.038710 0.038710
+Ks 1.000000 1.000000 1.000000

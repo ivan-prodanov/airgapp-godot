@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wheel_Turbine.obj-2149aedde41b0279fb0532dac1461267.mesh"
+
+[deps]
+
+files=[ "res://.import/Wheel_Turbine.obj-2149aedde41b0279fb0532dac1461267.mesh" ]
+
+source_file="res://Ego/Wheels_X_S/Objects/Wheel_Turbine.obj"
+dest_files=[ "res://.import/Wheel_Turbine.obj-2149aedde41b0279fb0532dac1461267.mesh", "res://.import/Wheel_Turbine.obj-2149aedde41b0279fb0532dac1461267.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

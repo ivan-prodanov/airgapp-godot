@@ -1,0 +1,9 @@
+# Exported from Godot Engine
+
+newmtl Twin_Turbine
+Kd 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+
+newmtl Tire
+Kd 0.125874 0.125874 0.125874
+Ks 0.500000 0.500000 0.500000

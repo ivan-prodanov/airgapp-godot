@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ego/Wheels_P3/Tire.tres" type="Material" id=1]
+[ext_resource path="res://Ego/Wheels_P3/Wheel_Riptide.glb" type="PackedScene" id=2]
+[ext_resource path="res://Ego/Wheels_P3/Riptide.tres" type="Material" id=3]
+
+[node name="Wheel_Riptide" instance=ExtResource( 2 )]
+
+[node name="Wheel_Riptide" parent="." index="0"]
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 1 )

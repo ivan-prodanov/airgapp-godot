@@ -1,0 +1,9 @@
+# Exported from Godot Engine
+
+newmtl Stilleto
+Kd 0.017000 0.017000 0.017000
+Ks 1.000000 1.000000 1.000000
+
+newmtl Tires.004
+Kd 0.038710 0.038710 0.038710
+Ks 1.000000 1.000000 1.000000

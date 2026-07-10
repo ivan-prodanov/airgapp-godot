@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ego/Wheels/Uberturbine_Wheel.material" type="Material" id=1]
+[ext_resource path="res://Ego/Wheels/Tires.material" type="Material" id=2]
+[ext_resource path="res://Ego/Wheels/Objects/Wheel_Uberturbine.obj" type="ArrayMesh" id=3]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Wheel_Uberturbine" type="MeshInstance" parent="."]
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 1 )
+material/1 = ExtResource( 2 )

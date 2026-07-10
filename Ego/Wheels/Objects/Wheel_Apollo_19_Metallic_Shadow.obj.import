@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wheel_Apollo_19_Metallic_Shadow.obj-84f88d1e0b73fe44dd9478ac9ba05a14.mesh"
+
+[deps]
+
+files=[ "res://.import/Wheel_Apollo_19_Metallic_Shadow.obj-84f88d1e0b73fe44dd9478ac9ba05a14.mesh" ]
+
+source_file="res://Ego/Wheels/Objects/Wheel_Apollo_19_Metallic_Shadow.obj"
+dest_files=[ "res://.import/Wheel_Apollo_19_Metallic_Shadow.obj-84f88d1e0b73fe44dd9478ac9ba05a14.mesh", "res://.import/Wheel_Apollo_19_Metallic_Shadow.obj-84f88d1e0b73fe44dd9478ac9ba05a14.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Caliper_Std_R.obj-7d3e9eca49b2736e310ca9ffe1e037c3.mesh"
+
+[deps]
+
+files=[ "res://.import/Caliper_Std_R.obj-7d3e9eca49b2736e310ca9ffe1e037c3.mesh" ]
+
+source_file="res://Ego/Brakes/Objects/Caliper_Std_R.obj"
+dest_files=[ "res://.import/Caliper_Std_R.obj-7d3e9eca49b2736e310ca9ffe1e037c3.mesh", "res://.import/Caliper_Std_R.obj-7d3e9eca49b2736e310ca9ffe1e037c3.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

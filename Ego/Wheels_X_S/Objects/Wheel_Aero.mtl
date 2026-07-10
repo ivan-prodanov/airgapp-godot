@@ -1,0 +1,9 @@
+# Exported from Godot Engine
+
+newmtl Aero
+Kd 0.804196 0.804196 0.804196
+Ks 0.500000 0.500000 0.500000
+
+newmtl Tires
+Kd 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000

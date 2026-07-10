@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ego/Brakes/Objects/Caliper_Std_R.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Ego/Brakes/Objects/Rotor_Std_R.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Ego/Brakes/Brakes_Std.material" type="Material" id=5]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Caliper_Std_R" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 5 )
+
+[node name="Rotor_Std_R" type="MeshInstance" parent="."]
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 5 )

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wheel_Pinwheel_Refresh.obj-cb0ee7b3e39d4c39d8f07b031a28d696.mesh"
+
+[deps]
+
+files=[ "res://.import/Wheel_Pinwheel_Refresh.obj-cb0ee7b3e39d4c39d8f07b031a28d696.mesh" ]
+
+source_file="res://Ego/Wheels/Objects/Wheel_Pinwheel_Refresh.obj"
+dest_files=[ "res://.import/Wheel_Pinwheel_Refresh.obj-cb0ee7b3e39d4c39d8f07b031a28d696.mesh", "res://.import/Wheel_Pinwheel_Refresh.obj-cb0ee7b3e39d4c39d8f07b031a28d696.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

@@ -1,0 +1,17 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Ego/Wheels_Bayberry/BayberryE41/Materials/ORM.png" type="Texture" id=1]
+[ext_resource path="res://Ego/Wheels_Bayberry/BayberryE41/Materials/Wheel_E41_diffuse.png" type="Texture" id=2]
+
+[resource]
+resource_name = "BayberryE41Material"
+params_cull_mode = 2
+albedo_color = Color( 0.235294, 0.235294, 0.235294, 1 )
+albedo_texture = ExtResource( 2 )
+metallic = 1.0
+roughness = 0.6
+ao_enabled = true
+ao_light_affect = 0.56
+ao_texture = ExtResource( 1 )
+ao_on_uv2 = false
+ao_texture_channel = 0

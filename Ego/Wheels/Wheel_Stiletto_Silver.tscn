@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ego/Wheels/Stiletto_Silver_Wheel.material" type="Material" id=1]
+[ext_resource path="res://Ego/Wheels/Tires.material" type="Material" id=2]
+[ext_resource path="res://Ego/Wheels/Objects/Wheel_Stiletto.obj" type="ArrayMesh" id=4]
+
+
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Wheel_Stilleto" type="MeshInstance" parent="."]
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 1 )
+material/1 = ExtResource( 2 )
