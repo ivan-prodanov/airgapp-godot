@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Brake_Light_Spoiler_Static.obj-683f6783571e7445a2dde5fde17dc18e.mesh"
+
+[deps]
+
+files=[ "res://.import/Brake_Light_Spoiler_Static.obj-683f6783571e7445a2dde5fde17dc18e.mesh" ]
+
+source_file="res://Ego/X/Objects/Brake_Light_Spoiler_Static.obj"
+dest_files=[ "res://.import/Brake_Light_Spoiler_Static.obj-683f6783571e7445a2dde5fde17dc18e.mesh", "res://.import/Brake_Light_Spoiler_Static.obj-683f6783571e7445a2dde5fde17dc18e.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

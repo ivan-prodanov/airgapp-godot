@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Door_RF_Mirror.obj-c2bb386236ea9a6d47331d277667beba.mesh"
+
+[deps]
+
+files=[ "res://.import/Door_RF_Mirror.obj-c2bb386236ea9a6d47331d277667beba.mesh" ]
+
+source_file="res://Ego/X/Objects/Door_RF_Mirror.obj"
+dest_files=[ "res://.import/Door_RF_Mirror.obj-c2bb386236ea9a6d47331d277667beba.mesh", "res://.import/Door_RF_Mirror.obj-c2bb386236ea9a6d47331d277667beba.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

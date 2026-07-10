@@ -1,0 +1,19 @@
+# Exported from Godot Engine
+
+newmtl Interior_Fade
+Kd 0.500000 0.211542 0.000000
+Ks 1.000000 1.000000 1.000000
+
+newmtl Exterior_Fade
+Kd 0.096150 0.500000 0.000000
+Ks 1.000000 1.000000 1.000000
+
+newmtl Glass_Tinted_Fade
+Kd 0.038710 0.038710 0.038710
+Ks 1.000000 1.000000 1.000000
+d 0.587097
+
+newmtl Glass_Interior_Tinted_Fade
+Kd 0.058065 0.058065 0.058065
+Ks 1.000000 1.000000 1.000000
+d 0.548387

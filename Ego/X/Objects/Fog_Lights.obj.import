@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Fog_Lights.obj-3d5955975fffaae7e30ac3965d40e03f.mesh"
+
+[deps]
+
+files=[ "res://.import/Fog_Lights.obj-3d5955975fffaae7e30ac3965d40e03f.mesh" ]
+
+source_file="res://Ego/X/Objects/Fog_Lights.obj"
+dest_files=[ "res://.import/Fog_Lights.obj-3d5955975fffaae7e30ac3965d40e03f.mesh", "res://.import/Fog_Lights.obj-3d5955975fffaae7e30ac3965d40e03f.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

@@ -1,0 +1,11 @@
+# Exported from Godot Engine
+
+newmtl Glass_Interior
+Kd 0.245161 0.245161 0.245161
+Ks 1.000000 1.000000 1.000000
+d 0.019355
+
+newmtl Glass
+Kd 0.258065 0.258065 0.258065
+Ks 1.000000 1.000000 1.000000
+d 0.038710

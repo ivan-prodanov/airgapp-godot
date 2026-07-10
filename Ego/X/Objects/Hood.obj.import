@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Hood.obj-bb8a0117cd5cfd3598d938bc51a9e52e.mesh"
+
+[deps]
+
+files=[ "res://.import/Hood.obj-bb8a0117cd5cfd3598d938bc51a9e52e.mesh" ]
+
+source_file="res://Ego/X/Objects/Hood.obj"
+dest_files=[ "res://.import/Hood.obj-bb8a0117cd5cfd3598d938bc51a9e52e.mesh", "res://.import/Hood.obj-bb8a0117cd5cfd3598d938bc51a9e52e.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

@@ -1,0 +1,9 @@
+# Exported from Godot Engine
+
+newmtl Paint
+Kd 0.000000 0.115383 1.000000
+Ks 1.000000 1.000000 1.000000
+
+newmtl Exterior
+Kd 0.980645 0.980645 0.980645
+Ks 1.000000 1.000000 1.000000

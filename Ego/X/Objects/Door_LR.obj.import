@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Door_LR.obj-c633eca4b68733e94d7246d1d25ef569.mesh"
+
+[deps]
+
+files=[ "res://.import/Door_LR.obj-c633eca4b68733e94d7246d1d25ef569.mesh" ]
+
+source_file="res://Ego/X/Objects/Door_LR.obj"
+dest_files=[ "res://.import/Door_LR.obj-c633eca4b68733e94d7246d1d25ef569.mesh", "res://.import/Door_LR.obj-c633eca4b68733e94d7246d1d25ef569.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Trunk.obj-403416166cd28d72540ae23553813d20.mesh"
+
+[deps]
+
+files=[ "res://.import/Trunk.obj-403416166cd28d72540ae23553813d20.mesh" ]
+
+source_file="res://Ego/X/Objects/Trunk.obj"
+dest_files=[ "res://.import/Trunk.obj-403416166cd28d72540ae23553813d20.mesh", "res://.import/Trunk.obj-403416166cd28d72540ae23553813d20.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

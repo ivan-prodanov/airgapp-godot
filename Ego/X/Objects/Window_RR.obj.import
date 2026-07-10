@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Window_RR.obj-8bb96d0f630398ab8528a85540d08eae.mesh"
+
+[deps]
+
+files=[ "res://.import/Window_RR.obj-8bb96d0f630398ab8528a85540d08eae.mesh" ]
+
+source_file="res://Ego/X/Objects/Window_RR.obj"
+dest_files=[ "res://.import/Window_RR.obj-8bb96d0f630398ab8528a85540d08eae.mesh", "res://.import/Window_RR.obj-8bb96d0f630398ab8528a85540d08eae.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

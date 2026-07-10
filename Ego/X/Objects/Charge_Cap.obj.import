@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Charge_Cap.obj-2fd6e3913186d28ab9ffb7ce5c55cac0.mesh"
+
+[deps]
+
+files=[ "res://.import/Charge_Cap.obj-2fd6e3913186d28ab9ffb7ce5c55cac0.mesh" ]
+
+source_file="res://Ego/X/Objects/Charge_Cap.obj"
+dest_files=[ "res://.import/Charge_Cap.obj-2fd6e3913186d28ab9ffb7ce5c55cac0.mesh", "res://.import/Charge_Cap.obj-2fd6e3913186d28ab9ffb7ce5c55cac0.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false

@@ -1,0 +1,11 @@
+# Exported from Godot Engine
+
+newmtl Glass_Tinted
+Kd 0.038710 0.038710 0.038710
+Ks 1.000000 1.000000 1.000000
+d 0.587097
+
+newmtl Glass_Interior_Tinted
+Kd 0.058065 0.058065 0.058065
+Ks 1.000000 1.000000 1.000000
+d 0.548387

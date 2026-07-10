@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Interior_7_Seater.obj-309fb368e53388bddc212e6241df29bf.mesh"
+
+[deps]
+
+files=[ "res://.import/Interior_7_Seater.obj-309fb368e53388bddc212e6241df29bf.mesh" ]
+
+source_file="res://Ego/X/Objects/Interior_7_Seater.obj"
+dest_files=[ "res://.import/Interior_7_Seater.obj-309fb368e53388bddc212e6241df29bf.mesh", "res://.import/Interior_7_Seater.obj-309fb368e53388bddc212e6241df29bf.mesh" ]
+
+[params]
+
+generate_tangents=false
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false
