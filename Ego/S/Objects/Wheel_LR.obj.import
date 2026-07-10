@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wheel_LR.obj-38ef54d8f54cda19d3cc7d850fc695d6.mesh"
+
+[deps]
+
+files=[ "res://.import/Wheel_LR.obj-38ef54d8f54cda19d3cc7d850fc695d6.mesh" ]
+
+source_file="res://Ego/S/Objects/Wheel_LR.obj"
+dest_files=[ "res://.import/Wheel_LR.obj-38ef54d8f54cda19d3cc7d850fc695d6.mesh", "res://.import/Wheel_LR.obj-38ef54d8f54cda19d3cc7d850fc695d6.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Right_Turn_Signal.obj-682a01d2a4518d15a5e32fc378df6235.mesh"
+
+[deps]
+
+files=[ "res://.import/Right_Turn_Signal.obj-682a01d2a4518d15a5e32fc378df6235.mesh" ]
+
+source_file="res://Ego/S/Objects/Right_Turn_Signal.obj"
+dest_files=[ "res://.import/Right_Turn_Signal.obj-682a01d2a4518d15a5e32fc378df6235.mesh", "res://.import/Right_Turn_Signal.obj-682a01d2a4518d15a5e32fc378df6235.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

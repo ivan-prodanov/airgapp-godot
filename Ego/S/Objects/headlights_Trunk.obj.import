@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/headlights_Trunk.obj-c2ba5c80682638df8fb5e58fcac2d767.mesh"
+
+[deps]
+
+files=[ "res://.import/headlights_Trunk.obj-c2ba5c80682638df8fb5e58fcac2d767.mesh" ]
+
+source_file="res://Ego/S/Objects/headlights_Trunk.obj"
+dest_files=[ "res://.import/headlights_Trunk.obj-c2ba5c80682638df8fb5e58fcac2d767.mesh", "res://.import/headlights_Trunk.obj-c2ba5c80682638df8fb5e58fcac2d767.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

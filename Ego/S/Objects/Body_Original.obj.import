@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Body_Original.obj-0439378789c344f0ad01aa02298f57dc.mesh"
+
+[deps]
+
+files=[ "res://.import/Body_Original.obj-0439378789c344f0ad01aa02298f57dc.mesh" ]
+
+source_file="res://Ego/S/Objects/Body_Original.obj"
+dest_files=[ "res://.import/Body_Original.obj-0439378789c344f0ad01aa02298f57dc.mesh", "res://.import/Body_Original.obj-0439378789c344f0ad01aa02298f57dc.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

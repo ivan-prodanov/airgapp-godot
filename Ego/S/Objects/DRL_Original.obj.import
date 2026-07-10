@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/DRL_Original.obj-2a78041011b964bb9d5469763aaebeaf.mesh"
+
+[deps]
+
+files=[ "res://.import/DRL_Original.obj-2a78041011b964bb9d5469763aaebeaf.mesh" ]
+
+source_file="res://Ego/S/Objects/DRL_Original.obj"
+dest_files=[ "res://.import/DRL_Original.obj-2a78041011b964bb9d5469763aaebeaf.mesh", "res://.import/DRL_Original.obj-2a78041011b964bb9d5469763aaebeaf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

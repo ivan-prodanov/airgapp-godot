@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="CameraPoses" type="Node"]
+
+[node name="TrunkView" type="Camera" parent="."]
+transform = Transform( 0.900653, 0.0977501, -0.423402, 0, 0.97437, 0.224951, 0.43454, -0.202603, 0.877569, -2.475, 2.013, 4.605 )
+fov = 45.0
+
+[node name="TrunkViewExpanded" type="Camera" parent="."]
+transform = Transform( 0.900653, 0.0977501, -0.423402, 0, 0.97437, 0.224951, 0.43454, -0.202603, 0.877569, -2.475, 2.013, 4.605 )
+fov = 45.0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Plate_US.obj-dd0c619454149e1b828738153a098ba8.mesh"
+
+[deps]
+
+files=[ "res://.import/Plate_US.obj-dd0c619454149e1b828738153a098ba8.mesh" ]
+
+source_file="res://Ego/S/Objects/Plate_US.obj"
+dest_files=[ "res://.import/Plate_US.obj-dd0c619454149e1b828738153a098ba8.mesh", "res://.import/Plate_US.obj-dd0c619454149e1b828738153a098ba8.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

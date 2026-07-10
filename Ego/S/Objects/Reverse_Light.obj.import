@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Reverse_Light.obj-bed38e602e9f0995189439cd7870d291.mesh"
+
+[deps]
+
+files=[ "res://.import/Reverse_Light.obj-bed38e602e9f0995189439cd7870d291.mesh" ]
+
+source_file="res://Ego/S/Objects/Reverse_Light.obj"
+dest_files=[ "res://.import/Reverse_Light.obj-bed38e602e9f0995189439cd7870d291.mesh", "res://.import/Reverse_Light.obj-bed38e602e9f0995189439cd7870d291.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

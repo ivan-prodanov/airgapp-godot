@@ -1,0 +1,1103 @@
+[gd_scene load_steps=111 format=2]
+
+[ext_resource path="res://Ego/S/Objects/Door_LR.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Ego/S/Objects/Door_LF.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Ego/S/Objects/Door_LF_Mirror.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://Ego/Brakes_X/Brakes_X_RF.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Ego/Brakes_X/Brakes_X_LF.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Ego/S/Objects/Charge_Cap.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://Ego/S/Objects/Door_RF.obj" type="ArrayMesh" id=7]
+[ext_resource path="res://Ego/S/Objects/Body.obj" type="ArrayMesh" id=8]
+[ext_resource path="res://Ego/S/Objects/Door_RR.obj" type="ArrayMesh" id=9]
+[ext_resource path="res://Ego/S/Objects/Headlights_Projections.obj" type="ArrayMesh" id=10]
+[ext_resource path="res://Ego/S/Objects/Interior1.obj" type="ArrayMesh" id=11]
+[ext_resource path="res://Ego/S/Objects/Floor.obj" type="ArrayMesh" id=12]
+[ext_resource path="res://Ego/S/Objects/Lights.obj" type="ArrayMesh" id=13]
+[ext_resource path="res://Ego/S/Objects/Hood.obj" type="ArrayMesh" id=14]
+[ext_resource path="res://Ego/Brakes_X/Brakes_X_LR.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Ego/S/Objects/Lights_Glass.obj" type="ArrayMesh" id=16]
+[ext_resource path="res://Ego/S/Objects/Plate_EU.obj" type="ArrayMesh" id=17]
+[ext_resource path="res://Ego/S/Objects/Plate_US.obj" type="ArrayMesh" id=18]
+[ext_resource path="res://Ego/S/Objects/Spoiler.obj" type="ArrayMesh" id=19]
+[ext_resource path="res://Ego/Brakes_X/Brakes_X_RR.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Ego/S/Objects/Door_RF_Mirror.obj" type="ArrayMesh" id=21]
+[ext_resource path="res://Ego/S/Objects/Windows_Top.obj" type="ArrayMesh" id=22]
+[ext_resource path="res://Ego/S/Objects/Window_LF.obj" type="ArrayMesh" id=23]
+[ext_resource path="res://Ego/S/Objects/Stoplights_Projections.obj" type="ArrayMesh" id=24]
+[ext_resource path="res://Ego/S/Paint_Fade.material" type="Material" id=25]
+[ext_resource path="res://Ego/S/Screen.material" type="Material" id=26]
+[ext_resource path="res://Ego/S/Light.material" type="Material" id=27]
+[ext_resource path="res://Ego/S/Glass_Lights.material" type="Material" id=28]
+[ext_resource path="res://Ego/S/Plates.material" type="Material" id=29]
+[ext_resource path="res://Ego/S/Headlights_Projections.material" type="Material" id=30]
+[ext_resource path="res://Ego/S/Ground_Plane.material" type="Material" id=31]
+[ext_resource path="res://Ego/S/Exterior.material" type="Material" id=32]
+[ext_resource path="res://Ego/S/Objects/Window_LR.obj" type="ArrayMesh" id=33]
+[ext_resource path="res://Ego/S/Objects/Window_RF.obj" type="ArrayMesh" id=34]
+[ext_resource path="res://Ego/S/Objects/Window_RR.obj" type="ArrayMesh" id=35]
+[ext_resource path="res://Ego/S/PaintSkybox.material" type="Material" id=36]
+[ext_resource path="res://Ego/S/Spoiler.material" type="Material" id=37]
+[ext_resource path="res://Ego/S/Objects/Trunk.obj" type="ArrayMesh" id=38]
+[ext_resource path="res://Ego/S/Stoplights_Projections.material" type="Material" id=39]
+[ext_resource path="res://Ego/S/Objects/Body_Original.obj" type="ArrayMesh" id=40]
+[ext_resource path="res://Ego/S/Objects/Bumper_F.obj" type="ArrayMesh" id=41]
+[ext_resource path="res://Ego/S/Objects/Hood_Original.obj" type="ArrayMesh" id=42]
+[ext_resource path="res://Ego/S/Objects/Bumper_F_Original.obj" type="ArrayMesh" id=43]
+[ext_resource path="res://Ego/S/Objects/Lights_Original.obj" type="ArrayMesh" id=44]
+[ext_resource path="res://Ego/S/Exterior_Original.material" type="Material" id=45]
+[ext_resource path="res://Ego/S/Objects/Brake_Lights_Right.obj" type="ArrayMesh" id=46]
+[ext_resource path="res://Ego/S/Light_Original.material" type="Material" id=47]
+[ext_resource path="res://Ego/S/Objects/Lights_Glass_Original.obj" type="ArrayMesh" id=48]
+[ext_resource path="res://Ego/S/Objects/Hood_Hinge_1.obj" type="ArrayMesh" id=49]
+[ext_resource path="res://Ego/S/Objects/Hood_Hinge_2.obj" type="ArrayMesh" id=50]
+[ext_resource path="res://Ego/S/Objects/Interior_RHD.obj" type="ArrayMesh" id=51]
+[ext_resource path="res://Ego/S/Glass_Interior.material" type="Material" id=52]
+[ext_resource path="res://Ego/S/Interior_Black.material" type="Material" id=53]
+[ext_resource path="res://Ego/S/Glass_Skybox.material" type="Material" id=54]
+[ext_resource path="res://mobile/scripts/Vehicles/Model_S.gd" type="Script" id=55]
+[ext_resource path="res://mobile/materials/airflow.material" type="Material" id=56]
+[ext_resource path="res://Ego/S/Objects/Brakelight_Trunk.obj" type="ArrayMesh" id=57]
+[ext_resource path="res://Ego/S/Objects/DRL_Original.obj" type="ArrayMesh" id=58]
+[ext_resource path="res://Ego/S/Objects/Left_Turn_Signal.obj" type="ArrayMesh" id=59]
+[ext_resource path="res://Ego/S/Objects/Right_Turn_Signal_Original.obj" type="ArrayMesh" id=60]
+[ext_resource path="res://Ego/S/Objects/headlights_Trunk.obj" type="ArrayMesh" id=61]
+[ext_resource path="res://Ego/S/Objects/Left_Turn_Signal_Original.obj" type="ArrayMesh" id=62]
+[ext_resource path="res://Ego/S/Objects/Right_Turn_Signal.obj" type="ArrayMesh" id=63]
+[ext_resource path="res://Ego/S/Objects/FogLights.obj" type="ArrayMesh" id=64]
+[ext_resource path="res://Ego/S/Objects/Headlights_Original.obj" type="ArrayMesh" id=65]
+[ext_resource path="res://Ego/S/Objects/DRL.obj" type="ArrayMesh" id=66]
+[ext_resource path="res://Ego/S/Objects/Reverse_Light.obj" type="ArrayMesh" id=67]
+[ext_resource path="res://Ego/S/Objects/Headlights.obj" type="ArrayMesh" id=68]
+[ext_resource path="res://Ego/S/Illumination.material" type="Material" id=69]
+[ext_resource path="res://Ego/S/Illumination_Original.material" type="Material" id=70]
+[ext_resource path="res://Ego/S/Exterior_Fade.material" type="Material" id=71]
+[ext_resource path="res://Ego/S/PaintSkybox_Original.material" type="Material" id=72]
+[ext_resource path="res://Ego/S/Glass_Interior_Tinted_Fade.material" type="Material" id=73]
+[ext_resource path="res://Ego/S/Glass_Tinted_Fade_Skybox.material" type="Material" id=74]
+[ext_resource path="res://Ego/S/Interior_Fade.material" type="Material" id=75]
+[ext_resource path="res://mobile/scripts/Airflow.gd" type="Script" id=76]
+[ext_resource path="res://Ego/Brakes_X/Brakes_X_LR_Std.tscn" type="PackedScene" id=77]
+[ext_resource path="res://Ego/Brakes_X/Brakes_X_RF_Std.tscn" type="PackedScene" id=78]
+[ext_resource path="res://Ego/Brakes_X/Brakes_X_RR_Std.tscn" type="PackedScene" id=79]
+[ext_resource path="res://Ego/Brakes_X/Brakes_X_LF_Std.tscn" type="PackedScene" id=80]
+[ext_resource path="res://Ego/S/Objects/Interior_Executive.obj" type="ArrayMesh" id=81]
+[ext_resource path="res://Ego/S/Objects/Interior_Executive_RHD.obj" type="ArrayMesh" id=82]
+[ext_resource path="res://Ego/S/Interior_Executive_Black.material" type="Material" id=83]
+[ext_resource path="res://Ego/S/Paint_Rough.material" type="Material" id=84]
+[ext_resource path="res://Ego/S/Paint_Rough_Original.material" type="Material" id=85]
+[ext_resource path="res://Ego/S/Objects/Brake_Lights_Left.obj" type="ArrayMesh" id=86]
+[ext_resource path="res://mobile/scripts/Marker.gd" type="Script" id=87]
+[ext_resource path="res://mobile/scripts/DefrostFront.gd" type="Script" id=88]
+[ext_resource path="res://mobile/materials/defrost_front.material" type="Material" id=89]
+[ext_resource path="res://mobile/materials/defrost_rear.material" type="Material" id=90]
+[ext_resource path="res://Ego/S/Objects/Defrost_Rear.obj" type="ArrayMesh" id=91]
+[ext_resource path="res://mobile/scripts/DefrostRear.gd" type="Script" id=92]
+[ext_resource path="res://Ego/S/Objects/Defrost_Front.obj" type="ArrayMesh" id=93]
+[ext_resource path="res://Ego/S/Glass_Fade_Skybox.material" type="Material" id=94]
+[ext_resource path="res://Ego/S/Glass_Interior_Fade.material" type="Material" id=95]
+[ext_resource path="res://mobile/scenes/Plate_Viewport.tscn" type="PackedScene" id=96]
+
+
+[sub_resource type="Animation" id=1]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hood_Spatial:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.18, 0.898, 0 ), Vector3( 1.21554, 0.943251, 0 ), Vector3( 1.2668, 0.964468, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hood_Spatial:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 17.885 ), Vector3( 0, 0, 57.9 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hood_Hinge_1_Spatial:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1.25, 0.862, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hood_Hinge_1_Spatial:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -70.435 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hood_Hinge_2_Spatial:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1.357, 0.869, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hood_Hinge_2_Spatial:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -43.823 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Trunk_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -55 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_LF_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.03, 0, 0 ), Vector3( 0.355218, -69.828, -0.966815 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_LF_Spatial/Door_LF_Mirror_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3.53, 0, 0 ), Vector3( 2.59763, 42.6552, 2.39106 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_LR_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.15, 0, 0 ), Vector3( 0.426134, -68.253, -1.06814 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_RF_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.03, 0, 0 ), Vector3( -0.355, 69.828, -0.967 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_RF_Spatial/Door_RF_Mirror_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3.53, 0, 0 ), Vector3( -2.598, -42.655, 2.391 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_RR_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.15, 0, 0 ), Vector3( -0.426, 68.253, -1.068 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Charge_Cap_Spatial:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -1.985, 0.838, -0.855 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Charge_Cap_Spatial:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 8.757, 14.661, 0.313 ), Vector3( 0.359714, 100.272, 8.75522 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_LF_Spatial/Window_LF_Spatial:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.167, 0.763653, 0.196304 ), Vector3( -1.13833, 0.692461, 0.158369 ), Vector3( -1.10077, 0.586311, 0.109664 ), Vector3( -1.07463, 0.51644, 0.0844641 ), Vector3( -1.0404, 0.41296, 0.053274 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door_LF_Spatial/Window_LF_Spatial:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.03, 8.13993e-13, 1.27243e-14 ), Vector3( -9.58125, -0.724101, 0.12053 ), Vector3( -13.9957, -1.45109, 0.351014 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_LR_Spatial/Window_LR_Spatial:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.182, 0.756525, 0.21786 ), Vector3( -0.171658, 0.702205, 0.187328 ), Vector3( -0.156144, 0.621155, 0.147695 ), Vector3( -0.145802, 0.567792, 0.126447 ), Vector3( -0.130288, 0.488469, 0.0985447 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door_LR_Spatial/Window_LR_Spatial:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.15, 0, 0 ), Vector3( -7.8365, 0, 0 ), Vector3( -13.407, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_RF_Spatial/Window_RF_Spatial:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.167, 0.763652, -0.196304 ), Vector3( -1.138, 0.692, -0.158 ), Vector3( -1.101, 0.586, -0.11 ), Vector3( -1.075, 0.516, -0.084 ), Vector3( -1.04, 0.413, -0.053 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door_RF_Spatial/Window_RF_Spatial:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.03, 8.13993e-13, -1.27243e-14 ), Vector3( 4.45, 0.29, 0.048 ), Vector3( 9.581, 0.724, 0.121 ), Vector3( 11.347, 1.015, 0.213 ), Vector3( 13.996, 1.451, 0.351 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_RR_Spatial/Window_RR_Spatial:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.182, 0.756525, -0.21786 ), Vector3( -0.172, 0.702, -0.187 ), Vector3( -0.156, 0.621, -0.148 ), Vector3( -0.146, 0.568, -0.126 ), Vector3( -0.13, 0.488, -0.099 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door_RR_Spatial/Window_RR_Spatial:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.15, 0, 0 ), Vector3( 3.825, 0, 0 ), Vector3( 7.836, 0, 0 ), Vector3( 10.065, 0, 0 ), Vector3( 13.407, 0, 0 ) ]
+}
+
+[sub_resource type="QuadMesh" id=14]
+
+[node name="ROOT" type="Spatial"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+script = ExtResource( 55 )
+has_perf_brakes = true
+has_us_plate = true
+wheel_type = 12
+body_path = NodePath("Body_Original")
+ground_shadow_path = NodePath("Floor")
+spoiler_path = NodePath("Trunk_Spatial/Spoiler")
+plate_us_path = NodePath("Trunk_Spatial/Plate_US")
+plate_eu_path = NodePath("Trunk_Spatial/Plate_EU")
+plate_viewport_path = NodePath("Plate_Viewport")
+fog_lights_path = NodePath("FogLights")
+reverse_lights_path = NodePath("Trunk_Spatial/Reverse_Light")
+turn_signal_r_path = NodePath("Right_Turn_Signal")
+turn_signal_l_path = NodePath("Left_Turn_Signal")
+drl_path = NodePath("DRL")
+headlights_path = NodePath("Headlights")
+headlights_trunk_path = NodePath("Trunk_Spatial/headlights_Trunk")
+brake_lights_l_path = NodePath("Brake_Lights_Left")
+brake_lights_r_path = NodePath("Brake_Lights_Right")
+brake_lights_center_path = NodePath("Trunk_Spatial/Brakelight_Trunk")
+taillights_projection_path = NodePath("Stoplights_Projections")
+headlights_projection_path = NodePath("Headlights_Projections")
+charge_port_path = NodePath("Spatials/ChargePort")
+lf_door_path = NodePath("Door_LF_Spatial/Door_LF")
+lr_door_path = NodePath("Door_LR_Spatial/Door_LR")
+rf_door_path = NodePath("Door_RF_Spatial/Door_RF")
+rr_door_path = NodePath("Door_RR_Spatial/Door_RR")
+trunk_path = NodePath("Trunk_Spatial/Trunk")
+hood_path = NodePath("Hood_Spatial/Hood_Original")
+lf_wheel_path = NodePath("Spatials/Wheel_LF_Spatial")
+lr_wheel_path = NodePath("Spatials/Wheel_LR_Spatial")
+rf_wheel_path = NodePath("Spatials/Wheel_RF_Spatial")
+rr_wheel_path = NodePath("Spatials/Wheel_RR_Spatial")
+front_marker_path = NodePath("FrontMarker")
+rear_marker_path = NodePath("RearMarker")
+lf_brake_path = NodePath("Spatials/Brakes_LF_Spatial")
+lr_brake_path = NodePath("Spatials/Brakes_LR_Spatial")
+rf_brake_path = NodePath("Spatials/Brakes_RF_Spatial")
+rr_brake_path = NodePath("Spatials/Brakes_RR_Spatial")
+interior_rhd_path = NodePath("Interior_RHD")
+interior_lhd_path = NodePath("Interior")
+local_dir = "Ego/S"
+brakes_standard_front_left = ExtResource( 80 )
+brakes_standard_rear_left = ExtResource( 77 )
+brakes_standard_front_right = ExtResource( 78 )
+brakes_standard_rear_right = ExtResource( 79 )
+brakes_perf_front_left = ExtResource( 5 )
+brakes_perf_rear_left = ExtResource( 15 )
+brakes_perf_front_right = ExtResource( 4 )
+brakes_perf_rear_right = ExtResource( 20 )
+defrost_front_path = NodePath("Spatials/Defrost_Front")
+defrost_rear_path = NodePath("Trunk_Spatial/Defrost_Rear")
+markers_to_collision_volumes_map_paths = {
+
+}
+paint_color = 4
+version = 1
+bodyS2_path = NodePath("Body")
+bumperS1_path = NodePath("Bumper_F_Original")
+bumperS2_path = NodePath("Bumper_F")
+hoodS2_path = NodePath("Hood_Spatial/Hood")
+lightsS1_path = NodePath("Lights_Original")
+lightsS2_path = NodePath("Lights")
+lights_glassS1_path = NodePath("Lights_Glass_Original")
+lights_glassS2_path = NodePath("Lights_Glass")
+
+[node name="Body" type="MeshInstance" parent="."]
+mesh = ExtResource( 8 )
+material/0 = ExtResource( 36 )
+material/1 = ExtResource( 32 )
+material/2 = ExtResource( 84 )
+material/3 = ExtResource( 25 )
+material/4 = ExtResource( 71 )
+material/5 = ExtResource( 27 )
+
+[node name="Body_Original" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 40 )
+material/0 = ExtResource( 72 )
+material/1 = ExtResource( 45 )
+material/2 = ExtResource( 85 )
+material/3 = ExtResource( 25 )
+material/4 = ExtResource( 71 )
+material/5 = ExtResource( 47 )
+
+[node name="Bumper_F" type="MeshInstance" parent="."]
+mesh = ExtResource( 41 )
+material/0 = ExtResource( 32 )
+material/1 = ExtResource( 36 )
+material/2 = ExtResource( 84 )
+
+[node name="Bumper_F_Original" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 43 )
+material/0 = ExtResource( 45 )
+material/1 = ExtResource( 85 )
+material/2 = ExtResource( 72 )
+
+[node name="Lights" type="MeshInstance" parent="."]
+mesh = ExtResource( 13 )
+material/0 = ExtResource( 27 )
+
+[node name="Lights_Original" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 44 )
+material/0 = ExtResource( 47 )
+
+[node name="Lights_Glass" type="MeshInstance" parent="."]
+mesh = ExtResource( 16 )
+material/0 = ExtResource( 28 )
+
+[node name="Lights_Glass_Original" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 48 )
+material/0 = ExtResource( 28 )
+
+[node name="Floor" type="MeshInstance" parent="."]
+mesh = ExtResource( 12 )
+material/0 = ExtResource( 31 )
+
+[node name="Headlights_Projections" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 10 )
+material/0 = ExtResource( 30 )
+
+[node name="Interior" type="MeshInstance" parent="."]
+mesh = ExtResource( 11 )
+material/0 = ExtResource( 53 )
+material/1 = ExtResource( 75 )
+material/2 = ExtResource( 26 )
+
+[node name="SteeringWheelMarker" type="Spatial" parent="Interior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.550981, 0.931283, -0.385083 )
+script = ExtResource( 87 )
+marker_name = "steeringWheel"
+
+[node name="Dashboard" type="Spatial" parent="Interior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.848265, 0.931, 6.6444e-08 )
+script = ExtResource( 87 )
+marker_name = "dashboard"
+
+[node name="SeatRow1LMarker" type="Spatial" parent="Interior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134972, 0.544467, -0.375334 )
+script = ExtResource( 87 )
+marker_name = "seatRow1L"
+
+[node name="SeatRow1RMarker" type="Spatial" parent="Interior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135, 0.544, 0.393381 )
+script = ExtResource( 87 )
+marker_name = "seatRow1R"
+
+[node name="SeatRow2RMarker" type="Spatial" parent="Interior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.769031, 0.544, 0.389223 )
+script = ExtResource( 87 )
+marker_name = "seatRow2R"
+
+[node name="SeatRow2LMarker" type="Spatial" parent="Interior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.769, 0.544, -0.389 )
+script = ExtResource( 87 )
+marker_name = "seatRow2L"
+
+[node name="SeatRow2MMarker" type="Spatial" parent="Interior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.769, 0.544, 0 )
+script = ExtResource( 87 )
+marker_name = "seatRow2M"
+
+[node name="Interior_RHD" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 51 )
+material/0 = ExtResource( 53 )
+material/1 = ExtResource( 75 )
+material/2 = ExtResource( 26 )
+
+[node name="SteeringWheelMarker2" type="Spatial" parent="Interior_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.551, 0.931, 0.385 )
+script = ExtResource( 87 )
+marker_name = "steeringWheel"
+
+[node name="Dashboard2" type="Spatial" parent="Interior_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.848265, 0.931, 6.6444e-08 )
+script = ExtResource( 87 )
+marker_name = "dashboard"
+
+[node name="SeatRow1LMarker2" type="Spatial" parent="Interior_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134972, 0.544467, -0.375334 )
+script = ExtResource( 87 )
+marker_name = "seatRow1L"
+
+[node name="SeatRow1RMarker2" type="Spatial" parent="Interior_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135, 0.544, 0.393381 )
+script = ExtResource( 87 )
+marker_name = "seatRow1R"
+
+[node name="SeatRow2RMarker2" type="Spatial" parent="Interior_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.769031, 0.544, 0.389223 )
+script = ExtResource( 87 )
+marker_name = "seatRow2R"
+
+[node name="SeatRow2LMarker2" type="Spatial" parent="Interior_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.769, 0.544, -0.389 )
+script = ExtResource( 87 )
+marker_name = "seatRow2L"
+
+[node name="SeatRow2MMarker2" type="Spatial" parent="Interior_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.769, 0.544, 0 )
+script = ExtResource( 87 )
+marker_name = "seatRow2M"
+
+[node name="Stoplights_Projections" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 24 )
+material/0 = ExtResource( 39 )
+
+[node name="Windows_Top" type="MeshInstance" parent="."]
+mesh = ExtResource( 22 )
+material/0 = ExtResource( 95 )
+material/1 = ExtResource( 94 )
+material/2 = ExtResource( 74 )
+material/3 = ExtResource( 73 )
+material/4 = ExtResource( 52 )
+material/5 = ExtResource( 54 )
+
+[node name="Charge_Cap_Spatial" type="Spatial" parent="."]
+transform = Transform( 0.967636, 0.0332474, 0.250149, 0.00539917, 0.988328, -0.152244, -0.252291, 0.148668, 0.956163, -1.985, 0.838, -0.855 )
+
+[node name="Charge_Cap" type="MeshInstance" parent="Charge_Cap_Spatial"]
+transform = Transform( 0.967636, 0.00539917, -0.252291, 0.0332474, 0.988328, 0.148668, 0.250149, -0.152244, 0.956163, 1.70052, -0.635112, 1.44165 )
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 27 )
+material/1 = ExtResource( 32 )
+
+[node name="Door_LF_Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.999838, -0.0179759, 0, 0.0179759, 0.999838, 0.91, 0.56, -0.89 )
+
+[node name="Window_LF_Spatial" type="Spatial" parent="Door_LF_Spatial"]
+transform = Transform( 1, -4.77466e-16, 1.42047e-14, 2.22045e-16, 0.999847, 0.0179761, -1.42109e-14, -0.0179761, 0.999847, -1.167, 0.763653, 0.196304 )
+
+[node name="Window_LF" type="MeshInstance" parent="Door_LF_Spatial/Window_LF_Spatial"]
+transform = Transform( 1, -2.54612e-15, 2.55795e-13, 0, 0.999998, -7.45058e-09, 1.42109e-14, 7.45058e-09, 0.999998, 0.257, -1.32, 0.679999 )
+mesh = ExtResource( 23 )
+material/0 = ExtResource( 52 )
+material/1 = ExtResource( 54 )
+
+[node name="Door_LF_Mirror_Spatial" type="Spatial" parent="Door_LF_Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.998103, -0.0615712, 0, 0.0615712, 0.998103, -0.223, 0.40682, -0.0463205 )
+
+[node name="Door_LF_Mirror" type="MeshInstance" parent="Door_LF_Spatial/Door_LF_Mirror_Spatial"]
+transform = Transform( 1, 2.22045e-16, 1.42109e-14, 8.88178e-16, 0.996835, 0.079503, 0, -0.079503, 0.996835, -0.687, -0.890666, 1.00299 )
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 36 )
+material/1 = ExtResource( 32 )
+
+[node name="Door_LF" type="MeshInstance" parent="Door_LF_Spatial"]
+transform = Transform( 1, -5.18626e-17, -1.42109e-14, 2.22045e-16, 0.999839, 0.0179759, -1.42109e-14, -0.0179759, 0.999839, -0.91, -0.543911, 0.899923 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 36 )
+material/1 = ExtResource( 84 )
+material/2 = ExtResource( 32 )
+material/3 = ExtResource( 53 )
+material/4 = ExtResource( 54 )
+
+[node name="Door_RF_Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.999838, 0.0179759, 0, -0.0179759, 0.999838, 0.91, 0.56, 0.89 )
+
+[node name="Window_RF_Spatial" type="Spatial" parent="Door_RF_Spatial"]
+transform = Transform( 1, 4.77464e-16, 1.42046e-14, -2.22045e-16, 0.999841, -0.017976, -1.42109e-14, 0.017976, 0.999841, -1.167, 0.763652, -0.196304 )
+
+[node name="Window_RF" type="MeshInstance" parent="Door_RF_Spatial/Window_RF_Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0.257, -1.32, -0.679999 )
+mesh = ExtResource( 34 )
+material/0 = ExtResource( 52 )
+material/1 = ExtResource( 54 )
+
+[node name="Door_RF_Mirror_Spatial" type="Spatial" parent="Door_RF_Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.998103, 0.0615712, 0, -0.0615712, 0.998103, -0.223, 0.407233, 0.0463279 )
+
+[node name="Door_RF_Mirror" type="MeshInstance" parent="Door_RF_Spatial/Door_RF_Mirror_Spatial"]
+transform = Transform( 1, 6.66134e-16, 0, -2.66454e-15, 0.996835, -0.079503, 1.42109e-14, 0.079503, 0.996835, -0.687, -0.891078, -1.00302 )
+mesh = ExtResource( 21 )
+material/0 = ExtResource( 36 )
+material/1 = ExtResource( 32 )
+
+[node name="Door_RF" type="MeshInstance" parent="Door_RF_Spatial"]
+transform = Transform( 1, -1.48767e-15, -7.10543e-14, -2.22045e-16, 0.999839, -0.0179759, -1.42109e-14, 0.0179759, 0.999839, -0.91, -0.543911, -0.899923 )
+mesh = ExtResource( 7 )
+material/0 = ExtResource( 36 )
+material/1 = ExtResource( 84 )
+material/2 = ExtResource( 32 )
+material/3 = ExtResource( 53 )
+material/4 = ExtResource( 54 )
+
+[node name="Door_LR_Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.999799, -0.0200699, 0, 0.0200699, 0.999799, -0.182, 0.572, -0.907 )
+
+[node name="Window_LR_Spatial" type="Spatial" parent="Door_LR_Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.999799, 0.0200699, 0, -0.0200699, 0.999799, -0.182, 0.756525, 0.21786 )
+
+[node name="Window_LR" type="MeshInstance" parent="Door_LR_Spatial/Window_LR_Spatial"]
+transform = Transform( 1, 1.84962e-16, 0, 0, 1, -4.65661e-08, 0, 4.65661e-08, 1, 0.364, -1.324, 0.674 )
+mesh = ExtResource( 33 )
+material/0 = ExtResource( 52 )
+material/1 = ExtResource( 54 )
+
+[node name="Door_LR" type="MeshInstance" parent="Door_LR_Spatial"]
+transform = Transform( 1, 2.22045e-16, 0, 0, 0.999799, 0.0200699, 0, -0.0200699, 0.999799, 0.182, -0.553681, 0.918297 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 36 )
+material/1 = ExtResource( 84 )
+material/2 = ExtResource( 32 )
+material/3 = ExtResource( 53 )
+
+[node name="Door_RR_Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.999799, 0.0200699, 0, -0.0200699, 0.999799, -0.182, 0.572, 0.907 )
+
+[node name="Window_RR_Spatial" type="Spatial" parent="Door_RR_Spatial"]
+transform = Transform( 1, 0, 0, 0, 0.999799, -0.0200699, 0, 0.0200699, 0.999799, -0.182, 0.756525, -0.21786 )
+
+[node name="Window_RR" type="MeshInstance" parent="Door_RR_Spatial/Window_RR_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.364, -1.324, -0.674 )
+mesh = ExtResource( 35 )
+material/0 = ExtResource( 52 )
+material/1 = ExtResource( 54 )
+
+[node name="Door_RR" type="MeshInstance" parent="Door_RR_Spatial"]
+transform = Transform( 1, -2.22045e-16, 0, 0, 0.999799, -0.0200699, 0, 0.0200699, 0.999799, 0.182, -0.553681, -0.918297 )
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 36 )
+material/1 = ExtResource( 84 )
+material/2 = ExtResource( 32 )
+material/3 = ExtResource( 53 )
+
+[node name="Trunk_Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.256, 1.303, 0 )
+
+[node name="Defrost_Rear" type="MeshInstance" parent="Trunk_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.256, -1.303, 0 )
+visible = false
+mesh = ExtResource( 91 )
+material/0 = ExtResource( 90 )
+script = ExtResource( 92 )
+
+[node name="Brakelight_Trunk" type="MeshInstance" parent="Trunk_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.256, -1.303, 0 )
+visible = false
+mesh = ExtResource( 57 )
+material/0 = ExtResource( 69 )
+
+[node name="headlights_Trunk" type="MeshInstance" parent="Trunk_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.256, -1.303, 0 )
+visible = false
+mesh = ExtResource( 61 )
+material/0 = ExtResource( 69 )
+
+[node name="Reverse_Light" type="MeshInstance" parent="Trunk_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.256, -1.303, 0 )
+visible = false
+mesh = ExtResource( 67 )
+material/0 = ExtResource( 69 )
+
+[node name="Trunk" type="MeshInstance" parent="Trunk_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.256, -1.303, 0 )
+mesh = ExtResource( 38 )
+material/0 = ExtResource( 32 )
+material/1 = ExtResource( 25 )
+material/2 = ExtResource( 71 )
+material/3 = ExtResource( 53 )
+material/4 = ExtResource( 28 )
+material/5 = ExtResource( 27 )
+material/6 = ExtResource( 94 )
+material/7 = ExtResource( 95 )
+material/8 = ExtResource( 36 )
+
+[node name="Plate_EU" type="MeshInstance" parent="Trunk_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.256, -1.303, 0 )
+visible = false
+mesh = ExtResource( 17 )
+material/0 = ExtResource( 29 )
+
+[node name="Plate_US" type="MeshInstance" parent="Trunk_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.256, -1.303, 0 )
+mesh = ExtResource( 18 )
+material/0 = ExtResource( 29 )
+
+[node name="Spoiler" type="MeshInstance" parent="Trunk_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.256, -1.303, 0 )
+visible = false
+mesh = ExtResource( 19 )
+material/0 = ExtResource( 37 )
+
+[node name="Hood_Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18, 0.898, 0 )
+
+[node name="Hood_Original" type="MeshInstance" parent="Hood_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18, -0.898, 0 )
+visible = false
+mesh = ExtResource( 42 )
+material/0 = ExtResource( 72 )
+
+[node name="Hood" type="MeshInstance" parent="Hood_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, -1.18, -0.898, 0 )
+mesh = ExtResource( 14 )
+material/0 = ExtResource( 36 )
+
+[node name="Hood_Hinge_2_Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.357, 0.869, 0 )
+
+[node name="Hood_Hinge_2" type="MeshInstance" parent="Hood_Hinge_2_Spatial"]
+transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 1.42109e-14, 1, -1.357, -0.869, -2.13163e-14 )
+mesh = ExtResource( 50 )
+material/0 = ExtResource( 36 )
+
+[node name="Hood_Hinge_1_Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.862, 0 )
+
+[node name="Hood_Hinge_1" type="MeshInstance" parent="Hood_Hinge_1_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, -1.42109e-14, 0, 1, -1.25, -0.862, 3.36325e-14 )
+mesh = ExtResource( 49 )
+material/0 = ExtResource( 36 )
+
+[node name="HoodAnimation" type="AnimationPlayer" parent="."]
+anims/Hood = SubResource( 1 )
+
+[node name="TrunkAnimation" type="AnimationPlayer" parent="."]
+anims/Trunk = SubResource( 2 )
+
+[node name="LFDoorAnimation" type="AnimationPlayer" parent="."]
+anims/Door_LF = SubResource( 3 )
+
+[node name="LFDoorMirrorAnimation" type="AnimationPlayer" parent="."]
+anims/LFDoorMirror = SubResource( 4 )
+
+[node name="LRDoorAnimation" type="AnimationPlayer" parent="."]
+anims/Door_LR = SubResource( 5 )
+
+[node name="RFDoorAnimation" type="AnimationPlayer" parent="."]
+anims/Door_RF = SubResource( 6 )
+
+[node name="RFDoorMirrorAnimation" type="AnimationPlayer" parent="."]
+anims/RFDoorMirror = SubResource( 7 )
+
+[node name="RRDoorAnimation" type="AnimationPlayer" parent="."]
+anims/Door_RR = SubResource( 8 )
+
+[node name="ChargeportAnimation" type="AnimationPlayer" parent="."]
+anims/Charge_Cap = SubResource( 9 )
+
+[node name="LFWindowAnimation" type="AnimationPlayer" parent="."]
+anims/Window_LF = SubResource( 10 )
+
+[node name="LRWindowAnimation" type="AnimationPlayer" parent="."]
+anims/Window_LR = SubResource( 11 )
+
+[node name="RFWindowAnimation" type="AnimationPlayer" parent="."]
+anims/Window_RF = SubResource( 12 )
+
+[node name="RRWindowAnimation" type="AnimationPlayer" parent="."]
+anims/Window_RR = SubResource( 13 )
+
+[node name="Spatials" type="Spatial" parent="."]
+
+[node name="Wheel_LF_Spatial" type="Spatial" parent="Spatials"]
+transform = Transform( -0.95, 0, -3.69944e-07, 0, 0.95, 0, 3.69944e-07, 0, -0.95, 1.60455, 0.334718, -0.770002 )
+script = ExtResource( 87 )
+marker_name = "wheel_1_1"
+
+[node name="Wheel_LR_Spatial" type="Spatial" parent="Spatials"]
+transform = Transform( -0.95, 0, -3.69944e-07, 0, 0.95, 0, 3.69944e-07, 0, -0.95, -1.365, 0.335, -0.77 )
+script = ExtResource( 87 )
+marker_name = "wheel_2_1"
+
+[node name="Wheel_RF_Spatial" type="Spatial" parent="Spatials"]
+transform = Transform( 0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 1.605, 0.335, 0.77 )
+script = ExtResource( 87 )
+marker_name = "wheel_1_2"
+
+[node name="Wheel_RR_Spatial" type="Spatial" parent="Spatials"]
+transform = Transform( 0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, -1.365, 0.335, 0.77 )
+script = ExtResource( 87 )
+marker_name = "wheel_2_2"
+
+[node name="Brakes_LF_Spatial" type="Spatial" parent="Spatials"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 1.605, 0.335, -0.77 )
+
+[node name="Brakes_LR_Spatial" type="Spatial" parent="Spatials"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.365, 0.335, -0.77 )
+
+[node name="Brakes_RF_Spatial" type="Spatial" parent="Spatials"]
+transform = Transform( -1, 0, 0, 0, 1, -3.25841e-07, 0, 3.25841e-07, 1, 1.605, 0.335, 0.77 )
+
+[node name="Brakes_RR_Spatial" type="Spatial" parent="Spatials"]
+transform = Transform( -1, 0, 0, 0, 1, -3.25841e-07, 0, 3.25841e-07, 1, -1.365, 0.335, 0.77 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Airflow_left" type="MeshInstance" parent="Spatials"]
+transform = Transform( -8.8694e-08, 0.754363, 0.173648, 0, -0.133015, 0.984808, 0.5444, 1.22901e-07, 2.82909e-08, 0.324863, 0.957577, -0.362554 )
+visible = false
+mesh = SubResource( 14 )
+material_override = ExtResource( 56 )
+script = ExtResource( 76 )
+
+[node name="Airflow_right" type="MeshInstance" parent="Spatials"]
+transform = Transform( -8.87079e-08, 0.754786, 0.173648, 0, -0.133089, 0.984808, 0.544485, 1.2297e-07, 2.82909e-08, 0.324863, 0.957577, 0.385455 )
+visible = false
+mesh = SubResource( 14 )
+material_override = ExtResource( 56 )
+script = ExtResource( 76 )
+
+[node name="Defrost_Front" type="MeshInstance" parent="Spatials"]
+visible = false
+mesh = ExtResource( 93 )
+material/0 = ExtResource( 89 )
+script = ExtResource( 88 )
+
+[node name="ChargePort" type="Spatial" parent="Spatials"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94406, 0.827586, -0.843917 )
+
+[node name="Tween" type="Tween" parent="Spatials"]
+
+[node name="FrunkMarker" type="Spatial" parent="Spatials"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81475, 0.86971, -0.000155568 )
+script = ExtResource( 87 )
+marker_name = "frunk"
+
+[node name="TrunkMarker" type="Spatial" parent="Spatials"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56279, 1.26757, -0.000155568 )
+script = ExtResource( 87 )
+marker_name = "trunk"
+
+[node name="ChargePortMarker" type="Spatial" parent="Spatials"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95554, 0.833826, -0.86547 )
+script = ExtResource( 87 )
+marker_name = "chargePort"
+
+[node name="DRL" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 66 )
+material/0 = ExtResource( 69 )
+
+[node name="DRL_Original" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 58 )
+material/0 = ExtResource( 70 )
+
+[node name="FogLights" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 64 )
+material/0 = ExtResource( 69 )
+
+[node name="Headlights" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 68 )
+material/0 = ExtResource( 69 )
+
+[node name="Headlights_Original" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 65 )
+material/0 = ExtResource( 70 )
+
+[node name="Left_Turn_Signal" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 59 )
+material/0 = ExtResource( 69 )
+material/1 = ExtResource( 27 )
+
+[node name="Left_Turn_Signal_Original" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 62 )
+material/0 = ExtResource( 70 )
+
+[node name="Right_Turn_Signal" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 63 )
+material/0 = ExtResource( 69 )
+material/1 = ExtResource( 27 )
+
+[node name="Right_Turn_Signal_Original" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 60 )
+material/0 = ExtResource( 70 )
+
+[node name="FrontMarker" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52499, 0, 4.11373e-07 )
+visible = false
+
+[node name="RearMarker" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.44686, 0, -3.98644e-07 )
+visible = false
+
+[node name="Interior_Executive" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 81 )
+material/0 = ExtResource( 83 )
+material/1 = ExtResource( 75 )
+material/2 = ExtResource( 26 )
+
+[node name="SteeringWheelMarker2" type="Spatial" parent="Interior_Executive"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.550981, 0.931283, -0.385083 )
+script = ExtResource( 87 )
+marker_name = "steeringWheel"
+
+[node name="Dashboard2" type="Spatial" parent="Interior_Executive"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.848265, 0.931, 6.6444e-08 )
+script = ExtResource( 87 )
+marker_name = "dashboard"
+
+[node name="SeatRow1LMarker2" type="Spatial" parent="Interior_Executive"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134972, 0.544467, -0.375334 )
+script = ExtResource( 87 )
+marker_name = "seatRow1L"
+
+[node name="SeatRow1RMarker2" type="Spatial" parent="Interior_Executive"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135, 0.544, 0.393381 )
+script = ExtResource( 87 )
+marker_name = "seatRow1R"
+
+[node name="SeatRow2RMarker2" type="Spatial" parent="Interior_Executive"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.750003, 0.544, 0.389223 )
+script = ExtResource( 87 )
+marker_name = "seatRow2R"
+
+[node name="SeatRow2LMarker2" type="Spatial" parent="Interior_Executive"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.749616, 0.544, -0.389 )
+script = ExtResource( 87 )
+marker_name = "seatRow2L"
+
+[node name="SeatRow2BackRMarker" type="Spatial" parent="Interior_Executive"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05863, 0.544, 0.389223 )
+script = ExtResource( 87 )
+marker_name = "seatRow2BackR"
+
+[node name="SeatRow2BackLMarker" type="Spatial" parent="Interior_Executive"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05824, 0.544, -0.389 )
+script = ExtResource( 87 )
+marker_name = "seatRow2BackL"
+
+[node name="Interior_Executive_RHD" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 82 )
+material/0 = ExtResource( 83 )
+material/1 = ExtResource( 75 )
+material/2 = ExtResource( 26 )
+
+[node name="SteeringWheelMarker3" type="Spatial" parent="Interior_Executive_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.551, 0.931, 0.385 )
+script = ExtResource( 87 )
+marker_name = "steeringWheel"
+
+[node name="Dashboard3" type="Spatial" parent="Interior_Executive_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.848265, 0.931, 6.6444e-08 )
+script = ExtResource( 87 )
+marker_name = "dashboard"
+
+[node name="SeatRow1LMarker3" type="Spatial" parent="Interior_Executive_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134972, 0.544467, -0.375334 )
+script = ExtResource( 87 )
+marker_name = "seatRow1L"
+
+[node name="SeatRow1RMarker3" type="Spatial" parent="Interior_Executive_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135, 0.544, 0.393381 )
+script = ExtResource( 87 )
+marker_name = "seatRow1R"
+
+[node name="SeatRow2RMarker3" type="Spatial" parent="Interior_Executive_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.736585, 0.544, 0.389223 )
+script = ExtResource( 87 )
+marker_name = "seatRow2R"
+
+[node name="SeatRow2LMarker3" type="Spatial" parent="Interior_Executive_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.736198, 0.544, -0.389 )
+script = ExtResource( 87 )
+marker_name = "seatRow2L"
+
+[node name="SeatRow2BackRMarker2" type="Spatial" parent="Interior_Executive_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05863, 0.544, 0.389223 )
+script = ExtResource( 87 )
+marker_name = "seatRow2BackR"
+
+[node name="SeatRow2BackLMarker2" type="Spatial" parent="Interior_Executive_RHD"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05824, 0.544, -0.389 )
+script = ExtResource( 87 )
+marker_name = "seatRow2BackL"
+
+[node name="Brake_Lights_Left" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 86 )
+material/0 = ExtResource( 27 )
+material/1 = ExtResource( 69 )
+
+[node name="Brake_Lights_Right" type="MeshInstance" parent="."]
+visible = false
+mesh = ExtResource( 46 )
+material/0 = ExtResource( 27 )
+material/1 = ExtResource( 69 )
+
+[node name="Plate_Viewport" parent="." instance=ExtResource( 96 )]

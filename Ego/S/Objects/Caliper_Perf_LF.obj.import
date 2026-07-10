@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Caliper_Perf_LF.obj-aacab44dadf949347941be680f403edd.mesh"
+
+[deps]
+
+files=[ "res://.import/Caliper_Perf_LF.obj-aacab44dadf949347941be680f403edd.mesh" ]
+
+source_file="res://Ego/S/Objects/Caliper_Perf_LF.obj"
+dest_files=[ "res://.import/Caliper_Perf_LF.obj-aacab44dadf949347941be680f403edd.mesh", "res://.import/Caliper_Perf_LF.obj-aacab44dadf949347941be680f403edd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Brake_Lights_Left.obj-2fb1fd42a807a90b41f7edb35d872361.mesh"
+
+[deps]
+
+files=[ "res://.import/Brake_Lights_Left.obj-2fb1fd42a807a90b41f7edb35d872361.mesh" ]
+
+source_file="res://Ego/S/Objects/Brake_Lights_Left.obj"
+dest_files=[ "res://.import/Brake_Lights_Left.obj-2fb1fd42a807a90b41f7edb35d872361.mesh", "res://.import/Brake_Lights_Left.obj-2fb1fd42a807a90b41f7edb35d872361.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

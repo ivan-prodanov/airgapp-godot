@@ -1,0 +1,9 @@
+# Exported from Godot Engine
+
+newmtl Light
+Kd 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+
+newmtl Illumination
+Kd 0.500000 0.000000 0.000000
+Ks 0.500000 0.500000 0.500000

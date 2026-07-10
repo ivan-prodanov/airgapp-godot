@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Lights_Glass.obj-ee11475cf4448ab5cd4acf9f1bdc4ba9.mesh"
+
+[deps]
+
+files=[ "res://.import/Lights_Glass.obj-ee11475cf4448ab5cd4acf9f1bdc4ba9.mesh" ]
+
+source_file="res://Ego/S/Objects/Lights_Glass.obj"
+dest_files=[ "res://.import/Lights_Glass.obj-ee11475cf4448ab5cd4acf9f1bdc4ba9.mesh", "res://.import/Lights_Glass.obj-ee11475cf4448ab5cd4acf9f1bdc4ba9.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
