@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://shaders/tesla_badging.shader" type="Shader" id=1]
+[ext_resource path="res://Ego/v2023/Poppyseed/Textures/Body_MRA.png" type="Texture" id=2]
+
+[resource]
+resource_name = "tesla_badging"
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 0.168627, 0.168627, 0.168627, 1 )
+shader_param/specular = 0.5
+shader_param/metallic = 1.0
+shader_param/roughness = 0.3
+shader_param/ao_light_affect = 1.0
+shader_param/texture_ambient_occlusion = ExtResource( 2 )

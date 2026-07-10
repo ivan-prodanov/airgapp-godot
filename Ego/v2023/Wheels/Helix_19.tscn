@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Ego/v2023/Wheels/Helix_19.glb" type="PackedScene" id=1]
+
+
+[node name="Helix" instance=ExtResource( 1 )]
