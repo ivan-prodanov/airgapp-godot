@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Ego/Cybertruck/Terrain/TerrainConfig.gd" type="Script" id=1]
+[ext_resource path="res://Ego/Cybertruck/Terrain/Terrain.gd" type="Script" id=2]
+[ext_resource path="res://Ego/Cybertruck/Terrain/colormap.png" type="Texture" id=3]
+[ext_resource path="res://Ego/Cybertruck/Terrain/Terrain.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Ego/Cybertruck/Terrain/Terrain.shader" type="Shader" id=5]
+[ext_resource path="res://Ego/Cybertruck/Terrain/black.png" type="Texture" id=6]
+
+[sub_resource type="ShaderMaterial" id=1]
+render_priority = -10
+shader = ExtResource( 5 )
+shader_param/color_repeat_offset = Vector2( 0.5, 0.5 )
+shader_param/color_map_factor = 2.0
+shader_param/color_map_flat_factor = 3.0
+shader_param/distance_dim_factor = 1.0
+shader_param/roughness = 0.25
+shader_param/metallic = 1.0
+shader_param/ao_light_affect = 0.9
+shader_param/color = Color( 0.171875, 0.171875, 0.171875, 1 )
+shader_param/fade_start_dist_sq = 14.0
+shader_param/fade_end_dist_sq = 0.0
+shader_param/cyber_terrain_fade_in = 1.0
+shader_param/color_map = ExtResource( 3 )
+shader_param/ao = ExtResource( 6 )
+
+[node name="ROOT" type="Spatial"]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+script = ExtResource( 2 )
+terrain_path = NodePath("Terrain")
+day_config_path = NodePath("DayConfig")
+day_dark_config_path = NodePath("DayDarkConfig")
+night_config_path = NodePath("NightConfig")
+mars_config_path = NodePath("MarsConfig")
+mobile_config_path = NodePath("MobileConfig")
+
+[node name="Terrain" type="MeshInstance" parent="."]
+mesh = ExtResource( 4 )
+material/0 = SubResource( 1 )
+
+[node name="DayConfig" type="Node" parent="."]
+script = ExtResource( 1 )
+color = Color( 0.941176, 0.941176, 0.941176, 1 )
+roughness = 0.48
+metallic = 0.74
+ao_light_affect = 0.62
+color_map_factor = -0.6
+color_map_flat_factor = -1.2
+
+[node name="DayDarkConfig" type="Node" parent="."]
+script = ExtResource( 1 )
+roughness = 0.25
+metallic = 1.0
+ao_light_affect = 0.9
+color_map_factor = 2.0
+color_map_flat_factor = 3.0
+distance_dim_factor = 1.0
+
+[node name="NightConfig" type="Node" parent="."]
+script = ExtResource( 1 )
+roughness = 0.25
+metallic = 1.0
+ao_light_affect = 0.9
+color_map_factor = 2.0
+color_map_flat_factor = 3.0
+distance_dim_factor = 1.0
+
+[node name="MarsConfig" type="Node" parent="."]
+script = ExtResource( 1 )
+color = Color( 0.521569, 0.466667, 0.435294, 1 )
+roughness = 0.25
+metallic = 1.0
+ao_light_affect = 0.9
+color_map_factor = 1.0
+color_map_flat_factor = 2.0
+distance_dim_factor = 1.0
+
+[node name="MobileConfig" type="Node" parent="."]
+script = ExtResource( 1 )
+color = Color( 0.305882, 0.305882, 0.309804, 1 )
+roughness = 0.25
+metallic = 0.4
+ao_light_affect = 0.92
+color_map_factor = 2.09
+color_map_flat_factor = 3.0
+distance_dim_factor = 1.0

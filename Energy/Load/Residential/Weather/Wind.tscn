@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Weather/Wind.gd" type="Script" id=1]
+[ext_resource path="res://Energy/Load/Residential/Weather/LongWind.mesh" type="ArrayMesh" id=2]
+[ext_resource path="res://Energy/Load/Residential/Weather/Wind.tres" type="Material" id=3]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.45098, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1 )
+
+[node name="Wind" type="CPUParticles"]
+transform = Transform( -0.249467, 0, -0.224794, 0, 0.335806, 0, 0.224794, 0, -0.249467, -0.132, 1.978, 3.972 )
+visible = false
+material_override = ExtResource( 3 )
+amount = 30
+lifetime = 5.0
+mesh = ExtResource( 2 )
+emission_shape = 2
+emission_box_extents = Vector3( 1, 2.1, 1 )
+gravity = Vector3( -8, 0, 0 )
+scale_amount = 0.2
+scale_amount_random = 0.2
+color_ramp = SubResource( 1 )
+script = ExtResource( 1 )
+fog = NodePath("../SkyGradient/CloudController/Fog")

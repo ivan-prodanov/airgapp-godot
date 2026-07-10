@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Energy/Powerflow/Powerflow.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/pulse_length = 9.0
+shader_param/pulse_frequency = 2.0
+shader_param/spw_solar_offset = null
+shader_param/snake_fraction = 0.6
+shader_param/snake_exponent = 2.0
+shader_param/powerflow_state_0 = Vector2( -1, 2 )
+shader_param/powerflow_state_1 = Vector2( -1, 1 )
+shader_param/powerflow_state_2 = Vector2( 2, 1 )
+shader_param/powerflow_state_3 = Vector2( 2, 2 )
+shader_param/powerflow_state_4 = Vector2( 2, 1 )
+shader_param/powerflow_state_5 = Vector2( 2, 2 )
+shader_param/powerflow_state_6 = Vector2( 2, 2 )
+shader_param/powerflow_state_7 = Vector2( 0, 2 )
+shader_param/base_color = Color( 0.219608, 0.219608, 0.219608, 1 )
+shader_param/flow_color = Color( 0, 0.886275, 0.52549, 1 )
+shader_param/current_time = 0.2
+shader_param/path_fade = 0.0
+shader_param/path_fade_length = 4.0

@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Energy/SharedProduct/Reflection.shader" type="Shader" id=1]
+[ext_resource path="res://Energy/SharedProduct/Reflection_Products.png" type="Texture" id=2]
+
+[resource]
+render_priority = -2
+shader = ExtResource( 1 )
+shader_param/intensity = 1.0
+shader_param/alpha = 1.0
+shader_param/tint_color = Color( 1, 1, 1, 1 )
+shader_param/color_as_alpha = false
+shader_param/reflection_texture = ExtResource( 2 )

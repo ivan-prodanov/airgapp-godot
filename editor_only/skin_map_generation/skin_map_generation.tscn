@@ -1,0 +1,163 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://editor_only/skin_map_generation/skin_map_generation.gd" type="Script" id=1]
+[ext_resource path="res://Ego/Brakes/Brakes_Std_R.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ego/v2023/Poppyseed/script/Poppyseed.gd" type="Script" id=3]
+[ext_resource path="res://Ego/v2023/Poppyseed/Poppyseed.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Ego/Brakes/Brakes_Perf_F.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Ego/Brakes/Brakes_Perf_R.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Ego/Brakes/Brakes_Std_F.tscn" type="PackedScene" id=7]
+[ext_resource path="res://editor_only/skin_map_generation/mask_material.tres" type="Material" id=15]
+[ext_resource path="res://editor_only/skin_map_generation/skin_map_material.tres" type="Material" id=16]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Generator")
+
+[node name="ShadowGeneration" type="Spatial"]
+script = ExtResource( 1 )
+uv_map_paint_material = ExtResource( 16 )
+mask_material = ExtResource( 15 )
+car_to_setup = 1
+
+[node name="Preview" type="TextureRect" parent="."]
+margin_right = 840.0
+margin_bottom = 520.0
+texture = SubResource( 1 )
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Generator" type="Viewport" parent="."]
+size = Vector2( 840, 520 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="M3_Camera" type="Camera" parent="Generator"]
+transform = Transform( -0.705043, 0.25502, -0.661725, 0, 0.933104, 0.359606, 0.709165, 0.253538, -0.657878, -7.016, 4.247, -7.262 )
+current = true
+fov = 14.5
+
+[node name="MY_Camera" type="Camera" parent="Generator"]
+transform = Transform( -0.705043, 0.25502, -0.661725, 0, 0.933104, 0.359606, 0.709165, 0.253538, -0.657878, -7.016, 4.363, -7.262 )
+current = true
+fov = 14.5
+
+[node name="E80_Camera" type="Camera" parent="Generator"]
+transform = Transform( -0.705043, 0.25502, -0.661725, 0, 0.933104, 0.359606, 0.709165, 0.253538, -0.657878, -7.46423, 4.6443, -7.6489 )
+current = true
+fov = 14.5
+
+[node name="CT_Camera" type="Camera" parent="Generator"]
+transform = Transform( -0.705043, 0.25502, -0.661725, 0, 0.933104, 0.359606, 0.709165, 0.253538, -0.657878, -8.54863, 5.2336, -8.72699 )
+current = true
+fov = 14.5
+
+[node name="EgoSlot" type="Spatial" parent="."]
+
+[node name="ROOT" type="Spatial" parent="EgoSlot" instance=ExtResource( 4 )]
+transform = Transform( -1.64829e-07, 0, 1.01171, 0, 1.01171, 0, -1.01171, 0, -1.64829e-07, 0, 0, 0 )
+script = ExtResource( 3 )
+has_spoiler = true
+has_us_plate = true
+wheel_type = 38
+fascia_type = 2
+skybox_enable = true
+allow_sourcing_roof_fade_material_from_mesh = true
+body_path = NodePath("../ROOT/Body")
+ground_shadow_path = NodePath("../ROOT/Floor")
+spoiler_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Spoiler")
+plate_us_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Plate_US")
+plate_eu_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Plate_EU")
+plate_viewport_path = NodePath("Plate_Viewport")
+reverse_lights_path = NodePath("../ROOT/Reverse_Light")
+turn_signal_r_path = NodePath("../ROOT/Right_Turn_Signal_Front")
+turn_signal_l_path = NodePath("../ROOT/Left_Turn_Signal_Front")
+drl_path = NodePath("../ROOT/DRL")
+headlights_path = NodePath("../ROOT/Headlights")
+headlights_trunk_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Headlights_Trunk")
+brake_lights_l_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Brake_Lights_Left")
+brake_lights_r_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Brake_Lights_Right")
+brake_lights_center_path = NodePath("../ROOT/Brake_Lights_Center")
+taillights_projection_path = NodePath("../ROOT/Stoplights_Projections")
+headlights_projection_path = NodePath("../ROOT/Headlights_Projections")
+charge_port_path = NodePath("../ROOT/Spatials/ChargePort")
+charge_port_led_path = NodePath("Chargeport1")
+lf_door_path = NodePath("../ROOT/Door_LF_Spatial/Door_LF")
+lr_door_path = NodePath("../ROOT/Door_LR_Spatial/Door_LR")
+rf_door_path = NodePath("../ROOT/Door_RF_Spatial/Door_RF")
+rr_door_path = NodePath("../ROOT/Door_RR_Spatial/Door_RR")
+trunk_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Trunk")
+hood_path = NodePath("../ROOT/Hood_Spatial/Hood")
+lf_wheel_path = NodePath("../ROOT/Spatials/Wheel_LF_Spatial")
+lr_wheel_path = NodePath("../ROOT/Spatials/Wheel_LR_Spatial")
+rf_wheel_path = NodePath("../ROOT/Spatials/Wheel_RF_Spatial")
+rr_wheel_path = NodePath("../ROOT/Spatials/Wheel_RR_Spatial")
+front_marker_path = NodePath("FrontMarker")
+rear_marker_path = NodePath("RearMarker")
+lf_brake_path = NodePath("../ROOT/Spatials/Brakes_LF_Spatial")
+lr_brake_path = NodePath("../ROOT/Spatials/Brakes_LR_Spatial")
+rf_brake_path = NodePath("../ROOT/Spatials/Brakes_RF_Spatial")
+rr_brake_path = NodePath("../ROOT/Spatials/Brakes_RR_Spatial")
+interior_rhd_path = NodePath("../ROOT/Interior_Body_RHD")
+interior_lhd_path = NodePath("../ROOT/Interior_Body")
+local_dir = "Ego/v2023/Poppyseed"
+terrain_dir = "Ego/v2023/Poppyseed/Terrain"
+brakes_standard_front_left = ExtResource( 7 )
+brakes_standard_rear_left = ExtResource( 2 )
+brakes_standard_front_right = ExtResource( 7 )
+brakes_standard_rear_right = ExtResource( 2 )
+brakes_perf_front_left = ExtResource( 5 )
+brakes_perf_rear_left = ExtResource( 6 )
+brakes_perf_front_right = ExtResource( 5 )
+brakes_perf_rear_right = ExtResource( 6 )
+defrost_front_path = NodePath("../ROOT/Spatials/Defrost_Front")
+defrost_rear_path = NodePath("../ROOT/Spatials/Defrost_Rear")
+marker_locators_paths = [ NodePath("Chargeport_Marker"), NodePath("Hood_Spatial/Frunk_Marker"), NodePath("Trunk_Bracket_Main_Spatial/Trunk_Spatial/Trunk_Marker"), NodePath("Lock_Marker"), NodePath("Trunk_Bracket_Main_Spatial/Trunk_Spatial/Plate_Marker") ]
+markers_to_collision_volumes_map_paths = {
+NodePath("Hood_Spatial/Frunk_Marker"): [ NodePath("Hood_Spatial/Frunk_Marker/Frunk_Marker_Dynamic_Collision_Area") ],
+NodePath("Trunk_Bracket_Main_Spatial/Trunk_Spatial/Trunk_Marker"): [ NodePath("Trunk_Bracket_Main_Spatial/Trunk_Spatial/Trunk_Marker/Trunk_Marker_Dynamic_Collision_Area") ],
+NodePath("Chargeport_Marker"): [ NodePath("Chargeport_Static_Collision_Area") ],
+NodePath("Trunk_Bracket_Main_Spatial/Trunk_Spatial/Plate_Marker"): [ NodePath("Trunk_Bracket_Main_Spatial/Trunk_Spatial/Plate_Marker/Plate_Marker_Dynamic_Collision_Area") ]
+}
+center_console1_path = NodePath("../ROOT/Center_Console")
+lf_door_card1_path = NodePath("../ROOT/Door_LF_Spatial/Doorcard_LF")
+rf_door_card1_path = NodePath("../ROOT/Door_RF_Spatial/Doorcard_RF")
+lhd_steering_wheel_path = NodePath("../ROOT/Steering_Wheel_Spatial")
+rhd_steering_wheel_path = NodePath("../ROOT/Steering_Wheel_RHD_Spatial")
+lhd_dashboard_path = NodePath("../ROOT/Dashboard")
+rhd_dashboard_path = NodePath("../ROOT/Dashboard_RHD")
+lhd_screen_path = NodePath("../ROOT/Screen_Front")
+rhd_screen_path = NodePath("../ROOT/Screen_Front_RHD")
+headlights_object_original_path = NodePath("../ROOT/Lights")
+headlights_trunk_original_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Headlights_Trunk")
+lights_trunk_original_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Lights_Trunk")
+reverse_lights_global_path = NodePath("Reverse_Light")
+charge_cap_original_path = NodePath("../ROOT/Charge_Cap_Spatial/ChargeCap")
+charge_cap_right_original_path = NodePath("../ROOT/ChargeCap_Right")
+has_stalk = true
+has_rear_display = true
+turn_signal_rear_l_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Left_Turn_Signal_Rear")
+turn_signal_rear_r_path = NodePath("../ROOT/Trunk_Bracket_Main_Spatial/Trunk_Spatial/Right_Turn_Signal_Rear")
+rear_seats_path = NodePath("Seat_R_Color")
+doorcard_lf_path = NodePath("Door_LF_Spatial/Doorcard_LF")
+doorcard_lf_rhd_path = NodePath("Door_LF_Spatial/Doorcard_LF_RHD")
+doorcard_rf_path = NodePath("Door_RF_Spatial/Doorcard_RF")
+doorcard_rf_rhd_path = NodePath("Door_RF_Spatial/Doorcard_RF_RHD")
+stalk_path = NodePath("Stalk")
+stalk_rhd_path = NodePath("Stalk_RHD")
+center_console_path = NodePath("Center_Console")
+center_console_no_display_path = NodePath("Center_Console_D50")
+fascia_cam_path = NodePath("Fascia_Cam_D50")
+seat_buttom_lf_path = NodePath("Seat_Bottom_LF")
+seat_buttom_rf_path = NodePath("Seat_Bottom_RF")
+seat_buttom_d50_lf_path = NodePath("Seat_Bottom_D50_LF")
+seat_buttom_d50_rf_path = NodePath("Seat_Bottom_D50_RF")
+tweeter_lf_path = NodePath("Door_LF_Spatial/Doorcard_LF_Tweeter_NV35")
+tweeter_rf_path = NodePath("Door_RF_Spatial/Doorcard_RF_Tweeter_NV35")
+sill_plate_path = NodePath("Model3_Text_NV35")
+bumper_base_paths = [ NodePath("Bumper_R_Base"), NodePath("Bumper_F_Base"), NodePath("Bumper_R_Base_Reflector") ]
+bumper_perf_paths = [ NodePath("Bumper_R_Perf"), NodePath("Bumper_F_Perf"), NodePath("Bumper_R_Perf_Reflector") ]
+seat_base_paths = [ NodePath("Seat_Bottom_LF_Color"), NodePath("Seat_Top_LF_Color"), NodePath("Seat_Top_LF"), NodePath("Seat_Top_RF_Color"), NodePath("Seat_Top_RF"), NodePath("Seat_Bottom_RF_Color") ]
+seat_perf_paths = [ NodePath("Seat_Bottom_Perf_LF_Color"), NodePath("Seat_Top_Perf_LF_Color"), NodePath("Seat_Top_Perf_LF"), NodePath("Seat_Top_Perf_RF_Color"), NodePath("Seat_Top_Perf_RF"), NodePath("Seat_Bottom_Perf_RF_Color") ]

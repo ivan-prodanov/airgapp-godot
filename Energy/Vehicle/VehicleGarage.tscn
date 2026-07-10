@@ -1,0 +1,209 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Energy/Vehicle/VehicleGarageManager.gd" type="Script" id=1]
+[ext_resource path="res://Energy/Vehicle/VehicleSwitcher.gd" type="Script" id=2]
+[ext_resource path="res://Energy/Component/ClickableComponent.gd" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.9, 0.7, 0.5 )
+
+[sub_resource type="Animation" id=2]
+length = 7.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Vehicle:translation:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 4, -1.42631, 7, 2, -4, 0, -2.5, 0, 1, 0 ),
+"times": PoolRealArray( 0, 4 )
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ false, false ],
+"method": "set_garage_door_open"
+}, {
+"args": [ true, true ],
+"method": "set_garage_door_open"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "setCameraViewVehicle"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Vehicle:charge_port_open")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Vehicle:direction")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4.4 ),
+"transitions": PoolRealArray( 0.965936, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 5.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true, true ],
+"method": "setVehiclePluggedIn"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 10.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Vehicle:translation:z")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -2.5, 0, 2.5, 0, 5, -2.5, 0, 2.5, 0 ),
+"times": PoolRealArray( 3.7, 9.5 )
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "setGarageDoorOpen"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false ],
+"method": "setCameraViewVehicle"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Vehicle:charge_port_open")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Vehicle:direction")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 3.4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -1 ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ false, true ],
+"method": "setVehiclePluggedIn"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("Vehicle")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 9.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "deleteVehicle"
+} ]
+}
+
+[node name="VehicleGarageManager" type="Spatial"]
+script = ExtResource( 1 )
+vehicle = NodePath("Vehicle")
+
+[node name="Vehicle" type="Spatial" parent="."]
+transform = Transform( 0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0 )
+script = ExtResource( 2 )
+vehicle_garage_manager = NodePath("..")
+charge_port_open = true
+direction = 1
+
+[node name="ClickArea" type="Area" parent="Vehicle"]
+collision_layer = 16384
+collision_mask = 0
+script = ExtResource( 3 )
+component_name = "VEHICLE_1"
+
+[node name="Shape" type="CollisionShape" parent="Vehicle/ClickArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.857143, 1.71429 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+anims/enter = SubResource( 2 )
+anims/exit = SubResource( 3 )

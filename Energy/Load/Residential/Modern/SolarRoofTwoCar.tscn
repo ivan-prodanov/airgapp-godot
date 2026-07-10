@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Modern/SolarRoofTwoCar.glb" type="PackedScene" id=1]
+[ext_resource path="res://Energy/Load/Residential/SolarRoofAlbedo.png" type="Texture" id=2]
+[ext_resource path="res://Energy/Load/Residential/SolarRoofMRA.png" type="Texture" id=3]
+[ext_resource path="res://Energy/Load/SolarRoof.shader" type="Shader" id=4]
+[ext_resource path="res://Energy/Labels/ComponentLabelUpdater.gd" type="Script" id=5]
+[ext_resource path="res://Energy/Labels/Label.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Energy/Solar/LabelReferenceSwitcher.gd" type="Script" id=7]
+[ext_resource path="res://Energy/Solar/NonExportToggle.gd" type="Script" id=8]
+[ext_resource path="res://Energy/Component/ClickableComponent.gd" type="Script" id=9]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
+shader_param/shine_angle = 101.563
+shader_param/shine_sharpness = 3.841
+shader_param/shine_color = Color( 0.423529, 0.498039, 0.65098, 1 )
+shader_param/shine_offset = -1.61
+shader_param/texture_albedo = ExtResource( 2 )
+shader_param/texture_mra = ExtResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+albedo_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/shine_angle = 28.978
+shader_param/shine_sharpness = 2.008
+shader_param/shine_color = Color( 0.423529, 0.498039, 0.65098, 1 )
+shader_param/shine_offset = -1.115
+shader_param/texture_albedo = ExtResource( 2 )
+shader_param/texture_mra = ExtResource( 3 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.333269, 0.0282629, 1.10715 )
+
+[node name="SolarRoofTwoCar" instance=ExtResource( 1 )]
+
+[node name="SolarRoof2CarRight" parent="." index="0"]
+material/0 = SubResource( 1 )
+
+[node name="RoofSeperator" parent="." index="1"]
+material/0 = SubResource( 2 )
+
+[node name="SolarRoof2CarLeft" parent="." index="2"]
+material/0 = SubResource( 3 )
+
+[node name="SolarLabel" type="Spatial" parent="." index="3"]
+visible = false
+
+[node name="ComponentLabel" type="Node" parent="SolarLabel" index="0"]
+script = ExtResource( 5 )
+component_name = "SOLAR"
+label_path = NodePath("../Label")
+
+[node name="Label" parent="SolarLabel" index="1" instance=ExtResource( 6 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_right = 223.0
+margin_bottom = 86.0
+identifier = "solar"
+
+[node name="NonExportToggle" type="Node" parent="SolarLabel" index="2"]
+script = ExtResource( 8 )
+label_path = NodePath("../Label")
+
+[node name="LabelSwitcher" type="Node" parent="SolarLabel" index="3"]
+script = ExtResource( 7 )
+without_inverter_reference_point_path = NodePath("../../LabelWithoutInverter")
+with_inverter_reference_point_path = NodePath("../../LabelWithInverter")
+label_path = NodePath("../Label")
+
+[node name="LabelWithInverter" type="Spatial" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.227, 0.454, 1.12 )
+
+[node name="LabelWithoutInverter" type="Spatial" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027, 0.604, 0.984 )
+
+[node name="Area" type="Area" parent="." index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.702655, 0.246109 )
+collision_layer = 16385
+script = ExtResource( 9 )
+component_name = "SOLAR"
+
+[node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
+transform = Transform( 0.957304, 0.289082, 0, -0.289082, 0.957304, 0, 0, 0, 1, -0.14588, -0.0619064, -0.0884629 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Area" index="1"]
+transform = Transform( -1.33683e-07, -9.31234e-08, 1, -0.571588, 0.820541, 0, -0.820541, -0.571588, -1.62921e-07, 0.239905, 0.0320215, 1.35321 )
+shape = SubResource( 4 )

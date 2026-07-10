@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 lightning_start : hint_color;
+uniform vec4 lightning_end : hint_color;
+uniform float point_size : hint_range(0,128);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform float lightning_factor: hint_range(0,1);
+uniform float alpha_factor: hint_range(0,1);
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	ALBEDO = mix(lightning_start.rgb, lightning_end.rgb, UV.y);
+	float bolt = clamp((1.0 - (UV.y + lightning_factor)), 0, 1);
+	float side_fade = 1.0 - (4.0 * (UV.x - 0.5) * (UV.x - 0.5));
+	ALPHA = bolt * alpha_factor * side_fade;
+}
+"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/lightning_start = Color( 1, 0.996078, 0.945098, 1 )
+shader_param/lightning_end = Color( 0.996078, 0.94902, 0.588235, 1 )
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/lightning_factor = 1.0
+shader_param/alpha_factor = 0.469

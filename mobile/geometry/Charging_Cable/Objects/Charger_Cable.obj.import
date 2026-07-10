@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Charger_Cable.obj-03c24638abc883cd82fc0466bfdbe71b.mesh"
+
+[deps]
+
+files=[ "res://.import/Charger_Cable.obj-03c24638abc883cd82fc0466bfdbe71b.mesh" ]
+
+source_file="res://mobile/geometry/Charging_Cable/Objects/Charger_Cable.obj"
+dest_files=[ "res://.import/Charger_Cable.obj-03c24638abc883cd82fc0466bfdbe71b.mesh", "res://.import/Charger_Cable.obj-03c24638abc883cd82fc0466bfdbe71b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

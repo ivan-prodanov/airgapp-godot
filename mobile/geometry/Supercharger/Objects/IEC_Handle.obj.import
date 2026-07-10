@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/IEC_Handle.obj-25d75c980efa0055d0e9c7e04cc647b3.mesh"
+
+[deps]
+
+files=[ "res://.import/IEC_Handle.obj-25d75c980efa0055d0e9c7e04cc647b3.mesh" ]
+
+source_file="res://mobile/geometry/Supercharger/Objects/IEC_Handle.obj"
+dest_files=[ "res://.import/IEC_Handle.obj-25d75c980efa0055d0e9c7e04cc647b3.mesh", "res://.import/IEC_Handle.obj-25d75c980efa0055d0e9c7e04cc647b3.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,109 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Compound/SolarRoof.glb" type="PackedScene" id=1]
+[ext_resource path="res://Energy/Load/SolarRoof.shader" type="Shader" id=2]
+[ext_resource path="res://Energy/Load/Residential/SolarRoofAlbedo.png" type="Texture" id=3]
+[ext_resource path="res://Energy/Load/Residential/SolarRoofMRA.png" type="Texture" id=4]
+[ext_resource path="res://Energy/Labels/Label.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Energy/Solar/LabelReferenceSwitcher.gd" type="Script" id=6]
+[ext_resource path="res://Energy/Solar/NonExportToggle.gd" type="Script" id=7]
+[ext_resource path="res://Energy/Labels/ComponentLabelUpdater.gd" type="Script" id=8]
+[ext_resource path="res://Energy/Component/ClickableComponent.gd" type="Script" id=9]
+[ext_resource path="res://Energy/Load/Residential/Wrapped/WrappedRibbonsSolar.tscn" type="PackedScene" id=10]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+albedo_color = Color( 0.0980392, 0.101961, 0.117647, 1 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/shine_angle = -117.99
+shader_param/shine_sharpness = 2.616
+shader_param/shine_color = Color( 0.423529, 0.498039, 0.65098, 1 )
+shader_param/shine_offset = 0.0
+shader_param/alpha = 1.0
+shader_param/texture_albedo = ExtResource( 3 )
+shader_param/texture_mra = ExtResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 2 )
+shader_param/shine_angle = 12.919
+shader_param/shine_sharpness = 1.138
+shader_param/shine_color = Color( 0.745098, 0.831373, 1, 1 )
+shader_param/shine_offset = -3.35
+shader_param/alpha = 1.0
+shader_param/texture_albedo = ExtResource( 3 )
+shader_param/texture_mra = ExtResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/shine_angle = null
+shader_param/shine_sharpness = 2.726
+shader_param/shine_color = Color( 0.423529, 0.498039, 0.65098, 1 )
+shader_param/shine_offset = 0.0
+shader_param/alpha = 1.0
+shader_param/texture_albedo = ExtResource( 3 )
+shader_param/texture_mra = ExtResource( 4 )
+
+[sub_resource type="BoxShape" id=5]
+
+[node name="SolarRoof" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00899959, 0 )
+
+[node name="RoofSeperator" parent="." index="0"]
+transform = Transform( 0.0151581, 0.153434, 0.325243, -0.000188938, 0.493243, -0.226356, -0.0134092, 0.166495, 0.370852, -0.149516, 1.23023, -0.88424 )
+material/0 = SubResource( 1 )
+
+[node name="SolarRoof001" parent="." index="1"]
+transform = Transform( 0.981669, 0, 0, 0, 0.995053, 0, 0, 0, 1.33657, -0.801966, 1.63663, -0.496899 )
+material/0 = SubResource( 2 )
+
+[node name="SolarRoof002" parent="." index="2"]
+material/0 = SubResource( 3 )
+
+[node name="SolarRoof003" parent="." index="3"]
+material/0 = SubResource( 4 )
+
+[node name="SolarLabel" type="Spatial" parent="." index="4"]
+visible = false
+script = ExtResource( 6 )
+without_inverter_reference_point_path = NodePath("../SolarRoofLabel")
+with_inverter_reference_point_path = NodePath("../SolarRoofLabel-SPW")
+label_path = NodePath("Label")
+
+[node name="ComponentLabel" type="Node" parent="SolarLabel" index="0"]
+script = ExtResource( 8 )
+component_name = "SOLAR"
+label_path = NodePath("../Label")
+
+[node name="Label" parent="SolarLabel" index="1" instance=ExtResource( 5 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_right = 223.0
+margin_bottom = 86.0
+identifier = "solar"
+
+[node name="NonExportToggle" type="Node" parent="SolarLabel" index="2"]
+script = ExtResource( 7 )
+label_path = NodePath("../Label")
+
+[node name="SolarRoofLabel-SPW" type="Spatial" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 0.999287, 0.0377425, 0, -0.0377425, 0.999287, -0.33102, 1.35577, 1.00318 )
+
+[node name="SolarRoofLabel" type="Spatial" parent="." index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.322759, 1.35858, 0.338278 )
+
+[node name="Area" type="Area" parent="." index="7"]
+collision_layer = 16385
+script = ExtResource( 9 )
+component_name = "SOLAR"
+
+[node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
+transform = Transform( 0.474839, 0.0244504, 0, -0.339976, 0.0341494, 0, 0, 0, 1.56, -0.325824, 1.31268, -0.354 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Area" index="1"]
+transform = Transform( -0.00103412, 0.00011602, -1.71599, -0.315138, 0.0353599, 0.00563056, 0.491673, 0.0226642, -2.7957e-07, 1.48803, 1.143, -0.797 )
+shape = SubResource( 5 )
+
+[node name="WrappedRibbonsSolar" parent="." index="8" instance=ExtResource( 10 )]

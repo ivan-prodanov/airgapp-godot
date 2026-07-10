@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Classic/Light.png" type="Texture" id=1]
+[ext_resource path="res://Energy/Load/Building.shader" type="Shader" id=2]
+
+[resource]
+shader = ExtResource( 2 )
+shader_param/theme = 0.0
+shader_param/albedo_light = Color( 1, 1, 1, 1 )
+shader_param/albedo_dark = Color( 0.776471, 0.537255, 0.392157, 1 )
+shader_param/garage_height = 100.0
+shader_param/night_light_power = 1.0
+shader_param/night_light = Color( 1, 0.470588, 0, 1 )
+shader_param/texture_light = ExtResource( 1 )

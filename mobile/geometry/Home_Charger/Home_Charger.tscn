@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://mobile/geometry/Home_Charger/Home_Charger.material" type="Material" id=1]
+[ext_resource path="res://mobile/geometry/Home_Charger/Objects/Cable.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://mobile/geometry/Home_Charger/Objects/Charger_Light.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://mobile/geometry/Home_Charger/Objects/Charger_Base.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://mobile/geometry/Home_Charger/Objects/Charger_Handle.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://mobile/geometry/Home_Charger/Home_Charger_Light_On.material" type="Material" id=6]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Chargeport_Connection_Spatial" type="Spatial" parent="."]
+
+[node name="Charger_Handle" type="MeshInstance" parent="Chargeport_Connection_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.79033e-07, -0.825804, -0.76546 )
+mesh = ExtResource( 5 )
+material/0 = ExtResource( 1 )
+
+[node name="Cable" type="MeshInstance" parent="Chargeport_Connection_Spatial/Charger_Handle"]
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 1 )
+
+[node name="Charger_Base" type="MeshInstance" parent="Chargeport_Connection_Spatial/Charger_Handle/Cable"]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0.315, 0, -0.295 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 1 )
+
+[node name="Charger_Light" type="MeshInstance" parent="Chargeport_Connection_Spatial/Charger_Handle/Cable/Charger_Base"]
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 6 )

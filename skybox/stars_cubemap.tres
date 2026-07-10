@@ -1,0 +1,16 @@
+[gd_resource type="CubeMap" load_steps=7 format=2]
+
+[ext_resource path="res://skybox/star/output_skybox_negx.png" type="Image" id=1]
+[ext_resource path="res://skybox/star/output_skybox_negy.png" type="Image" id=2]
+[ext_resource path="res://skybox/star/output_skybox_posy.png" type="Image" id=3]
+[ext_resource path="res://skybox/star/output_skybox_negz.png" type="Image" id=4]
+[ext_resource path="res://skybox/star/output_skybox_posx.png" type="Image" id=5]
+[ext_resource path="res://skybox/star/output_skybox_posz.png" type="Image" id=6]
+
+[resource]
+side/left = ExtResource( 1 )
+side/right = ExtResource( 5 )
+side/bottom = ExtResource( 2 )
+side/top = ExtResource( 3 )
+side/front = ExtResource( 4 )
+side/back = ExtResource( 6 )

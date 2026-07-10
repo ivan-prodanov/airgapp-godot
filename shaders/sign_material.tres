@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://models/Signs/Generic_01_128.png" type="Texture" id=1]
+[ext_resource path="res://shaders/matcap_ao.shader" type="Shader" id=2]
+[ext_resource path="res://misc_textures/matcap.png" type="Texture" id=3]
+
+[resource]
+shader = ExtResource( 2 )
+shader_param/u_bgcolor = Color( 0.933333, 0.933333, 0.933333, 1 )
+shader_param/u_highlight = Vector3( 1, 1, 1 )
+shader_param/u_highlight_offset = Vector3( 0, 0, 0 )
+shader_param/texture_matcap = ExtResource( 3 )
+shader_param/texture_ao = ExtResource( 1 )

@@ -1,0 +1,45 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://mobile/geometry/Charging_Cable/Objects/Charging_Animation_Geo_IEC.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://mobile/geometry/Charging_Cable/Objects/Charger_Handle_IEC.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://mobile/geometry/Charging_Cable/Objects/Charger_Cable_IEC.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://mobile/geometry/Charging_Cable/Charging_Cable_IEC.material" type="Material" id=4]
+[ext_resource path="res://mobile/geometry/Charging_Cable/ChargeCable.gd" type="Script" id=5]
+[ext_resource path="res://mobile/materials/PowerflowSingle.shader" type="Shader" id=6]
+[ext_resource path="res://mobile/geometry/Charging_Cable/Textures/Charging_Cable_IEC_MRA.png" type="Texture" id=7]
+[ext_resource path="res://mobile/geometry/Charging_Cable/Textures/Charging_Cable_IEC_BC.png" type="Texture" id=8]
+
+[sub_resource type="ShaderMaterial" id=1]
+render_priority = 100
+shader = ExtResource( 6 )
+shader_param/pulse_length = 1.5
+shader_param/pulse_frequency = 1.5
+shader_param/snake_fraction = 1.0
+shader_param/snake_exponent = 2.0
+shader_param/flow_state = 0
+shader_param/flow_color = Color( 0, 0.886275, 0.52549, 1 )
+shader_param/current_time = 0
+shader_param/texture_bc = ExtResource( 8 )
+shader_param/texture_mra = ExtResource( 7 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0, 0.247059, 0, 1 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 5 )
+
+[node name="Chargeport_Connection_Spatial" type="Spatial" parent="."]
+
+[node name="Charger_Handle" type="MeshInstance" parent="Chargeport_Connection_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.830482, -0.742484 )
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 4 )
+
+[node name="Charger_Cable" type="MeshInstance" parent="Chargeport_Connection_Spatial/Charger_Handle"]
+mesh = ExtResource( 3 )
+material/0 = SubResource( 1 )
+
+[node name="Charging_Animation_Geo" type="MeshInstance" parent="Chargeport_Connection_Spatial/Charger_Handle"]
+visible = false
+mesh = ExtResource( 1 )
+material/0 = SubResource( 2 )

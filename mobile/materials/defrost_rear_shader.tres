@@ -1,0 +1,13 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform vec4 color : hint_color;
+uniform float amplitude = 1.0;
+
+void fragment(){
+	ALBEDO = color.rgb;
+	ALPHA = 1.0 - mod(UV.x,1.0)*amplitude;
+}"

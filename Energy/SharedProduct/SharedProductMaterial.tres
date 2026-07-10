@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Energy/SharedProduct/MRA.png" type="Texture" id=1]
+[ext_resource path="res://Energy/SharedProduct/SharedProduct.shader" type="Shader" id=2]
+[ext_resource path="res://Energy/SharedProduct/Albedo.png" type="Texture" id=3]
+
+[resource]
+shader = ExtResource( 2 )
+shader_param/glow_color = Color( 0.372549, 0.960784, 0.0431373, 1 )
+shader_param/glow_strength = 1.0
+shader_param/alpha = 1.0
+shader_param/LIGHT_DIRECTION = Vector3( 1, 0, 0 )
+shader_param/texture_albedo = ExtResource( 3 )
+shader_param/texture_mra = ExtResource( 1 )

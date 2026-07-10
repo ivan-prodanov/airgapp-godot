@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Weather/Wind.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 0.890196, 0.890196, 0.890196, 0.0509804 )
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/wave_amplitudeX = 0.173
+shader_param/wave_frequencyX = 1.032
+shader_param/wave_speedX = 2.333
+shader_param/wave_amplitudeZ = 0.231
+shader_param/wave_frequencyZ = 2.0
+shader_param/wave_speedZ = 0.244
+shader_param/alpha_factor = 1.0

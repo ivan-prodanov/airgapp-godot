@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://models/TL/UI_Traffic_Light.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode depth_draw_never, unshaded;
+
+uniform vec4 color : hint_color;
+uniform sampler2D TextureUniform : hint_black;
+
+varying float v_fog;
+
+void vertex() {
+	v_fog = 1.0-clamp((-WORLD_MATRIX[3][2] - 5.0) / 120.0, 0.0, 1.0);
+}
+
+void fragment() 
+{
+    float a = texture(TextureUniform , UV).r;
+	ALBEDO = color.rgb;
+	ALPHA = a * v_fog * color.a;
+}
+"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/color = Color( 0, 1, 0, 1 )
+shader_param/TextureUniform = ExtResource( 2 )

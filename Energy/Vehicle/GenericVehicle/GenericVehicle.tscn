@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Energy/Vehicle/GenericVehicle/GenericVehicleModel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Energy/Vehicle/GenericVehicle/GenericVehicle.gd" type="Script" id=2]
+
+[node name="GenericVehicle" type="Spatial"]
+script = ExtResource( 2 )
+charge_port_path = NodePath("ChargePort")
+
+[node name="ChargePort" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.938409, 1.99426 )
+
+[node name="GenericVehicle" parent="." instance=ExtResource( 1 )]

@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Weather/RainSplash.png" type="Texture" id=1]
+[ext_resource path="res://Energy/Load/Residential/Weather/EnergyRain.gd" type="Script" id=2]
+[ext_resource path="res://Energy/Load/Residential/Weather/Rain.png" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+render_priority = 25
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_grow = true
+params_grow_amount = -0.308
+albedo_color = Color( 1, 1, 1, 0.494118 )
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="PlaneMesh" id=2]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.65445, 0.815126 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.780392 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+params_cull_mode = 2
+albedo_color = Color( 1, 1, 1, 0.619608 )
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="PlaneMesh" id=5]
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0.00842105, 0.0450451 ), 0.0, 0.467278, 0, 0, Vector2( 0.446316, 0.211712 ), -0.329175, -0.329175, 0, 0, Vector2( 0.997895, 0 ), -0.0203778, 0.0, 0, 0 ]
+
+[node name="Rain" type="Spatial"]
+transform = Transform( -2.35526e-08, 0.144565, -0.144565, -0.204446, -3.33085e-08, 0, -2.35526e-08, 0.144565, 0.144565, -0.203, 3.958, -0.113 )
+script = ExtResource( 2 )
+rain_drops = NodePath("../Rain/Drops")
+ground_splash = NodePath("../Rain/GroundSplash")
+roof_splash_left = NodePath("../Rain/LeftRoofSplash")
+roof_splash_right = NodePath("../Rain/RightRoofSplash")
+
+[node name="Drops" type="CPUParticles" parent="."]
+process_priority = 6
+transform = Transform( 0.392034, -9.99201e-16, 4.44089e-16, 7.10543e-15, 0.285903, 0.0326067, 0, -0.268237, 0.0347542, 5.666, -7.212, -2.98023e-07 )
+material_override = SubResource( 1 )
+amount = 300
+lifetime = 0.4
+mesh = SubResource( 2 )
+emission_shape = 2
+emission_box_extents = Vector3( 4, 55, 300 )
+gravity = Vector3( 300, 0, 0 )
+initial_velocity = 9.62
+linear_accel = 27.56
+scale_amount = 0.4
+scale_amount_random = 1.0
+color_ramp = SubResource( 3 )
+
+[node name="GroundSplash" type="CPUParticles" parent="."]
+process_priority = -2
+transform = Transform( -3.83403e-08, -2.13163e-14, 0.235331, 0, 0.235331, 2.84217e-14, -0.235331, 0, -3.83403e-08, 19.0833, 1.00604, 3.86755 )
+material_override = SubResource( 4 )
+amount = 25
+lifetime = 0.2
+mesh = SubResource( 5 )
+emission_shape = 2
+emission_box_extents = Vector3( 44.138, 45.256, 0 )
+gravity = Vector3( 0, 0, 0 )
+scale_amount = 2.0
+scale_amount_curve = SubResource( 6 )
+color = Color( 1, 1, 1, 0.321569 )
+
+[node name="LeftRoofSplash" type="CPUParticles" parent="."]
+process_priority = -2
+transform = Transform( -2.71106e-08, -2.71107e-08, 0.235331, -0.166404, 0.166404, -3.90799e-14, -0.166404, -0.166404, -3.83403e-08, 8.212, 8.954, 4.29 )
+material_override = SubResource( 4 )
+amount = 25
+lifetime = 0.2
+mesh = SubResource( 5 )
+emission_shape = 2
+emission_box_extents = Vector3( 17, 10, 4.964 )
+gravity = Vector3( 0, 0, 0 )
+scale_amount = 1.3
+scale_amount_curve = SubResource( 6 )
+
+[node name="RightRoofSplash" type="CPUParticles" parent="."]
+process_priority = -2
+transform = Transform( -2.71107e-08, -2.71107e-08, 0.235331, -0.166404, 0.166404, 0, -0.166404, -0.166404, -3.83403e-08, 10.94, 10.452, 1.463 )
+material_override = SubResource( 4 )
+amount = 1
+lifetime = 0.2
+mesh = SubResource( 5 )
+emission_shape = 2
+emission_box_extents = Vector3( 15, 24, 2 )
+gravity = Vector3( 0, 0, 0 )
+scale_amount_curve = SubResource( 6 )
+color = Color( 1, 1, 1, 0.380392 )

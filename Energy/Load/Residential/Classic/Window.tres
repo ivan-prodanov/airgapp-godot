@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Classic/Window.png" type="Texture" id=1]
+[ext_resource path="res://Energy/Load/Window.shader" type="Shader" id=2]
+
+[resource]
+shader = ExtResource( 2 )
+shader_param/brightness = 0.8
+shader_param/alpha = 1.0
+shader_param/glow_color = Color( 0.454902, 0.466667, 0.494118, 1 )
+shader_param/texture_window = ExtResource( 1 )

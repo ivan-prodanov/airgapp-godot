@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://misc_textures/matcap.png" type="Texture" id=1]
+[ext_resource path="res://shaders/matcap.shader" type="Shader" id=2]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/u_bgcolor = Color( 0.933333, 0.933333, 0.933333, 1 )
+shader_param/u_highlight = Vector3( 1, 1, 1 )
+shader_param/u_highlight_mul = Vector3( 1, 1, 1 )
+shader_param/u_highlight_offset = Vector3( 0, 0, 0 )
+shader_param/texture0 = ExtResource( 1 )

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Energy/Component/ClickableComponent.gd" type="Script" id=1]
+
+[node name="ClickArea" type="Area"]
+collision_layer = 16384
+collision_mask = 0
+script = ExtResource( 1 )
+component_name = "BATTERY"

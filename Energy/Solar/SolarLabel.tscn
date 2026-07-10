@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Energy/Labels/ComponentLabelUpdater.gd" type="Script" id=1]
+[ext_resource path="res://Energy/Labels/Label.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Energy/Solar/NonExportToggle.gd" type="Script" id=3]
+
+[node name="SolarLabel" type="Spatial"]
+visible = false
+
+[node name="ComponentLabel" type="Node" parent="."]
+script = ExtResource( 1 )
+component_name = "SOLAR"
+label_path = NodePath("../Label")
+
+[node name="Label" parent="." instance=ExtResource( 2 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_right = 223.0
+margin_bottom = 86.0
+identifier = "solar"
+
+[node name="NonExportToggle" type="Node" parent="."]
+script = ExtResource( 3 )
+label_path = NodePath("../Label")

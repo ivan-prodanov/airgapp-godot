@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Energy/Powerflow/Wire/WireDisplay.gd" type="Script" id=1]
+[ext_resource path="res://Energy/WallConnector/ShadedStowedWallConnectorCable.glb" type="PackedScene" id=2]
+[ext_resource path="res://Energy/Powerflow/Wire/PowerflowWireMaterialNonClipping.tres" type="Material" id=3]
+
+[node name="ShadedStowedWallConnectorCable" instance=ExtResource( 2 )]
+
+[node name="PowerflowWallConnectorStowed-Display" parent="." index="0"]
+material/0 = ExtResource( 3 )
+script = ExtResource( 1 )

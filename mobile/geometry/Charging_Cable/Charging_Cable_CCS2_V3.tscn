@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://mobile/geometry/Charging_Cable/Textures/Charging_Cable_CCS2_V3_BC.png" type="Texture" id=1]
+[ext_resource path="res://mobile/geometry/Charging_Cable/Textures/Charging_Cable_CCS2_V3_MRA.png" type="Texture" id=2]
+[ext_resource path="res://mobile/geometry/Charging_Cable/Charging_Cable_CCS2_V3.material" type="Material" id=3]
+[ext_resource path="res://mobile/geometry/Charging_Cable/Objects/Charging_Animation_Geo_CCS2_V3.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://mobile/geometry/Charging_Cable/Objects/Charger_Cable_CCS2_V3.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://mobile/geometry/Charging_Cable/Objects/Charger_Handle_CCS2_V3.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://mobile/materials/PowerflowSingle.shader" type="Shader" id=7]
+[ext_resource path="res://mobile/geometry/Charging_Cable/ChargeCable.gd" type="Script" id=8]
+
+[sub_resource type="ShaderMaterial" id=1]
+render_priority = 100
+shader = ExtResource( 7 )
+shader_param/pulse_length = 1.5
+shader_param/pulse_frequency = 1.5
+shader_param/snake_fraction = 1.0
+shader_param/snake_exponent = 2.0
+shader_param/flow_state = 0
+shader_param/flow_color = Color( 0, 0, 1, 1 )
+shader_param/current_time = 0
+shader_param/texture_bc = ExtResource( 1 )
+shader_param/texture_mra = ExtResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=2]
+resource_name = "Charging"
+albedo_color = Color( 0, 0.0705882, 0, 1 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 8 )
+
+[node name="Chargeport_Connection_Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.014291 )
+
+[node name="Charger_Handle" type="MeshInstance" parent="Chargeport_Connection_Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.825653, -0.764557 )
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 3 )
+
+[node name="Charger_Cable" type="MeshInstance" parent="Chargeport_Connection_Spatial/Charger_Handle"]
+mesh = ExtResource( 5 )
+material/0 = SubResource( 1 )
+
+[node name="Charging_Animation_Geo" type="MeshInstance" parent="Chargeport_Connection_Spatial/Charger_Handle"]
+visible = false
+mesh = ExtResource( 4 )
+material/0 = SubResource( 2 )

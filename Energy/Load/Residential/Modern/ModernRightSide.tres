@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Modern/PowershareBuilding.shader" type="Shader" id=1]
+[ext_resource path="res://Energy/Load/Residential/Modern/RightStructureTexture.png" type="Texture" id=2]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/theme = 0.0
+shader_param/albedo_light = Color( 1, 1, 1, 1 )
+shader_param/albedo_dark = Color( 0.3, 0.31, 0.32, 1 )
+shader_param/garage_height = 100.0
+shader_param/night_light_power = 1.0
+shader_param/night_light = Color( 1, 0.95, 0.8, 1 )
+shader_param/texture_light = ExtResource( 2 )

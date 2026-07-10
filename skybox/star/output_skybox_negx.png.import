@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/output_skybox_negx.png-2559fddb92e20cb16093d2e725f239a9.image"
+
+[deps]
+
+source_file="res://skybox/star/output_skybox_negx.png"
+dest_files=[ "res://.import/output_skybox_negx.png-2559fddb92e20cb16093d2e725f239a9.image" ]
+
+[params]
+

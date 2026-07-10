@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Weather/Rain.png" type="Texture" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+albedo_color = Color( 1, 1, 1, 0.615686 )
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="PlaneMesh" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.138533, 0, 0, 0 )
+material_override = SubResource( 1 )
+amount = 250
+lifetime = 0.43
+mesh = SubResource( 2 )
+emission_shape = 2
+emission_box_extents = Vector3( 3, 0, 100 )
+gravity = Vector3( 100, 0, 0 )
+initial_velocity = 9.62
+linear_accel = 27.56

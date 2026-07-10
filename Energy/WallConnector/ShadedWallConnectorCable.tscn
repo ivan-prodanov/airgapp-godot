@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Energy/Powerflow/Wire/WireRemapper-WallConnector.gd" type="Script" id=1]
+[ext_resource path="res://Energy/Powerflow/Wire/PowerflowWireMaterial.tres" type="Material" id=2]
+[ext_resource path="res://Energy/Powerflow/Wire/WireDisplay.gd" type="Script" id=3]
+[ext_resource path="res://Energy/WallConnector/ShadedWallConnectorCable.glb" type="PackedScene" id=4]
+[ext_resource path="res://Energy/WallConnector/WallConnectorSkeleton.gd" type="Script" id=5]
+
+[node name="ShadedWallConnectorCable" instance=ExtResource( 4 )]
+
+[node name="Skeleton" parent="PowerflowWallConnector/PowerflowWallConnector-Armature" index="0"]
+script = ExtResource( 5 )
+
+[node name="PowerflowWallConnector-Display" parent="PowerflowWallConnector/PowerflowWallConnector-Armature/Skeleton" index="0"]
+material/0 = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Remapper" type="Node" parent="PowerflowWallConnector/PowerflowWallConnector-Armature/Skeleton/PowerflowWallConnector-Display" index="0"]
+script = ExtResource( 1 )
+wire_display_path = NodePath("..")

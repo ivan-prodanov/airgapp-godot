@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://misc_textures/radial_glow.png" type="Texture" id=1]
+[ext_resource path="res://shaders/bev3d_heightmap_shader.shader" type="Shader" id=2]
+
+[resource]
+shader = ExtResource( 2 )
+shader_param/bottom_color = Color( 0.74902, 0.74902, 0.74902, 0.427451 )
+shader_param/top_color = Color( 0.74902, 0.74902, 0.74902, 1 )
+shader_param/bev3d_height_map = ExtResource( 1 )

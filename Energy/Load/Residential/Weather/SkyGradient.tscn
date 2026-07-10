@@ -1,0 +1,645 @@
+[gd_scene load_steps=50 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Weather/SkyGradient.gd" type="Script" id=1]
+[ext_resource path="res://Energy/Load/Residential/Weather/SunObject.shader" type="Shader" id=2]
+[ext_resource path="res://Energy/SetTimeOfDay.gd" type="Script" id=3]
+[ext_resource path="res://Energy/Load/Residential/Weather/SunObject.gd" type="Script" id=4]
+[ext_resource path="res://Energy/Load/Residential/Weather/Lightning.tres" type="Material" id=5]
+[ext_resource path="res://Energy/Load/Residential/Weather/Sun3.png" type="Texture" id=6]
+[ext_resource path="res://Energy/Load/Residential/Weather/SkyGradient.shader" type="Shader" id=7]
+[ext_resource path="res://Energy/Load/Residential/Weather/SunCover2.gd" type="Script" id=8]
+[ext_resource path="res://Energy/Load/Residential/Weather/NightController.gd" type="Script" id=9]
+[ext_resource path="res://Energy/Load/Residential/Weather/Clouds/Cloud2.tres" type="Material" id=10]
+[ext_resource path="res://Energy/Load/Residential/Weather/IntroAnimation.gd" type="Script" id=11]
+[ext_resource path="res://Energy/Load/Residential/Weather/Clouds/PartiallyCloudy2.png" type="Texture" id=13]
+[ext_resource path="res://Energy/Load/Residential/Weather/SunCover.gd" type="Script" id=14]
+[ext_resource path="res://Energy/Load/Residential/Weather/Clouds/Cloud3.tres" type="Material" id=15]
+[ext_resource path="res://Energy/Load/Residential/Weather/Wind.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Energy/Load/Residential/Weather/Clouds/PartiallyCloudy1.png" type="Texture" id=17]
+[ext_resource path="res://Energy/Load/Residential/Weather/Moon.png" type="Texture" id=18]
+[ext_resource path="res://Energy/Load/Residential/Weather/Moon.shader" type="Shader" id=19]
+[ext_resource path="res://Energy/Load/Residential/Weather/Night.gd" type="Script" id=20]
+[ext_resource path="res://Energy/Load/Residential/Weather/Snow.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Energy/Load/Residential/Weather/Stars.shader" type="Shader" id=22]
+[ext_resource path="res://Energy/Load/Residential/Weather/Cloud1.tres" type="Material" id=23]
+
+[sub_resource type="PlaneMesh" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+render_priority = 127
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.788235, 0.780392, 0.670588, 0.737255 )
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/alpha_factor = 0.0
+shader_param/texture_albedo = ExtResource( 6 )
+
+[sub_resource type="PlaneMesh" id=3]
+
+[sub_resource type="Shader" id=4]
+code = "shader_type spatial;
+render_mode blend_add,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float point_size : hint_range(0,128);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform float alpha_factor: hint_range(0,1);
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	MODELVIEW_MATRIX = INV_CAMERA_MATRIX * mat4(CAMERA_MATRIX[0],WORLD_MATRIX[1],vec4(normalize(cross(CAMERA_MATRIX[0].xyz,WORLD_MATRIX[1].xyz)), 0.0),WORLD_MATRIX[3]);
+	MODELVIEW_MATRIX = MODELVIEW_MATRIX * mat4(vec4(1.0, 0.0, 0.0, 0.0),vec4(0.0, 1.0/length(WORLD_MATRIX[1].xyz), 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0),vec4(0.0, 0.0, 0.0 ,1.0));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	ALPHA = albedo.a * albedo_tex.a * alpha_factor;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/albedo = Color( 1, 1, 1, 0.658824 )
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/alpha_factor = 0.0
+shader_param/texture_albedo = ExtResource( 13 )
+
+[sub_resource type="Animation" id=6]
+length = 4.16667
+tracks/0/type = "transform"
+tracks/0/path = NodePath("SunHalo")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 2.5656e-06, 3.80779e-08, 3.93688, -1.15202e-07, -0.707107, -0.707107, 1.15202e-07, 1, 1, 1, 0.0666667, 1, 2.56795e-06, 0.066706, 3.92866, -1.14089e-07, -0.713874, -0.700274, 1.16305e-07, 1, 1, 1, 0.266667, 1, 2.58508e-06, 0.599105, 3.85783, -1.04812e-07, -0.765586, -0.643333, 1.2473e-07, 1, 1, 1, 0.4, 1, 2.57167e-06, 0.936125, 3.73843, -9.82797e-08, -0.797562, -0.603236, 1.29939e-07, 1, 1, 1, 0.6, 1, 2.52862e-06, 1.41179, 3.49544, -8.80017e-08, -0.841569, -0.54015, 1.37109e-07, 1, 1, 1, 0.733333, 1, 2.48562e-06, 1.70825, 3.29409, -8.08565e-08, -0.868155, -0.496294, 1.4144e-07, 1, 1, 1, 0.866667, 1, 2.42287e-06, 1.96163, 3.04174, -7.34987e-08, -0.892457, -0.451132, 1.454e-07, 1, 1, 1, 1, 1, 2.35736e-06, 2.20893, 2.7823, -6.59476e-08, -0.914413, -0.404783, 1.48977e-07, 1, 1, 1, 1.26667, 1, 2.18899e-06, 2.58876, 2.17483, -5.03452e-08, -0.951057, -0.309017, 1.54947e-07, 1, 1, 1, 1.53333, 1, 1.99459e-06, 2.86147, 1.51232, -3.42136e-08, -0.977701, -0.210002, 1.59288e-07, 1, 1, 1, 1.8, 1, 1.78006e-06, 3.02332, 0.81427, -1.77222e-08, -0.994066, -0.108778, 1.61954e-07, 1, 1, 1, 1.93333, 1, 1.66677e-06, 3.058, 0.458039, -9.3957e-09, -0.998336, -0.0576704, 1.6265e-07, 1, 1, 1, 2.06667, 1, 1.55241e-06, 3.08426, 0.100544, -1.04451e-09, -0.999979, -0.00641113, 1.62917e-07, 1, 1, 1, 2.2, 1, 1.43499e-06, 3.07277, -0.256951, 7.16335e-09, -0.999033, 0.0439683, 1.62763e-07, 1, 1, 1, 2.33333, 1, 1.31638e-06, 3.04651, -0.614447, 1.53322e-08, -0.995562, 0.0941085, 1.62198e-07, 1, 1, 1, 2.46667, 1, 1.19684e-06, 2.98956, -0.967327, 2.34624e-08, -0.989576, 0.144011, 1.61222e-07, 1, 1, 1, 2.66667, 1, 1.01648e-06, 2.86947, -1.49143, 3.554e-08, -0.975917, 0.218143, 1.58997e-07, 1, 1, 1, 2.93333, 1, 7.79017e-07, 2.59829, -2.15463, 5.13178e-08, -0.949096, 0.314986, 1.54627e-07, 1, 1, 1, 3.06667, 1, 6.64801e-07, 2.41336, -2.46095, 5.90221e-08, -0.932071, 0.362275, 1.51854e-07, 1, 1, 1, 3.2, 1, 5.51282e-07, 2.22096, -2.76339, 6.65774e-08, -0.912692, 0.408649, 1.48696e-07, 1, 1, 1, 3.46667, 1, 3.44479e-07, 1.72663, -3.28133, 8.11646e-08, -0.867071, 0.498185, 1.41264e-07, 1, 1, 1, 3.66667, 1, 2.12187e-07, 1.28185, -3.58324, 9.1575e-08, -0.827081, 0.562083, 1.34749e-07, 1, 1, 1, 3.8, 1, 1.39588e-07, 0.957066, -3.73046, 9.82297e-08, -0.797795, 0.602929, 1.29977e-07, 1, 1, 1, 3.93333, 1, 7.43399e-08, 0.620719, -3.85258, 1.04636e-07, -0.766493, 0.642252, 1.24878e-07, 1, 1, 1, 4.06667, 1, 3.08639e-08, 0.266827, -3.90399, 1.10778e-07, -0.733256, 0.679953, 1.19462e-07, 1, 1, 1, 4.16667, 1, 0, 3.80779e-08, -3.93688, 1.15202e-07, -0.707107, 0.707107, 1.15202e-07, 1, 1, 1 )
+
+[sub_resource type="Animation" id=7]
+length = 4.16667
+tracks/0/type = "transform"
+tracks/0/path = NodePath("SunCenterEmpty")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 2.5656e-06, 3.80779e-08, 3.93688, -1.15202e-07, -0.707107, -0.707107, 1.15202e-07, 1, 1, 1, 0.0666667, 1, 2.56795e-06, 0.066706, 3.92866, -1.14089e-07, -0.713874, -0.700274, 1.16305e-07, 1, 1, 1, 0.266667, 1, 2.58508e-06, 0.599105, 3.85783, -1.04812e-07, -0.765586, -0.643333, 1.2473e-07, 1, 1, 1, 0.4, 1, 2.57167e-06, 0.936125, 3.73843, -9.82797e-08, -0.797562, -0.603236, 1.29939e-07, 1, 1, 1, 0.6, 1, 2.52862e-06, 1.41179, 3.49544, -8.80017e-08, -0.841569, -0.54015, 1.37109e-07, 1, 1, 1, 0.733333, 1, 2.48562e-06, 1.70825, 3.29409, -8.08565e-08, -0.868155, -0.496294, 1.4144e-07, 1, 1, 1, 0.866667, 1, 2.42287e-06, 1.96163, 3.04174, -7.34987e-08, -0.892457, -0.451132, 1.454e-07, 1, 1, 1, 1, 1, 2.35736e-06, 2.20893, 2.7823, -6.59476e-08, -0.914413, -0.404783, 1.48977e-07, 1, 1, 1, 1.26667, 1, 2.18899e-06, 2.58876, 2.17483, -5.03452e-08, -0.951057, -0.309017, 1.54947e-07, 1, 1, 1, 1.53333, 1, 1.99459e-06, 2.86147, 1.51232, -3.42136e-08, -0.977701, -0.210002, 1.59288e-07, 1, 1, 1, 1.8, 1, 1.78006e-06, 3.02332, 0.81427, -1.77222e-08, -0.994066, -0.108778, 1.61954e-07, 1, 1, 1, 1.93333, 1, 1.66677e-06, 3.058, 0.458039, -9.3957e-09, -0.998336, -0.0576704, 1.6265e-07, 1, 1, 1, 2.06667, 1, 1.55241e-06, 3.08426, 0.100544, -1.04451e-09, -0.999979, -0.00641113, 1.62917e-07, 1, 1, 1, 2.2, 1, 1.43499e-06, 3.07277, -0.256951, 7.16335e-09, -0.999033, 0.0439683, 1.62763e-07, 1, 1, 1, 2.33333, 1, 1.31638e-06, 3.04651, -0.614447, 1.53322e-08, -0.995562, 0.0941085, 1.62198e-07, 1, 1, 1, 2.46667, 1, 1.19684e-06, 2.98956, -0.967327, 2.34624e-08, -0.989576, 0.144011, 1.61222e-07, 1, 1, 1, 2.66667, 1, 1.01648e-06, 2.86947, -1.49143, 3.554e-08, -0.975917, 0.218143, 1.58997e-07, 1, 1, 1, 2.93333, 1, 7.79017e-07, 2.59829, -2.15463, 5.13178e-08, -0.949096, 0.314986, 1.54627e-07, 1, 1, 1, 3.06667, 1, 6.64801e-07, 2.41336, -2.46095, 5.90221e-08, -0.932071, 0.362275, 1.51854e-07, 1, 1, 1, 3.2, 1, 5.51282e-07, 2.22096, -2.76339, 6.65774e-08, -0.912692, 0.408649, 1.48696e-07, 1, 1, 1, 3.46667, 1, 3.44479e-07, 1.72663, -3.28133, 8.11646e-08, -0.867071, 0.498185, 1.41264e-07, 1, 1, 1, 3.66667, 1, 2.12187e-07, 1.28185, -3.58324, 9.1575e-08, -0.827081, 0.562083, 1.34749e-07, 1, 1, 1, 3.8, 1, 1.39588e-07, 0.957066, -3.73046, 9.82297e-08, -0.797795, 0.602929, 1.29977e-07, 1, 1, 1, 3.93333, 1, 7.43399e-08, 0.620719, -3.85258, 1.04636e-07, -0.766493, 0.642252, 1.24878e-07, 1, 1, 1, 4.06667, 1, 3.08639e-08, 0.266827, -3.90399, 1.10778e-07, -0.733256, 0.679953, 1.19462e-07, 1, 1, 1, 4.16667, 1, 0, 3.80779e-08, -3.93688, 1.15202e-07, -0.707107, 0.707107, 1.15202e-07, 1, 1, 1 )
+
+[sub_resource type="PlaneMesh" id=8]
+
+[sub_resource type="ShaderMaterial" id=9]
+render_priority = -1
+shader = ExtResource( 7 )
+shader_param/albedo = Color( 0.529412, 0.803922, 1, 1 )
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/ground_fade_height = 2.1
+shader_param/ground_fade_falloff = 0.828
+shader_param/arc_radius = 0.51
+shader_param/arc_falloff = 2.406
+shader_param/edge_fade_width = 0.0
+shader_param/arc_center_y_offset = 0.0
+shader_param/center_position_x = 0.42
+shader_param/center_position_y = 0.56
+shader_param/sunset_factor = 0.051
+shader_param/radius_1 = 0.277
+shader_param/radius_2 = 0.46
+shader_param/radius_3 = 0.576
+shader_param/color_1_sunset = Color( 1, 0.411765, 0.184314, 1 )
+shader_param/color_2_sunset = Color( 0.929412, 0.662745, 0.513726, 1 )
+shader_param/color_3_sunset = Color( 0.839216, 0.603922, 0.815686, 1 )
+shader_param/color_4_sunset = Color( 0.623529, 0.498039, 0.941176, 1 )
+shader_param/color_1_sunrise = Color( 0.831373, 0.439216, 0.152941, 1 )
+shader_param/color_2_sunrise = Color( 0.741176, 0.737255, 1, 1 )
+shader_param/color_3_sunrise = Color( 0.968627, 0.803922, 1, 1 )
+shader_param/color_4_sunrise = Color( 0.603922, 0.639216, 1, 1 )
+shader_param/color_override = Color( 0.478431, 0.478431, 0.478431, 1 )
+shader_param/color_override_factor = 0.0
+shader_param/linear_color_top = Color( 0.478431, 0.729412, 1, 1 )
+shader_param/linear_color_bottom = Color( 0.368627, 0.658824, 1, 1 )
+shader_param/day_strength = 1.0
+shader_param/bloom_factor = 1.3
+shader_param/alpha = 1.0
+
+[sub_resource type="PlaneMesh" id=10]
+
+[sub_resource type="PlaneMesh" id=11]
+
+[sub_resource type="Shader" id=12]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+uniform float alpha_factor : hint_range(0.0,1.0); 
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	albedo_tex *= COLOR;
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+	SPECULAR = specular;
+	ALPHA = albedo.a * albedo_tex.a * alpha_factor;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=13]
+render_priority = -20
+shader = SubResource( 12 )
+shader_param/albedo = Color( 0.415686, 0.415686, 0.415686, 0.176471 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 1.0
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/alpha_factor = 0.664
+shader_param/texture_albedo = ExtResource( 17 )
+
+[sub_resource type="PlaneMesh" id=14]
+
+[sub_resource type="Gradient" id=15]
+offsets = PoolRealArray( 0, 0.0949721, 0.891061, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="ArrayMesh" id=16]
+surfaces/0 = {
+"aabb": AABB( -1.39011, -15.2187, -0.0559232, 8.42617, 30.9503, 0.0559324 ),
+"array_data": PoolByteArray( 172, 154, 167, 64, 236, 127, 115, 193, 213, 255, 71, 181, 0, 0, 127, 0, 129, 0, 0, 129, 0, 64, 128, 63, 0, 0, 128, 63, 204, 198, 138, 190, 130, 180, 123, 65, 106, 41, 35, 53, 0, 0, 127, 0, 129, 0, 0, 127, 0, 64, 128, 63, 0, 32, 133, 63, 156, 86, 151, 62, 130, 180, 123, 65, 106, 41, 35, 53, 0, 0, 127, 0, 130, 0, 0, 127, 0, 160, 6, 187, 0, 32, 133, 63, 72, 146, 167, 61, 20, 73, 100, 65, 162, 252, 17, 53, 0, 0, 127, 0, 132, 234, 0, 129, 0, 64, 128, 63, 0, 96, 250, 60, 55, 229, 9, 62, 166, 221, 76, 65, 218, 207, 0, 53, 0, 0, 127, 0, 133, 227, 0, 129, 0, 64, 128, 63, 0, 96, 166, 61, 132, 225, 1, 63, 56, 114, 53, 65, 36, 70, 223, 52, 0, 0, 127, 0, 192, 147, 0, 129, 0, 64, 128, 63, 0, 64, 7, 62, 201, 205, 64, 189, 202, 6, 30, 65, 148, 236, 188, 52, 0, 0, 127, 0, 130, 0, 0, 129, 0, 64, 128, 63, 0, 96, 57, 62, 121, 92, 97, 61, 92, 155, 6, 65, 4, 147, 154, 52, 0, 0, 127, 0, 130, 5, 0, 129, 0, 64, 128, 63, 0, 128, 106, 62, 190, 99, 55, 62, 218, 95, 222, 64, 234, 114, 112, 52, 0, 0, 127, 0, 130, 1, 0, 129, 0, 64, 128, 63, 0, 192, 141, 62, 67, 249, 3, 63, 0, 137, 175, 64, 204, 191, 43, 52, 0, 0, 127, 0, 130, 249, 0, 129, 0, 64, 128, 63, 0, 96, 166, 62, 148, 46, 45, 63, 36, 178, 128, 64, 88, 25, 206, 51, 0, 0, 127, 0, 75, 155, 0, 127, 0, 128, 40, 63, 0, 0, 191, 62, 159, 94, 128, 63, 144, 182, 35, 64, 48, 102, 9, 51, 0, 0, 127, 0, 130, 252, 0, 129, 0, 64, 128, 63, 0, 192, 215, 62, 255, 38, 87, 63, 184, 17, 140, 63, 64, 102, 9, 179, 0, 0, 127, 0, 130, 1, 0, 129, 0, 64, 128, 63, 0, 128, 240, 62, 134, 39, 147, 63, 192, 38, 189, 190, 96, 25, 206, 179, 0, 0, 127, 0, 130, 0, 0, 129, 0, 64, 128, 63, 0, 96, 4, 63, 62, 184, 129, 63, 48, 165, 234, 191, 208, 191, 43, 180, 0, 0, 127, 0, 130, 0, 0, 129, 0, 64, 128, 63, 0, 192, 16, 63, 52, 153, 197, 63, 72, 0, 83, 192, 240, 114, 112, 180, 0, 0, 127, 0, 130, 255, 0, 129, 0, 64, 128, 63, 0, 224, 28, 63, 48, 249, 217, 63, 4, 87, 152, 192, 8, 147, 154, 180, 0, 0, 127, 0, 130, 0, 0, 129, 0, 64, 128, 63, 0, 32, 41, 63, 119, 13, 254, 63, 224, 45, 199, 192, 154, 236, 188, 180, 0, 0, 127, 0, 130, 0, 0, 129, 0, 64, 128, 63, 0, 96, 53, 63, 4, 141, 23, 64, 184, 4, 246, 192, 38, 70, 223, 180, 0, 0, 127, 0, 130, 0, 0, 129, 0, 64, 128, 63, 0, 160, 65, 63, 229, 47, 43, 64, 204, 109, 18, 193, 221, 207, 0, 181, 0, 0, 127, 0, 130, 0, 0, 129, 0, 64, 128, 63, 0, 192, 77, 63, 203, 19, 91, 64, 56, 217, 41, 193, 163, 252, 17, 181, 0, 0, 127, 0, 129, 0, 0, 129, 0, 64, 128, 63, 0, 224, 89, 63, 15, 103, 94, 64, 56, 217, 41, 193, 163, 252, 17, 181, 0, 0, 127, 0, 129, 0, 0, 129, 0, 160, 161, 58, 0, 224, 89, 63, 35, 146, 51, 64, 202, 109, 18, 193, 219, 207, 0, 181, 0, 0, 127, 0, 130, 0, 0, 129, 0, 160, 161, 58, 0, 192, 77, 63, 190, 65, 35, 64, 184, 4, 246, 192, 38, 70, 223, 180, 0, 0, 127, 0, 130, 0, 0, 129, 0, 160, 161, 58, 0, 160, 65, 63, 89, 25, 4, 64, 220, 45, 199, 192, 150, 236, 188, 180, 0, 0, 127, 0, 130, 0, 0, 129, 0, 160, 161, 58, 0, 96, 53, 63, 166, 216, 239, 63, 252, 86, 152, 192, 4, 147, 154, 180, 0, 0, 127, 0, 130, 0, 0, 129, 0, 160, 161, 58, 0, 32, 41, 63, 5, 28, 236, 63, 72, 0, 83, 192, 232, 114, 112, 180, 0, 0, 127, 0, 130, 255, 0, 129, 0, 160, 161, 58, 0, 0, 29, 63, 189, 15, 174, 63, 32, 165, 234, 191, 204, 191, 43, 180, 0, 0, 127, 0, 130, 0, 0, 129, 0, 160, 161, 58, 0, 192, 16, 63, 155, 198, 153, 63, 192, 38, 189, 190, 96, 25, 206, 179, 0, 0, 127, 0, 130, 0, 0, 129, 0, 160, 161, 58, 0, 96, 4, 63, 162, 6, 144, 63, 192, 17, 140, 63, 48, 102, 9, 179, 0, 0, 127, 0, 130, 1, 0, 129, 0, 160, 161, 58, 0, 96, 240, 62, 27, 236, 161, 63, 148, 182, 35, 64, 64, 102, 9, 51, 0, 0, 127, 0, 130, 252, 0, 129, 0, 160, 161, 58, 0, 0, 216, 62, 52, 141, 131, 63, 40, 178, 128, 64, 96, 25, 206, 51, 0, 0, 127, 0, 130, 251, 0, 129, 0, 160, 161, 58, 0, 64, 191, 62, 15, 255, 65, 63, 4, 137, 175, 64, 208, 191, 43, 52, 0, 0, 127, 0, 130, 249, 0, 129, 0, 160, 161, 58, 0, 160, 166, 62, 132, 53, 169, 62, 222, 95, 222, 64, 238, 114, 112, 52, 0, 0, 127, 0, 126, 7, 0, 127, 0, 160, 161, 58, 0, 192, 141, 62, 56, 207, 158, 62, 93, 155, 6, 65, 7, 147, 154, 52, 0, 0, 127, 0, 130, 5, 0, 129, 0, 160, 161, 58, 0, 32, 106, 62, 48, 122, 220, 62, 203, 6, 30, 65, 151, 236, 188, 52, 0, 0, 127, 0, 130, 15, 0, 129, 0, 64, 42, 59, 0, 192, 56, 62, 143, 142, 128, 63, 56, 114, 53, 65, 38, 70, 223, 52, 0, 0, 127, 0, 218, 136, 0, 129, 0, 160, 161, 58, 0, 32, 52, 62, 54, 162, 219, 62, 166, 221, 76, 65, 219, 207, 0, 53, 0, 0, 127, 0, 136, 216, 0, 129, 0, 160, 161, 58, 0, 128, 171, 61, 102, 95, 87, 63, 21, 73, 100, 65, 162, 252, 17, 53, 0, 0, 127, 0, 132, 233, 0, 129, 0, 160, 161, 58, 0, 160, 16, 61, 90, 182, 66, 63, 224, 64, 105, 64, 240, 177, 170, 51, 0, 0, 127, 0, 138, 210, 0, 129, 0, 64, 128, 63, 0, 96, 197, 62, 146, 96, 139, 63, 228, 64, 105, 64, 248, 177, 170, 51, 0, 0, 127, 0, 130, 251, 0, 129, 0, 160, 161, 58, 0, 160, 197, 62, 49, 239, 177, 191, 112, 14, 63, 63, 32, 73, 15, 51, 0, 0, 127, 0, 143, 199, 0, 129, 0, 64, 18, 63, 0, 128, 40, 63, 243, 140, 159, 191, 96, 126, 43, 63, 128, 240, 0, 51, 0, 0, 127, 0, 74, 153, 0, 127, 0, 0, 117, 62, 0, 32, 45, 63, 1, 56, 144, 191, 0, 122, 124, 191, 224, 71, 181, 50, 0, 0, 127, 0, 74, 153, 0, 127, 0, 128, 252, 62, 0, 96, 89, 63, 203, 120, 137, 191, 192, 54, 97, 191, 64, 14, 10, 51, 0, 0, 127, 0, 74, 153, 0, 127, 0, 128, 252, 62, 0, 0, 84, 63, 206, 65, 32, 189, 64, 192, 51, 192, 64, 178, 228, 50, 0, 0, 127, 0, 127, 0, 0, 129, 0, 128, 252, 62, 0, 224, 126, 63, 120, 152, 216, 62, 130, 226, 49, 65, 237, 12, 218, 52, 0, 0, 127, 0, 170, 163, 0, 129, 0, 64, 128, 63, 0, 224, 14, 62, 95, 199, 106, 63, 130, 226, 49, 65, 238, 12, 218, 52, 0, 0, 127, 0, 219, 135, 0, 129, 0, 64, 42, 59, 0, 224, 45, 62, 220, 254, 8, 64, 232, 31, 12, 65, 138, 169, 220, 52, 0, 0, 127, 0, 206, 140, 0, 129, 0, 128, 252, 62, 0, 0, 128, 63, 140, 187, 223, 63, 54, 218, 44, 65, 85, 71, 222, 52, 0, 0, 127, 0, 204, 141, 0, 129, 0, 160, 161, 58, 0, 192, 235, 62, 61, 210, 216, 63, 248, 165, 42, 65, 192, 11, 219, 52, 0, 0, 127, 0, 206, 140, 0, 129, 0, 128, 252, 62, 0, 0, 237, 62, 113, 193, 75, 62, 116, 20, 218, 64, 104, 38, 106, 52, 0, 0, 127, 0, 130, 0, 0, 129, 0, 64, 128, 63, 0, 0, 144, 62, 4, 225, 194, 62, 116, 20, 218, 64, 106, 38, 106, 52, 0, 0, 127, 0, 130, 253, 0, 129, 0, 160, 232, 62, 0, 0, 144, 62, 135, 69, 157, 64, 196, 24, 184, 64, 238, 114, 112, 52, 0, 0, 127, 0, 161, 173, 0, 129, 0, 32, 56, 59, 0, 96, 189, 62, 176, 196, 155, 64, 98, 192, 179, 64, 108, 38, 106, 52, 0, 0, 127, 0, 167, 166, 0, 129, 0, 0, 128, 63, 0, 0, 191, 62, 153, 164, 193, 64, 84, 111, 108, 64, 236, 114, 112, 52, 0, 0, 127, 0, 169, 164, 0, 129, 0, 32, 56, 59, 0, 64, 5, 63, 193, 35, 192, 64, 148, 190, 99, 64, 108, 38, 106, 52, 0, 0, 127, 0, 176, 158, 0, 129, 0, 0, 128, 63, 0, 64, 6, 63, 248, 126, 219, 64, 112, 179, 97, 63, 240, 114, 112, 52, 0, 0, 127, 0, 139, 208, 0, 129, 0, 32, 56, 59, 0, 96, 58, 63, 149, 138, 215, 64, 240, 237, 93, 63, 106, 38, 106, 52, 0, 0, 127, 0, 74, 102, 0, 127, 0, 128, 252, 62, 0, 160, 57, 63, 91, 39, 225, 64, 176, 10, 44, 192, 170, 76, 109, 52, 0, 0, 127, 0, 139, 208, 0, 129, 0, 128, 252, 62, 0, 224, 127, 63, 246, 30, 217, 64, 152, 236, 145, 63, 236, 114, 112, 52, 0, 0, 127, 0, 138, 210, 0, 129, 0, 32, 56, 59, 0, 192, 52, 63, 58, 100, 213, 64, 120, 157, 142, 63, 110, 38, 106, 52, 0, 0, 127, 0, 74, 102, 0, 127, 0, 0, 128, 63, 0, 128, 52, 63, 120, 141, 165, 64, 32, 112, 119, 191, 108, 38, 106, 52, 0, 255, 126, 0, 183, 153, 255, 129, 0, 128, 252, 62, 0, 32, 52, 63, 120, 141, 165, 64, 32, 112, 119, 191, 108, 38, 106, 52, 0, 0, 127, 0, 71, 104, 0, 127, 0, 128, 252, 62, 0, 32, 52, 63, 185, 132, 158, 64, 128, 169, 117, 191, 104, 38, 106, 52, 0, 255, 126, 0, 183, 153, 255, 129, 0, 0, 128, 63, 0, 0, 48, 63, 185, 132, 158, 64, 128, 169, 117, 191, 104, 38, 106, 52, 0, 0, 127, 0, 71, 104, 0, 127, 0, 0, 128, 63, 0, 0, 48, 63, 98, 165, 202, 64, 16, 50, 168, 192, 173, 15, 101, 189, 0, 255, 126, 0, 183, 153, 255, 129, 0, 128, 252, 62, 0, 224, 127, 63, 223, 216, 39, 64, 80, 60, 203, 64, 236, 114, 112, 52, 0, 0, 127, 0, 126, 7, 0, 127, 0, 128, 252, 62, 0, 0, 154, 62, 191, 242, 39, 64, 108, 234, 198, 64, 106, 38, 106, 52, 0, 0, 127, 0, 126, 7, 0, 127, 0, 128, 252, 62, 0, 64, 156, 62, 11, 133, 132, 191, 176, 50, 146, 191, 64, 241, 183, 50, 0, 0, 127, 0, 127, 0, 0, 129, 0, 128, 252, 62, 0, 128, 89, 63, 145, 77, 124, 191, 240, 84, 133, 191, 160, 185, 8, 51, 0, 0, 127, 0, 127, 0, 0, 129, 0, 128, 252, 62, 0, 128, 84, 63, 31, 63, 163, 191, 208, 215, 6, 192, 160, 156, 182, 50, 0, 0, 127, 0, 127, 0, 0, 129, 0, 128, 252, 62, 0, 160, 127, 63, 207, 249, 48, 64, 248, 181, 197, 64, 106, 38, 106, 52, 0, 0, 127, 0, 125, 21, 0, 127, 0, 128, 252, 62, 0, 192, 160, 62, 243, 17, 49, 64, 70, 8, 202, 64, 238, 114, 112, 52, 0, 0, 127, 0, 125, 21, 0, 127, 0, 128, 252, 62, 0, 64, 156, 62, 19, 86, 98, 64, 46, 233, 151, 64, 104, 38, 106, 52, 0, 0, 127, 0, 127, 0, 0, 129, 0, 128, 252, 62, 0, 96, 127, 63 ),
+"array_index_data": PoolByteArray( 3, 0, 2, 0, 38, 0, 3, 0, 1, 0, 2, 0, 0, 0, 20, 0, 21, 0, 20, 0, 22, 0, 21, 0, 20, 0, 19, 0, 22, 0, 19, 0, 23, 0, 22, 0, 19, 0, 18, 0, 23, 0, 18, 0, 24, 0, 23, 0, 18, 0, 17, 0, 24, 0, 17, 0, 25, 0, 24, 0, 17, 0, 16, 0, 25, 0, 16, 0, 26, 0, 25, 0, 16, 0, 15, 0, 26, 0, 15, 0, 27, 0, 26, 0, 15, 0, 14, 0, 27, 0, 14, 0, 28, 0, 27, 0, 14, 0, 13, 0, 28, 0, 13, 0, 29, 0, 28, 0, 13, 0, 12, 0, 29, 0, 12, 0, 30, 0, 29, 0, 12, 0, 11, 0, 30, 0, 39, 0, 31, 0, 40, 0, 39, 0, 10, 0, 31, 0, 10, 0, 32, 0, 31, 0, 10, 0, 9, 0, 32, 0, 51, 0, 33, 0, 52, 0, 51, 0, 8, 0, 33, 0, 8, 0, 34, 0, 33, 0, 8, 0, 7, 0, 34, 0, 7, 0, 35, 0, 34, 0, 7, 0, 6, 0, 35, 0, 46, 0, 36, 0, 47, 0, 46, 0, 5, 0, 36, 0, 5, 0, 37, 0, 36, 0, 5, 0, 4, 0, 37, 0, 4, 0, 38, 0, 37, 0, 4, 0, 3, 0, 38, 0, 11, 0, 40, 0, 30, 0, 11, 0, 39, 0, 40, 0, 39, 0, 41, 0, 10, 0, 39, 0, 42, 0, 41, 0, 42, 0, 43, 0, 41, 0, 42, 0, 44, 0, 43, 0, 70, 0, 45, 0, 69, 0, 6, 0, 47, 0, 35, 0, 6, 0, 46, 0, 47, 0, 49, 0, 48, 0, 50, 0, 36, 0, 50, 0, 47, 0, 36, 0, 49, 0, 50, 0, 9, 0, 52, 0, 32, 0, 9, 0, 51, 0, 52, 0, 73, 0, 54, 0, 72, 0, 73, 0, 53, 0, 54, 0, 53, 0, 56, 0, 54, 0, 53, 0, 55, 0, 56, 0, 60, 0, 58, 0, 61, 0, 60, 0, 57, 0, 58, 0, 57, 0, 59, 0, 58, 0, 55, 0, 61, 0, 56, 0, 55, 0, 60, 0, 61, 0, 58, 0, 65, 0, 61, 0, 58, 0, 63, 0, 65, 0, 62, 0, 66, 0, 64, 0, 33, 0, 68, 0, 52, 0, 33, 0, 67, 0, 68, 0, 44, 0, 69, 0, 43, 0, 44, 0, 70, 0, 69, 0, 69, 0, 71, 0, 43, 0, 67, 0, 72, 0, 68, 0, 67, 0, 73, 0, 72, 0, 72, 0, 74, 0, 68, 0 ),
+"blend_shape_data": [  ],
+"format": 89367,
+"index_count": 213,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 75
+}
+
+[sub_resource type="PlaneMesh" id=17]
+
+[sub_resource type="Shader" id=18]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float point_size : hint_range(0,128);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec2 uv2_scale;
+
+
+void vertex() {
+	UV2 =UV*uv2_scale;
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+uniform float alpha_factor : hint_range(0.0, 1.0) = 1.0;
+uniform float scale : hint_range(0.1, 20.0) = 3.0;
+uniform float speed : hint_range(0.0, 1.0) = 0.05;
+uniform float coverage : hint_range(0.0, 2.0) = 1.0;
+uniform float softness : hint_range(0.1, 2.0) = 0.5;
+uniform float fluffiness : hint_range(0.1, 1.0) = 0.6;
+uniform vec4 lit_color : hint_color = vec4(1.0);
+uniform vec4 shadow_color : hint_color = vec4(0.0);
+uniform float shade_strength : hint_range(0.0, 5.0) = 3.0;
+uniform vec2 light_offset = vec2(0.0, -0.05); // Negative y for light from above
+uniform int worley_octaves : hint_range(1, 4) = 2;
+uniform float worley_lacunarity : hint_range(1.0, 4.0) = 2.0;
+uniform float detail_scale : hint_range(1.0, 20.0) = 10.0;
+uniform float detail_strength : hint_range(0.0, 1.0) = 0.3;
+uniform float warp_scale : hint_range(0.0, 10.0) = 0.5;
+uniform float warp_strength : hint_range(0.0, 2.0) = 0.5;
+
+// Random hash function for Worley
+vec2 random2(vec2 p) {
+    return fract(sin(vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)))) * 43758.5453);
+}
+
+// 2D Worley (Cellular) Noise
+float worley(vec2 st, float freq) {
+    st *= freq;
+    vec2 i_st = floor(st);
+    vec2 f_st = fract(st);
+    float m_dist = 1.0;
+    for (int y = -1; y <= 1; y++) {
+        for (int x = -1; x <= 1; x++) {
+            vec2 neighbor = vec2(float(x), float(y));
+            vec2 point = random2(i_st + neighbor);
+            vec2 diff = neighbor + point - f_st;
+            float dist = length(diff);
+            m_dist = min(m_dist, dist);
+        }
+    }
+    return m_dist;
+}
+
+// Simple Perlin noise for detail and warp
+float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    float a = fract(sin(dot(i + vec2(0.0, 0.0), vec2(127.1, 311.7))) * 43758.5453);
+    float b = fract(sin(dot(i + vec2(1.0, 0.0), vec2(127.1, 311.7))) * 43758.5453);
+    float c = fract(sin(dot(i + vec2(0.0, 1.0), vec2(127.1, 311.7))) * 43758.5453);
+    float d = fract(sin(dot(i + vec2(1.0, 1.0), vec2(127.1, 311.7))) * 43758.5453);
+    return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+// Layered Worley for base shape with warping
+float layered_worley(vec2 p) {
+    // Compute warp displacement using low-frequency Perlin
+    vec2 warp = vec2(noise(p * warp_scale), noise(p * warp_scale + vec2(5.2, 1.3))) * warp_strength;
+    p += warp;
+    
+    float value = 0.0;
+    float amplitude = 0.5;
+    float freq = 1.0;
+    for (int i = 0; i < worley_octaves; i++) {
+        value += amplitude * (1.0 - worley(p, freq)); // Invert for cloud density
+        freq *= worley_lacunarity;
+        amplitude *= fluffiness;
+    }
+    return value;
+}
+
+// FBM for added detail
+float fbm_detail(vec2 p) {
+    float value = 0.0;
+    float amplitude = 0.5;
+    for (int i = 0; i < 4; i++) {
+        value += amplitude * (noise(p) * 0.5 + 0.5);
+        p *= 2.0;
+        amplitude *= 0.5;
+    }
+    return value;
+}
+
+void fragment() {
+    // Animate UVs
+    vec2 uv = UV * scale + TIME * speed * vec2(1.0, 0.3);
+    
+    // Base cloud shape from layered Worley with warping
+    float base_density = layered_worley(uv);
+    
+    // Add high-frequency detail
+    float detail = fbm_detail(uv * detail_scale) * detail_strength;
+    float density = base_density + detail;
+    
+    // Shape the cloud with coverage and softness
+    float cloud = smoothstep(coverage - softness, coverage, density);
+    
+    // Enhance fluffiness with power function
+    cloud = pow(cloud, 1.0 / fluffiness);
+    
+    // Shadow sampling for lighting
+    float shadow_density = layered_worley(uv + light_offset) + fbm_detail((uv + light_offset) * detail_scale) * detail_strength;
+    float shading = clamp((density - shadow_density) * shade_strength, -0.5, 0.5);
+    
+    // Normalize shading to 0-1
+    float shade_norm = shading + 0.5;
+    
+    // Blend between shadow and lit colors
+    vec3 color = mix(shadow_color.rgb, lit_color.rgb, shade_norm);
+    
+    // Add highlight for sunlit edges
+    float highlight = smoothstep(0.8, 1.0, density) * 0.3;
+    color += highlight * lit_color.rgb;
+    color = clamp(color, 0.0, 1.0);
+    
+	ALBEDO = color;
+	ALPHA = cloud * alpha_factor * (1.0 - length(UV2 - 0.5) * 2.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=19]
+shader = SubResource( 18 )
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1.101, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector2( 1, 1 )
+shader_param/alpha_factor = 0.687
+shader_param/scale = 3.579
+shader_param/speed = 0.02
+shader_param/coverage = 0.891
+shader_param/softness = 1.053
+shader_param/fluffiness = 0.195
+shader_param/lit_color = Color( 1, 1, 1, 1 )
+shader_param/shadow_color = Color( 0.223529, 0.356863, 0.603922, 1 )
+shader_param/shade_strength = 2.385
+shader_param/light_offset = Vector2( -0.038, 0.141 )
+shader_param/worley_octaves = 2
+shader_param/worley_lacunarity = 2.361
+shader_param/detail_scale = 3.61
+shader_param/detail_strength = 0.344
+shader_param/warp_scale = 0.0
+shader_param/warp_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id=20]
+shader = SubResource( 18 )
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1.408, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector2( 1, 1 )
+shader_param/alpha_factor = 0.632
+shader_param/scale = 5.329
+shader_param/speed = 0.15
+shader_param/coverage = 1.083
+shader_param/softness = 0.98
+shader_param/fluffiness = 0.2
+shader_param/lit_color = Color( 1, 1, 1, 1 )
+shader_param/shadow_color = Color( 0.556863, 0.556863, 0.556863, 1 )
+shader_param/shade_strength = 2.385
+shader_param/light_offset = Vector2( -0.03, -1.232 )
+shader_param/worley_octaves = 2
+shader_param/worley_lacunarity = 1.768
+shader_param/detail_scale = 4.967
+shader_param/detail_strength = 0.344
+shader_param/warp_scale = 0.245
+shader_param/warp_strength = 2.0
+
+[sub_resource type="PlaneMesh" id=21]
+
+[sub_resource type="ShaderMaterial" id=22]
+render_priority = -9
+shader = ExtResource( 22 )
+shader_param/star_density = 1.0
+shader_param/twinkle_speed = 0.75
+shader_param/scale = 21.727
+shader_param/background_color = Color( 0.0862745, 0.0901961, 0.0941176, 1 )
+shader_param/base_brightness = 0.5
+shader_param/star_color_top = Color( 0.921569, 0.941176, 1, 1 )
+shader_param/star_color_bottom = Color( 0.172549, 0.172549, 0.172549, 1 )
+shader_param/base_star_size = 0.036
+
+[sub_resource type="PlaneMesh" id=23]
+
+[sub_resource type="ShaderMaterial" id=24]
+render_priority = -8
+shader = ExtResource( 19 )
+shader_param/albedo = Color( 0.713726, 0.713726, 0.713726, 0.407843 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 1.0
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/dark_circle_center = Vector2( 0.693, 0 )
+shader_param/black = Color( 0.0470588, 0.0470588, 0.0470588, 1 )
+shader_param/circle_radius_x = 2.502
+shader_param/circle_radius_y = 2.718
+shader_param/edge_softness = 0.1
+shader_param/moon_radius = 0.432
+shader_param/curve_vertical_scale = 0.608
+shader_param/phase = 0.39
+shader_param/is_crescent = true
+shader_param/alpha = 1.0
+shader_param/texture_albedo = ExtResource( 18 )
+
+[sub_resource type="PlaneMesh" id=25]
+
+[sub_resource type="Shader" id=26]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float point_size : hint_range(0,128);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	ALPHA = 1.0 - (length(UV - 0.5));
+}
+"
+
+[sub_resource type="ShaderMaterial" id=27]
+render_priority = -9
+shader = SubResource( 26 )
+shader_param/albedo = Color( 0.0862745, 0.0901961, 0.0941176, 1 )
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+
+[node name="Sky" type="Spatial"]
+script = ExtResource( 11 )
+gradient = NodePath("SkyGradient")
+sun_object = NodePath("SunPathAnimation/SunHalo/SunObject")
+cloud_controller = NodePath("SkyGradient/CloudController")
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="SunCenter" type="Spatial" parent="."]
+transform = Transform( 5.00567, 0, 0, 0, 2.91125, 0, 0, 0, 5.07637, 1.28, 0, 0.4 )
+
+[node name="SunPathAnimation" type="Spatial" parent="."]
+transform = Transform( -0.325893, 0, 0.327101, 0, 0.507, 0, -0.388385, 0, -0.27447, -0.431, 1.086, -0.252 )
+script = ExtResource( 3 )
+
+[node name="SunHalo" type="Spatial" parent="SunPathAnimation"]
+transform = Transform( -1, 3.2584e-07, 0, 0, 0, 1, 3.2584e-07, 1, 0, 2.5656e-06, 3.80779e-08, 3.93688 )
+
+[node name="SunObject" type="MeshInstance" parent="SunPathAnimation/SunHalo"]
+transform = Transform( 7.8213e-08, 0.037, -1.79355e-07, 1.18781, -1.60089e-09, 0.170596, 0.170596, -5.81677e-09, -1.18781, -0.00461912, 0.0182748, -0.0143425 )
+layers = 2
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+script = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="SunPathAnimation/SunHalo/SunObject"]
+
+[node name="SunCover" type="MeshInstance" parent="SunPathAnimation/SunHalo/SunObject"]
+transform = Transform( -2.01166e-07, 1.78814e-07, 1.5, 1.49012e-08, 1.5, 0, -1.5, 4.47035e-08, -2.38419e-07, 0.0653307, -0.000347733, 0.412935 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 5 )
+script = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SunPathAnimation"]
+anims/SunHaloAction = SubResource( 6 )
+
+[node name="SunCenterAnimation" type="Spatial" parent="."]
+transform = Transform( 1.96251e-15, -1.20458e-08, 0.0739368, -0.0739368, -1.20458e-08, 0, 1.20458e-08, -0.0739368, -1.20458e-08, 0.125709, -3.3405e-21, -2.04806e-08 )
+
+[node name="SunCenterEmpty" type="Spatial" parent="SunCenterAnimation"]
+transform = Transform( -1, 3.2584e-07, 8.52651e-14, 1.42109e-14, 8.52651e-14, 1, 3.2584e-07, 1, -8.52651e-14, 1.12469e-06, 3.80779e-08, -0.485252 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SunCenterAnimation"]
+anims/SunHaloAction = SubResource( 7 )
+
+[node name="NightController" type="Node" parent="."]
+script = ExtResource( 9 )
+gradient = NodePath("../SkyGradient")
+sun_object = NodePath("../SunPathAnimation/SunHalo/SunObject")
+stars = NodePath("../StarsShader")
+moon = NodePath("../Moon")
+
+[node name="SkyGradient" type="MeshInstance" parent="."]
+transform = Transform( 3.11679, 2.31033, -3.76402e-07, 0, -5.85576e-07, -3.59424, -2.6153, 2.75335, -4.48577e-07, -0.00353467, 1.01103, -0.0430779 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="SkyGradient"]
+
+[node name="CloudController" type="Spatial" parent="SkyGradient"]
+transform = Transform( 0.76923, 0, 0, 0, 0.76923, 0, 0, 0, 0.76923, 0, 0, -0.096 )
+script = ExtResource( 14 )
+partially_cloudy_parent = NodePath("../../SkyGradient/CloudController/PartiallyCloudy")
+very_cloudy_parent = NodePath("../../SkyGradient/CloudController/VeryCloudy")
+lightning_bolt = NodePath("../../SkyGradient/CloudController/Lightning/LightningBolt")
+fog = NodePath("Fog")
+snow = NodePath("../../Snow")
+
+[node name="PartiallyCloudy" type="Spatial" parent="SkyGradient/CloudController"]
+
+[node name="PartiallyCloudy1" type="MeshInstance" parent="SkyGradient/CloudController/PartiallyCloudy"]
+transform = Transform( 0.269161, 0, -1.15463e-14, 1.04308e-07, 1, -1.06581e-14, 1.24345e-14, 0, 0.183146, 0.278, 0.112, -0.463 )
+mesh = SubResource( 10 )
+material/0 = ExtResource( 10 )
+
+[node name="PartiallyCloudy2" type="MeshInstance" parent="SkyGradient/CloudController/PartiallyCloudy"]
+transform = Transform( -0.4, 0, -9.77525e-08, -2.98023e-08, 1, 7.10543e-15, 1.30336e-07, 0, -0.3, -0.255, -0.423, -0.407 )
+mesh = SubResource( 10 )
+material/0 = ExtResource( 10 )
+
+[node name="PartiallyCloudy4" type="MeshInstance" parent="SkyGradient/CloudController/PartiallyCloudy"]
+transform = Transform( -0.394438, 0, 0.0824269, 0, 1, 0, 0.0664733, 0, 0.489103, -0.408, -0.423, -0.567 )
+mesh = SubResource( 10 )
+material/0 = ExtResource( 10 )
+
+[node name="PartiallyCloudy5" type="MeshInstance" parent="SkyGradient/CloudController/PartiallyCloudy"]
+transform = Transform( -0.394438, 0, 0.0824269, 0, 1, 0, 0.0664733, 0, 0.489103, -0.045, 0.097, -0.567 )
+mesh = SubResource( 10 )
+material/0 = ExtResource( 10 )
+
+[node name="PartiallyCloudy6" type="MeshInstance" parent="SkyGradient/CloudController/PartiallyCloudy"]
+transform = Transform( -0.394438, 0, 0.0824269, 0, 1, -3.72529e-09, 0.0664733, 0, 0.489103, 0.339, 0.097, -0.567 )
+mesh = SubResource( 10 )
+material/0 = ExtResource( 10 )
+
+[node name="PartiallyCloudy3" type="MeshInstance" parent="SkyGradient/CloudController/PartiallyCloudy"]
+transform = Transform( 0.218641, -6.25849e-07, -0.00791911, 1.19209e-07, 1, -3.72529e-09, 0.0116384, -1.35574e-08, 0.14877, -0.362, 0.045, -0.431 )
+mesh = SubResource( 10 )
+material/0 = ExtResource( 10 )
+
+[node name="VeryCloudy" type="Spatial" parent="SkyGradient/CloudController"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053, -0.04, -0.046 )
+
+[node name="VeryCloudy1" type="MeshInstance" parent="SkyGradient/CloudController/VeryCloudy"]
+transform = Transform( -0.611724, -1.78814e-07, 0.254135, 2.98023e-08, 0.662413, 0, -0.254135, -1.42109e-14, -0.611724, -0.20151, -0.151475, -0.469874 )
+mesh = SubResource( 11 )
+material/0 = ExtResource( 15 )
+
+[node name="VeryCloudy2" type="MeshInstance" parent="SkyGradient/CloudController/VeryCloudy"]
+transform = Transform( 0.811522, -5.96046e-08, -0.135118, 2.08616e-07, 1, 0, 0.135118, -9.78938e-09, 0.811522, 0, -0.151, -0.608 )
+mesh = SubResource( 11 )
+material/0 = ExtResource( 15 )
+
+[node name="VeryCloudy3" type="MeshInstance" parent="SkyGradient/CloudController/VeryCloudy"]
+transform = Transform( -0.96781, -2.38419e-07, 0.251681, -1.19209e-07, 1, 8.9407e-08, 0.251681, 1.05154e-08, 0.96781, -0.175, -0.151, -0.517 )
+mesh = SubResource( 11 )
+material/0 = ExtResource( 15 )
+
+[node name="VeryCloudy4" type="MeshInstance" parent="SkyGradient/CloudController/VeryCloudy"]
+transform = Transform( -0.96781, -2.98023e-07, 0.251681, -1.19209e-07, 1, 1.19209e-07, 0.251681, 1.05154e-08, 0.96781, -1.0145, -0.151475, -0.447265 )
+mesh = SubResource( 11 )
+material/0 = ExtResource( 15 )
+
+[node name="Fog" type="CPUParticles" parent="SkyGradient/CloudController"]
+process_priority = 2
+transform = Transform( -0.176406, -0.00563023, -5.82264e-09, -0.00637317, 0.199692, -2.40232e-08, 7.35406e-09, -2.38006e-08, -0.199793, -0.116551, 0.140359, -0.530921 )
+material_override = SubResource( 13 )
+amount = 15
+lifetime = 10.0
+mesh = SubResource( 14 )
+emission_shape = 2
+emission_box_extents = Vector3( 2.848, 0.1, 0.8 )
+gravity = Vector3( -0.031, 0, 0 )
+scale_amount_random = 0.8
+color_ramp = SubResource( 15 )
+
+[node name="Lightning" type="Spatial" parent="SkyGradient/CloudController"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.112, -0.076, 0 )
+
+[node name="LightningBolt" type="MeshInstance" parent="SkyGradient/CloudController/Lightning"]
+transform = Transform( 0.0197377, 1.11022e-15, 3.72529e-09, -1.86265e-09, 2.22045e-15, 0.0197377, 2.33147e-15, -0.0197377, 8.88178e-16, 0.340954, -0.139909, -0.163044 )
+mesh = SubResource( 16 )
+material/0 = ExtResource( 5 )
+
+[node name="CloudsShader" type="MeshInstance" parent="SkyGradient"]
+transform = Transform( -0.542593, -4.0118e-08, 1.10131e-07, -1.60474e-07, 0.161302, 3.82601e-14, -2.11294e-07, -2.73286e-15, -0.282809, 0, 0.015385, -0.451538 )
+visible = false
+mesh = SubResource( 17 )
+material/0 = ExtResource( 23 )
+
+[node name="CloudsShader2" type="MeshInstance" parent="SkyGradient"]
+transform = Transform( -0.658896, -6.30434e-08, 1.07838e-07, -2.52174e-07, 0.161539, 4.9191e-14, -2.56584e-07, -1.09315e-14, -0.276924, 0.0110206, -0.073846, -0.453846 )
+visible = false
+mesh = SubResource( 17 )
+material/0 = SubResource( 19 )
+
+[node name="CloudsShader3" type="MeshInstance" parent="SkyGradient"]
+transform = Transform( -0.593857, -1.37549e-07, 1.29546e-07, -2.52174e-07, 0.332668, 6.83214e-14, -2.31256e-07, -1.63971e-14, -0.332668, -0.0232964, -6.43992e-09, -0.488291 )
+visible = false
+mesh = SubResource( 17 )
+material/0 = SubResource( 20 )
+
+[node name="StarsShader" type="MeshInstance" parent="."]
+transform = Transform( 2.16791, 1.60697, -2.61809e-07, 0, -4.07302e-07, -2.5, -1.81909, 1.91511, -3.12011e-07, -1.56499, 3.35927, -2.11191 )
+visible = false
+mesh = SubResource( 21 )
+material/0 = SubResource( 22 )
+script = ExtResource( 20 )
+moon = NodePath("../Moon")
+rainbow_speed = 0.8
+
+[node name="Moon" type="MeshInstance" parent="."]
+transform = Transform( 0.153819, 0.127159, 0.0500351, 0.0636452, 1.03692e-08, -0.195658, -0.120922, 0.161753, -0.0393341, -0.162, 1.967, -1.414 )
+visible = false
+mesh = SubResource( 23 )
+material/0 = SubResource( 24 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Moon"]
+transform = Transform( 1, 0, 5.21541e-08, 0, 1, -5.96046e-08, -5.21541e-08, 0, 1, -4.76837e-07, -0.108974, 2.86102e-06 )
+mesh = SubResource( 25 )
+material/0 = SubResource( 27 )
+
+[node name="Wind" parent="." instance=ExtResource( 16 )]
+
+[node name="Snow" parent="." instance=ExtResource( 21 )]
+visible = false

@@ -1,0 +1,11 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://models/speedform_LOD1/Textures/Normals.png" type="Texture" id=1]
+
+[resource]
+albedo_color = Color( 1, 0.913725, 0.8, 1 )
+metallic = 0.31
+roughness = 0.45
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 1 )

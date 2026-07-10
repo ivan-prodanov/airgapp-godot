@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Charger_Base.obj-37c043b551b7d53c02285a8617be9956.mesh"
+
+[deps]
+
+files=[ "res://.import/Charger_Base.obj-37c043b551b7d53c02285a8617be9956.mesh" ]
+
+source_file="res://mobile/geometry/Home_Charger/Objects/Charger_Base.obj"
+dest_files=[ "res://.import/Charger_Base.obj-37c043b551b7d53c02285a8617be9956.mesh", "res://.import/Charger_Base.obj-37c043b551b7d53c02285a8617be9956.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

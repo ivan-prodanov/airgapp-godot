@@ -1,0 +1,1137 @@
+extends Node
+
+const CAMERA_PARKED = "parked"
+const CAMERA_PLUGGED = "plugged"
+const CAMERA_TOP_DOWN = "top_down"
+const CAMERA_CLIMATE = "climate"
+const LOCAL_PLATE_TEXT = "airgapp.net"
+const FREE_ORBIT_MIN_PITCH = 1.0
+const FREE_ORBIT_MAX_PITCH = 79.0
+const FREE_ORBIT_YAW_SENSITIVITY = 0.16
+const FREE_ORBIT_PITCH_SENSITIVITY = 0.06
+const FREE_ORBIT_INERTIA_DAMPING = 5.0
+const FREE_ORBIT_MIN_INERTIA_SPEED = 0.5
+const LIGHTING_MOBILE = "mobile"
+const LIGHTING_AMBIENT_FILL = "ambient_fill"
+const LIGHTING_VIEW_RELATIVE = "view_relative"
+const LIGHTING_MODE_ORDER = [LIGHTING_MOBILE, LIGHTING_AMBIENT_FILL, LIGHTING_VIEW_RELATIVE]
+const VIEW_RELATIVE_ENV_YAW_THRESHOLD = 0.25
+const UNSET_ENV_YAW = 999999.0
+
+var web_export_dynamic_scenes = [
+	preload("res://Ego/Wheels_Palladium/New_Turbine_22.tscn"),
+	preload("res://Ego/Wheels_P3/Wheel_Cypress_NoInsert.tscn"),
+	preload("res://Ego/Wheels_Palladium/Cyberstream.tscn"),
+	preload("res://Ego/Wheels_Bayberry/Arachnid_V2/Arachnid_V2_21.tscn"),
+]
+var mobile_comm = null
+var comm_interface = null
+var vehicle_data: Dictionary = {}
+var current_vehicle_id: String = "local-modely-performanceBayberry-model_y"
+var booted: bool = false
+var climate_on: bool = false
+var front_defrost_on: bool = false
+var rear_defrost_on: bool = false
+var camera_mode: String = CAMERA_PARKED
+var charger_connected: bool = false
+var charging_active: bool = false
+var drive_mode_on: bool = false
+var manual_headlights_override_active: bool = false
+var manual_headlights_on: bool = false
+var manual_brake_lights_override_active: bool = false
+var manual_brake_lights_on: bool = false
+var current_theme: String = "dark"
+var window_state: Dictionary = {
+	"LFWindowAnimation": false,
+	"RFWindowAnimation": false,
+	"LRWindowAnimation": false,
+	"RRWindowAnimation": false,
+}
+var local_fade_original_alpha: Dictionary = {}
+var local_plate_text_viewport: Viewport = null
+var local_plate_skin_texture: ImageTexture = null
+var free_orbit_enabled: bool = false
+var free_orbit_dragging: bool = false
+var free_orbit_locked_pivot_rotation: Vector3 = Vector3.ZERO
+var free_orbit_locked_camera_translation: Vector3 = Vector3.ZERO
+var free_orbit_locked_camera_fov: float = 40.0
+var free_orbit_locked_camera_mode: String = CAMERA_PARKED
+var free_orbit_velocity: Vector2 = Vector2.ZERO
+var web_controls_layer: CanvasLayer = null
+var last_main_view_frame_size: Vector2 = Vector2.ZERO
+var lighting_mode: String = LIGHTING_MOBILE
+var env_base_rotation: Vector3 = Vector3(0, -7, 83)
+var env_base_energy: float = 4.0
+var env_base_ambient: float = 4.0
+var lighting_reference_pivot_yaw: float = 0.0
+var lighting_reference_env_rotation: Vector3 = Vector3(0, -7, 83)
+var last_view_relative_env_yaw: float = UNSET_ENV_YAW
+
+
+func setup(_mobile_comm, _comm_interface):
+	mobile_comm = _mobile_comm
+	comm_interface = _comm_interface
+
+
+func _ready():
+	set_process(true)
+	set_process_input(true)
+	call_deferred("_boot")
+
+
+func _process(delta: float):
+	_sync_main_view_frame_to_viewport(false)
+
+	if not free_orbit_enabled or free_orbit_dragging:
+		return
+	if free_orbit_velocity.length() < FREE_ORBIT_MIN_INERTIA_SPEED:
+		free_orbit_velocity = Vector2.ZERO
+		return
+	var pivot = _get_camera_pivot()
+	if pivot == null:
+		free_orbit_velocity = Vector2.ZERO
+		return
+	_apply_free_orbit_rotation_delta(pivot, free_orbit_velocity * delta)
+	_sync_view_relative_lighting()
+	free_orbit_velocity = free_orbit_velocity.linear_interpolate(Vector2.ZERO, min(1.0, FREE_ORBIT_INERTIA_DAMPING * delta))
+
+
+func _boot():
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+
+	vehicle_data = _base_vehicle_data()
+
+	_enqueue("APP_CONFIG", {
+		"pixelRatio": 1.0,
+		"fontScale": 1.0,
+		"scaleFramebufferOnBackground": true,
+	})
+	_enqueue("GODOT_CONFIG", {
+		"light_theme_color": "#F7F7F7",
+		"dark_theme_color": "#161718",
+	})
+	_send_theme()
+	_sync_main_view_frame_to_viewport(false, true)
+	_enqueue("SHOW_PRODUCT", vehicle_data)
+	_force_cable_unplugged()
+	var plate_state = _apply_local_plate_visuals_before_camera(16)
+	if plate_state is GDScriptFunctionState:
+		yield(plate_state, "completed")
+	_return_to_default_view(false)
+	call_deferred("_apply_local_plate_visuals", 12)
+
+	booted = true
+	if OS.get_name() == "HTML5":
+		print("[LocalDevMessageInjector] Web dynamic resources pinned: %d scenes" % web_export_dynamic_scenes.size())
+		_create_web_controls()
+	print("[LocalDevMessageInjector] Loaded local Bayberry renderer harness")
+	print("[LocalDevMessageInjector] Keys: 5 S, 6 3, 7 X, 8 Y, F frunk, T trunk, 1/2 front doors, 3/4 rear doors, Q/W/E/R windows, A AC, C climate view, G front defrost, H rear defrost, P charge port door, V cable, B charging glow, D drive/wheel spin, J headlights, N brake lights, M camera, O free orbit, I lighting, L theme, K markers")
+
+
+func _input(event):
+	if not booted:
+		return
+
+	if free_orbit_enabled:
+		_handle_free_orbit_input(event)
+
+	if not (event is InputEventKey):
+		return
+	if not event.pressed or event.echo:
+		return
+
+	match event.scancode:
+		KEY_F:
+			_toggle_vehicle_state("ft")
+		KEY_T:
+			_toggle_vehicle_state("rt")
+		KEY_1:
+			_toggle_vehicle_state("df")
+		KEY_2:
+			_toggle_vehicle_state("pf")
+		KEY_3:
+			_toggle_vehicle_state("dr")
+		KEY_4:
+			_toggle_vehicle_state("pr")
+		KEY_5:
+			_show_vehicle_config(_vehicle_config_model_s(), "Model S")
+		KEY_6:
+			_show_vehicle_config(_vehicle_config_model_3(), "Model 3")
+		KEY_7:
+			_show_vehicle_config(_vehicle_config_model_x(), "Model X")
+		KEY_8:
+			_show_vehicle_config(_vehicle_config_model_y(), "Model Y")
+		KEY_Q:
+			_toggle_window("LFWindowAnimation")
+		KEY_W:
+			_toggle_window("RFWindowAnimation")
+		KEY_E:
+			_toggle_window("LRWindowAnimation")
+		KEY_R:
+			_toggle_window("RRWindowAnimation")
+		KEY_A:
+			_toggle_ac()
+		KEY_C:
+			_toggle_climate_view()
+		KEY_G:
+			_toggle_front_defrost()
+		KEY_H:
+			_toggle_rear_defrost()
+		KEY_P:
+			_toggle_charge_port()
+		KEY_V:
+			_toggle_charger_connected()
+		KEY_B:
+			_toggle_charging_active()
+		KEY_D:
+			_toggle_drive_mode()
+		KEY_J:
+			_toggle_headlights()
+		KEY_N:
+			_toggle_brake_lights()
+		KEY_M:
+			_send_camera_move()
+		KEY_O:
+			_toggle_free_orbit()
+		KEY_I:
+			_cycle_lighting_mode()
+		KEY_L:
+			_toggle_theme()
+		KEY_K:
+			_enqueue("GET_VEHICLE_MARKERS", {"vehicle_id": current_vehicle_id})
+
+
+func _create_web_controls():
+	if web_controls_layer != null:
+		return
+	web_controls_layer = CanvasLayer.new()
+	web_controls_layer.name = "LocalWebControls"
+	web_controls_layer.layer = 100
+	add_child(web_controls_layer)
+
+	var root = VBoxContainer.new()
+	root.name = "Controls"
+	root.anchor_left = 0.0
+	root.anchor_top = 0.0
+	root.anchor_right = 0.0
+	root.anchor_bottom = 0.0
+	root.margin_left = 12
+	root.margin_top = 12
+	root.margin_right = 640
+	root.margin_bottom = 180
+	root.add_constant_override("separation", 6)
+	web_controls_layer.add_child(root)
+
+	var vehicles = HBoxContainer.new()
+	vehicles.add_constant_override("separation", 4)
+	root.add_child(vehicles)
+	_add_web_button(vehicles, "S", "_show_vehicle_config", [_vehicle_config_model_s(), "Model S"])
+	_add_web_button(vehicles, "3", "_show_vehicle_config", [_vehicle_config_model_3(), "Model 3"])
+	_add_web_button(vehicles, "X", "_show_vehicle_config", [_vehicle_config_model_x(), "Model X"])
+	_add_web_button(vehicles, "Y", "_show_vehicle_config", [_vehicle_config_model_y(), "Model Y"])
+
+	var closures = HBoxContainer.new()
+	closures.add_constant_override("separation", 4)
+	root.add_child(closures)
+	_add_web_button(closures, "Frunk", "_toggle_vehicle_state", ["ft"])
+	_add_web_button(closures, "Trunk", "_toggle_vehicle_state", ["rt"])
+	_add_web_button(closures, "DF", "_toggle_vehicle_state", ["df"])
+	_add_web_button(closures, "PF", "_toggle_vehicle_state", ["pf"])
+	_add_web_button(closures, "DR", "_toggle_vehicle_state", ["dr"])
+	_add_web_button(closures, "PR", "_toggle_vehicle_state", ["pr"])
+
+	var actions = HBoxContainer.new()
+	actions.add_constant_override("separation", 4)
+	root.add_child(actions)
+	_add_web_button(actions, "AC", "_toggle_ac")
+	_add_web_button(actions, "Climate", "_toggle_climate_view")
+	_add_web_button(actions, "Port", "_toggle_charge_port")
+	_add_web_button(actions, "Cable", "_toggle_charger_connected")
+	_add_web_button(actions, "Charge", "_toggle_charging_active")
+	_add_web_button(actions, "Drive", "_toggle_drive_mode")
+	_add_web_button(actions, "Head", "_toggle_headlights")
+	_add_web_button(actions, "Stops", "_toggle_brake_lights")
+	_add_web_button(actions, "Cam", "_send_camera_move")
+	_add_web_button(actions, "Orbit", "_toggle_free_orbit")
+	_add_web_button(actions, "Light", "_cycle_lighting_mode")
+	_add_web_button(actions, "Theme", "_toggle_theme")
+
+
+func _add_web_button(parent: Control, text: String, method: String, binds: Array = []):
+	var button = Button.new()
+	button.text = text
+	button.rect_min_size = Vector2(58, 34)
+	button.focus_mode = Control.FOCUS_NONE
+	parent.add_child(button)
+	button.connect("pressed", self, method, binds)
+
+
+func _sync_main_view_frame_to_viewport(animated: bool, force: bool = false):
+	var viewport_size = get_viewport().size
+	if viewport_size.x <= 0 or viewport_size.y <= 0:
+		return
+	if not force and viewport_size == last_main_view_frame_size:
+		return
+
+	last_main_view_frame_size = viewport_size
+	_enqueue("UPDATE_MAIN_VIEW_FRAME", {
+		"top_margin": 0,
+		"left_margin": 0,
+		"width": viewport_size.x,
+		"height": viewport_size.y,
+		"animated": animated,
+		"scroll_fraction": 1,
+	})
+
+
+func _base_vehicle_data() -> Dictionary:
+	return {
+			"type": "VEHICLE",
+			"id": current_vehicle_id,
+			"vin": "000Y",
+			"vehicle_config": _vehicle_config_model_y(),
+		"vehicle_state": {
+			"df": false,
+			"dr": false,
+			"pf": false,
+			"pr": false,
+			"ft": false,
+			"rt": false,
+			"tn": 0,
+		},
+		"drive_state": {
+			"speed": 0,
+			"shift_state": "P",
+		},
+		"climate_state": {
+			"is_climate_on": false,
+			"is_preconditioning": false,
+			"is_front_defroster_on": false,
+			"is_rear_defroster_on": false,
+		},
+		"charge_state": {
+			"charge_port_door_open": false,
+			"charge_port_flow_state": 0,
+		},
+		"mobile_app_state": {
+			"is_loading": false,
+			"show_terrain": false,
+			"wheel_turn_deg": 0,
+		},
+		"car_wrap_state": {
+			"skin": "",
+		},
+	}
+
+
+func _base_vehicle_config() -> Dictionary:
+	return {
+		"car_type": "modely",
+		"fascia_type": "original",
+		"chassis_type": "model_y",
+		"exterior_color": "PearlWhite",
+		"paint_color_override": "",
+		"wheel_type": "Unknown",
+		"spoiler_type": "None",
+		"interior_trim_type": "Black",
+		"third_row_seats": "None",
+		"headlamp_type": "Premium",
+		"aux_park_lamps": "NaPremium",
+		"red_brake_calipers": false,
+		"eu_vehicle": true,
+		"charge_port_type": "EU",
+		"window_tint_color": "0,0,0,153",
+		"has_tesla_badge": false,
+		"has_tesla_word_mark": false,
+	}
+
+
+func _vehicle_config_model_s() -> Dictionary:
+	var config = _base_vehicle_config()
+	config["car_type"] = "lychee"
+	config["fascia_type"] = "original"
+	config["chassis_type"] = "model_s"
+	config["exterior_color"] = "GarnetRed"
+	config["wheel_type"] = "Arachnid21Black"
+	config["interior_trim_type"] = "Black"
+	config["spoiler_type"] = "None"
+	config["red_brake_calipers"] = true
+	config["window_tint_color"] = "0,0,0,128"
+	return config
+
+
+func _vehicle_config_model_3() -> Dictionary:
+	var config = _base_vehicle_config()
+	config["car_type"] = "model3"
+	config["fascia_type"] = "performancePoppyseed"
+	config["chassis_type"] = "model_3"
+	config["exterior_color"] = "GlacierBlue"
+	config["wheel_type"] = "Cypress21"
+	config["interior_trim_type"] = "Black"
+	config["spoiler_type"] = "CarbonFiber"
+	config["red_brake_calipers"] = true
+	config["window_tint_color"] = "0,0,0,170"
+	return config
+
+
+func _vehicle_config_model_x() -> Dictionary:
+	var config = _base_vehicle_config()
+	config["car_type"] = "tamarind"
+	config["fascia_type"] = "original"
+	config["chassis_type"] = "model_x"
+	config["exterior_color"] = "PearlWhite"
+	config["wheel_type"] = "MachinaV219"
+	config["interior_trim_type"] = "Cream"
+	config["spoiler_type"] = "None"
+	config["red_brake_calipers"] = false
+	config["window_tint_color"] = "0,0,0,190"
+	return config
+
+
+func _vehicle_config_model_y() -> Dictionary:
+	var config = _base_vehicle_config()
+	config["car_type"] = "modely"
+	config["fascia_type"] = "performanceBayberry"
+	config["chassis_type"] = "model_y"
+	config["exterior_color"] = "UltraRed"
+	config["wheel_type"] = "ArachnidV221"
+	config["interior_trim_type"] = "White"
+	config["spoiler_type"] = "CarbonFiber"
+	config["red_brake_calipers"] = true
+	config["window_tint_color"] = "0,0,0,153"
+	return config
+
+
+func _show_vehicle_config(config: Dictionary, label: String):
+	var restore_climate_roof = camera_mode == CAMERA_CLIMATE
+	_clear_climate_roof_fade(false)
+	_reset_window_state()
+	var camera_state = _capture_camera_state()
+	current_vehicle_id = _vehicle_id_for_config(config)
+	vehicle_data["id"] = current_vehicle_id
+	vehicle_data["vehicle_config"] = config
+	print("[LocalDevMessageInjector] SHOW_PRODUCT %s id=%s" % [label, current_vehicle_id])
+	_enqueue("SHOW_PRODUCT", vehicle_data)
+	call_deferred("_sync_all_windows_on_active_vehicle", 8)
+	var plate_state = _apply_local_plate_visuals_before_camera(16)
+	if plate_state is GDScriptFunctionState:
+		yield(plate_state, "completed")
+		_restore_camera_state(camera_state)
+	if restore_climate_roof:
+		_apply_climate_roof_fade(false)
+	call_deferred("_apply_local_plate_visuals", 12)
+	call_deferred("_apply_manual_light_state", "")
+
+
+func _vehicle_id_for_config(config: Dictionary) -> String:
+	var car_type = config.get("car_type", "modely")
+	var fascia_type = config.get("fascia_type", "original")
+	var chassis_type = config.get("chassis_type", "")
+	return "local-%s-%s-%s" % [car_type, fascia_type, chassis_type]
+
+
+func _toggle_vehicle_state(field: String):
+	vehicle_data["vehicle_state"][field] = not vehicle_data["vehicle_state"].get(field, false)
+	_send_update("vehicle_state.%s=%s" % [field, str(vehicle_data["vehicle_state"][field])])
+
+
+func _toggle_window(animation_name: String):
+	var open = not window_state.get(animation_name, false)
+	window_state[animation_name] = open
+	if not _apply_window_state(animation_name, open, true):
+		call_deferred("_apply_window_state", animation_name, open, true)
+
+
+func _reset_window_state():
+	for key in window_state.keys():
+		window_state[key] = false
+
+
+func _sync_all_windows_on_active_vehicle(retries: int = 0):
+	var applied_any = false
+	for key in window_state.keys():
+		applied_any = _apply_window_state(key, window_state[key], false, false) or applied_any
+	if not applied_any and retries > 0:
+		call_deferred("_sync_all_windows_on_active_vehicle", retries - 1)
+
+
+func _apply_local_plate_visuals(retries: int = 0):
+	var vehicle = _get_active_vehicle()
+	if vehicle == null:
+		if retries > 0:
+			call_deferred("_apply_local_plate_visuals", retries - 1)
+		return false
+
+	if vehicle.has_method("set_has_eu_plate"):
+		vehicle.set_has_eu_plate(true)
+
+	if vehicle.has_method("apply_plate_material"):
+		vehicle.apply_plate_material()
+
+	var plate_viewport = _get_vehicle_plate_viewport(vehicle)
+	var plate_material = _get_vehicle_plate_texture_material(vehicle, plate_viewport)
+	if plate_material == null:
+		if retries > 0:
+			call_deferred("_apply_local_plate_visuals", retries - 1)
+		return false
+
+	plate_material.set_shader_param("texture_text", _get_local_plate_text_texture())
+	plate_material.set_shader_param("texture_plate_skin", _get_local_plate_skin_texture())
+	plate_material.set_shader_param("color_background", Color(0, 0, 0, 1))
+	plate_material.set_shader_param("color_font", Color(1, 1, 1, 1))
+	plate_material.set_shader_param("noise_weight", 0.0)
+	plate_material.set_shader_param("text_bounds_top_left_us", Vector2(0, 0))
+	plate_material.set_shader_param("text_bounds_size_us", Vector2(1, 1))
+	plate_material.set_shader_param("text_bounds_top_left_eu", Vector2(0, 0))
+	plate_material.set_shader_param("text_bounds_size_eu", Vector2(1, 1))
+
+	if vehicle.has_method("sync_plate_from_viewport"):
+		yield(VisualServer, "frame_post_draw")
+		yield(VisualServer, "frame_post_draw")
+		var sync_state = vehicle.sync_plate_from_viewport()
+		if sync_state is GDScriptFunctionState:
+			yield(sync_state, "completed")
+		if retries > 0:
+			call_deferred("_apply_local_plate_visuals", retries - 1)
+		return true
+	return true
+
+
+func _apply_local_plate_visuals_before_camera(max_attempts: int):
+	for _i in range(max_attempts):
+		var result = _apply_local_plate_visuals(0)
+		if result is GDScriptFunctionState:
+			result = yield(result, "completed")
+		if result == true:
+			return
+		yield(get_tree(), "idle_frame")
+
+
+func _get_vehicle_plate_viewport(vehicle):
+	var viewport = vehicle.get("plate_viewport")
+	if viewport != null:
+		return viewport
+	return _find_node_by_name(vehicle, "Plate_Viewport")
+
+
+func _get_vehicle_plate_texture_material(vehicle, plate_viewport):
+	var mat = vehicle.get("plate_texture_material")
+	if mat is ShaderMaterial:
+		return mat
+	if plate_viewport != null and plate_viewport.get_child_count() > 0:
+		var plate_texture = plate_viewport.get_child(0)
+		if plate_texture != null and plate_texture.get("material") is ShaderMaterial:
+			return plate_texture.material
+	return null
+
+
+func _get_local_plate_text_texture():
+	if local_plate_text_viewport == null:
+		local_plate_text_viewport = Viewport.new()
+		local_plate_text_viewport.name = "LocalPlateTextViewport"
+		local_plate_text_viewport.size = Vector2(420, 256)
+		local_plate_text_viewport.disable_3d = true
+		local_plate_text_viewport.transparent_bg = true
+		local_plate_text_viewport.render_target_v_flip = true
+		local_plate_text_viewport.render_target_update_mode = Viewport.UPDATE_ALWAYS
+		add_child(local_plate_text_viewport)
+
+		var label = Label.new()
+		label.text = LOCAL_PLATE_TEXT
+		label.align = Label.ALIGN_CENTER
+		label.valign = Label.VALIGN_CENTER
+		label.rect_position = Vector2(0, 25)
+		label.rect_size = Vector2(local_plate_text_viewport.size.x, 242)
+		label.add_color_override("font_color", Color(1, 1, 1, 1))
+
+		var font_data = load("res://Roboto-Light.ttf")
+		if font_data != null:
+			var font = DynamicFont.new()
+			font.font_data = font_data
+			font.size = 55
+			label.add_font_override("font", font)
+
+		local_plate_text_viewport.add_child(label)
+
+	return local_plate_text_viewport.get_texture()
+
+
+func _get_local_plate_skin_texture():
+	if local_plate_skin_texture == null:
+		var image = Image.new()
+		image.create(8, 8, false, Image.FORMAT_RGBA8)
+		image.lock()
+		for y in range(8):
+			for x in range(8):
+				image.set_pixel(x, y, Color(0, 0, 0, 1))
+		image.unlock()
+		local_plate_skin_texture = ImageTexture.new()
+		local_plate_skin_texture.create_from_image(image, Texture.FLAGS_DEFAULT)
+	return local_plate_skin_texture
+
+
+func _find_node_by_name(node: Node, target_name: String):
+	if node == null:
+		return null
+	if node.name == target_name:
+		return node
+	for child in node.get_children():
+		var found = _find_node_by_name(child, target_name)
+		if found != null:
+			return found
+	return null
+
+
+func _apply_window_state(animation_name: String, open: bool, animated: bool = true, log_missing: bool = true) -> bool:
+	var vehicle = _get_active_vehicle()
+	if vehicle == null:
+		if log_missing:
+			print("[LocalDevMessageInjector] Window toggle skipped, no active vehicle")
+		return false
+	var animation_player = vehicle.get_node_or_null(animation_name)
+	if animation_player == null:
+		if log_missing:
+			print("[LocalDevMessageInjector] Window animation missing on %s: %s" % [vehicle.name, animation_name])
+		return false
+	_toggle_animation_player(animation_player, open, animated, 1.0)
+	print("[LocalDevMessageInjector] %s=%s on %s" % [animation_name, str(open), vehicle.name])
+	return true
+
+
+func _toggle_animation_player(animation_player: AnimationPlayer, open: bool, animated: bool, speed: float):
+	var animation_list = animation_player.get_animation_list()
+	if animation_list.empty():
+		print("[LocalDevMessageInjector] Window animation list empty: %s" % animation_player.name)
+		return
+	var animation = animation_list[0]
+	if open:
+		animation_player.play(animation, -1, speed)
+		if not animated:
+			animation_player.seek(animation_player.current_animation_length, true)
+	else:
+		animation_player.play(animation, -1, -speed, true)
+		if not animated:
+			animation_player.seek(0, true)
+
+
+func _toggle_ac():
+	climate_on = not climate_on
+	vehicle_data["climate_state"]["is_climate_on"] = climate_on
+	_send_update("climate_state.is_climate_on=%s" % str(climate_on))
+
+
+func _toggle_climate_view():
+	if camera_mode == CAMERA_CLIMATE:
+		_return_to_default_view(true)
+	else:
+		_set_camera_mode(CAMERA_CLIMATE, true)
+
+
+func _toggle_front_defrost():
+	front_defrost_on = not front_defrost_on
+	climate_on = true
+	vehicle_data["climate_state"]["is_climate_on"] = true
+	vehicle_data["climate_state"]["is_front_defroster_on"] = front_defrost_on
+	_send_update("climate_state.is_front_defroster_on=%s" % str(front_defrost_on))
+
+
+func _toggle_rear_defrost():
+	rear_defrost_on = not rear_defrost_on
+	climate_on = true
+	vehicle_data["climate_state"]["is_climate_on"] = true
+	vehicle_data["climate_state"]["is_rear_defroster_on"] = rear_defrost_on
+	_send_update("climate_state.is_rear_defroster_on=%s" % str(rear_defrost_on))
+
+
+func _toggle_charge_port():
+	var charge_state = vehicle_data["charge_state"]
+	charge_state["charge_port_door_open"] = not charge_state.get("charge_port_door_open", false)
+	_send_update("charge_state.charge_port_door_open=%s" % str(charge_state["charge_port_door_open"]))
+
+
+func _toggle_charger_connected():
+	charger_connected = not charger_connected
+	if not charger_connected:
+		charging_active = false
+	_apply_charge_state("charger_connected=%s" % str(charger_connected))
+	_sync_default_camera_after_charge_change(true)
+
+
+func _toggle_charging_active():
+	charging_active = not charging_active
+	if charging_active:
+		charger_connected = true
+	_apply_charge_state("charging_active=%s" % str(charging_active))
+	_sync_default_camera_after_charge_change(true)
+
+
+func _toggle_drive_mode():
+	drive_mode_on = not drive_mode_on
+	var drive_state = vehicle_data["drive_state"]
+	if drive_mode_on:
+		drive_state["shift_state"] = "D"
+		drive_state["speed"] = 18
+	else:
+		drive_state["shift_state"] = "P"
+		drive_state["speed"] = 0
+	_send_update("drive_state.shift_state=%s speed=%s" % [drive_state["shift_state"], str(drive_state["speed"])])
+
+
+func _toggle_headlights():
+	manual_headlights_override_active = true
+	manual_headlights_on = not manual_headlights_on
+	_apply_manual_light_state("manual_headlights=%s" % str(manual_headlights_on))
+
+
+func _toggle_brake_lights():
+	manual_brake_lights_override_active = true
+	manual_brake_lights_on = not manual_brake_lights_on
+	_apply_manual_light_state("manual_brake_lights=%s" % str(manual_brake_lights_on))
+
+
+func _apply_manual_light_state(label: String = "", retries: int = 4):
+	var vehicle = _get_active_vehicle()
+	if vehicle == null:
+		if retries > 0:
+			call_deferred("_apply_manual_light_state", label, retries - 1)
+		return
+	if manual_headlights_override_active and vehicle.has_method("set_headlights_on"):
+		vehicle.set_headlights_on(manual_headlights_on)
+	if manual_brake_lights_override_active and vehicle.has_method("set_brake_lights_on"):
+		vehicle.set_brake_lights_on(manual_brake_lights_on)
+	if label != "":
+		print("[LocalDevMessageInjector] %s" % label)
+
+
+func _force_cable_unplugged():
+	charger_connected = false
+	charging_active = false
+	_apply_charge_state("initial charger_connected=false")
+
+
+func _apply_charge_state(label: String):
+	var charge_state = vehicle_data["charge_state"]
+	if charger_connected:
+		charge_state["charge_port_door_open"] = true
+		charge_state["charge_port_color"] = "00FF00" if charging_active else "000000"
+		charge_state["charge_port_flow_state"] = 1 if charging_active else 0
+		if charging_active:
+			charge_state["chargeport_flow_state"] = 1
+		else:
+			charge_state.erase("chargeport_flow_state")
+	else:
+		charge_state["charge_port_door_open"] = false
+		charge_state["charge_port_flow_state"] = 0
+		charge_state.erase("chargeport_flow_state")
+		charge_state.erase("charge_port_color")
+	_send_update(label)
+
+
+func _send_camera_move():
+	if camera_mode == CAMERA_TOP_DOWN:
+		_return_to_default_view(true)
+	else:
+		_set_camera_mode(CAMERA_TOP_DOWN, true)
+
+
+func _toggle_free_orbit():
+	var pivot = _get_camera_pivot()
+	var camera = _get_main_camera()
+	if pivot == null or camera == null:
+		print("[LocalDevMessageInjector] Free orbit skipped, CameraManager pivot/camera missing")
+		return
+
+	if free_orbit_enabled:
+		free_orbit_enabled = false
+		free_orbit_dragging = false
+		free_orbit_velocity = Vector2.ZERO
+		pivot.rotation_degrees = free_orbit_locked_pivot_rotation
+		camera.translation = free_orbit_locked_camera_translation
+		camera.fov = free_orbit_locked_camera_fov
+		_set_camera_mode(free_orbit_locked_camera_mode, true)
+		print("[LocalDevMessageInjector] Free orbit off, restored %s view" % free_orbit_locked_camera_mode)
+	else:
+		free_orbit_enabled = true
+		free_orbit_dragging = false
+		free_orbit_velocity = Vector2.ZERO
+		pivot.rotation_degrees.x = clamp(pivot.rotation_degrees.x, FREE_ORBIT_MIN_PITCH, FREE_ORBIT_MAX_PITCH)
+		free_orbit_locked_pivot_rotation = pivot.rotation_degrees
+		free_orbit_locked_camera_translation = camera.translation
+		free_orbit_locked_camera_fov = camera.fov
+		free_orbit_locked_camera_mode = camera_mode
+		_reset_view_relative_lighting_reference()
+		_apply_current_lighting(false, true)
+		_stop_camera_tween()
+		print("[LocalDevMessageInjector] Free orbit on: drag with mouse/touch, press O again to restore")
+
+
+func _restore_free_orbit_camera_only():
+	if not free_orbit_enabled:
+		return
+	var pivot = _get_camera_pivot()
+	var camera = _get_main_camera()
+	if pivot != null:
+		pivot.rotation_degrees = free_orbit_locked_pivot_rotation
+	if camera != null:
+		camera.translation = free_orbit_locked_camera_translation
+		camera.fov = free_orbit_locked_camera_fov
+	free_orbit_enabled = false
+	free_orbit_dragging = false
+	free_orbit_velocity = Vector2.ZERO
+
+
+func _handle_free_orbit_input(event):
+	var pivot = _get_camera_pivot()
+	if pivot == null:
+		return
+
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+		free_orbit_dragging = event.pressed
+		if event.pressed:
+			free_orbit_velocity = Vector2.ZERO
+		return
+
+	if event is InputEventMouseMotion and free_orbit_dragging:
+		_apply_free_orbit_delta(pivot, event.relative, true)
+		_sync_view_relative_lighting()
+		return
+
+	if event is InputEventScreenTouch:
+		free_orbit_dragging = event.pressed
+		if event.pressed:
+			free_orbit_velocity = Vector2.ZERO
+		return
+
+	if event is InputEventScreenDrag:
+		_apply_free_orbit_delta(pivot, event.relative, true)
+		_sync_view_relative_lighting()
+
+
+func _apply_free_orbit_delta(pivot: Spatial, delta: Vector2, update_velocity: bool = false):
+	var rotation_delta = Vector2(-delta.x * FREE_ORBIT_YAW_SENSITIVITY, -delta.y * FREE_ORBIT_PITCH_SENSITIVITY)
+	_apply_free_orbit_rotation_delta(pivot, rotation_delta)
+	if update_velocity:
+		var frame_delta = max(get_process_delta_time(), 0.016)
+		free_orbit_velocity = rotation_delta / frame_delta
+
+
+func _apply_free_orbit_rotation_delta(pivot: Spatial, rotation_delta: Vector2):
+	var rotation = pivot.rotation_degrees
+	rotation.y += rotation_delta.x
+	rotation.x = clamp(rotation.x + rotation_delta.y, FREE_ORBIT_MIN_PITCH, FREE_ORBIT_MAX_PITCH)
+	rotation.z = 0
+	pivot.rotation_degrees = rotation
+
+
+func _cycle_lighting_mode():
+	var index = LIGHTING_MODE_ORDER.find(lighting_mode)
+	if index == -1:
+		index = 0
+	lighting_mode = LIGHTING_MODE_ORDER[(index + 1) % LIGHTING_MODE_ORDER.size()]
+	_reset_view_relative_lighting_reference()
+	_apply_current_lighting(true, true)
+	print("[LocalDevMessageInjector] Lighting mode: %s" % lighting_mode)
+
+
+func _toggle_theme():
+	current_theme = "light" if current_theme == "dark" else "dark"
+	_send_theme()
+
+
+func _send_theme():
+	_enqueue("SET_APP_THEME", {
+		"theme": current_theme,
+	})
+
+
+func _default_camera_mode() -> String:
+	return CAMERA_PLUGGED if charger_connected else CAMERA_PARKED
+
+
+func _return_to_default_view(animated: bool):
+	_set_camera_mode(_default_camera_mode(), animated)
+
+
+func _sync_default_camera_after_charge_change(animated: bool):
+	if camera_mode == CAMERA_PARKED or camera_mode == CAMERA_PLUGGED:
+		_return_to_default_view(animated)
+
+
+func _set_camera_mode(mode: String, animated: bool):
+	if free_orbit_enabled:
+		_restore_free_orbit_camera_only()
+
+	var leaving_climate = camera_mode == CAMERA_CLIMATE and mode != CAMERA_CLIMATE
+	camera_mode = mode
+
+	if leaving_climate:
+		_clear_climate_roof_fade(animated)
+
+	if mode == CAMERA_CLIMATE:
+		_send_climate_view(animated)
+	elif mode == CAMERA_TOP_DOWN:
+		_send_top_down_view(animated)
+	elif mode == CAMERA_PLUGGED:
+		_send_plugged_view(animated)
+	else:
+		_send_parked_view(animated)
+
+
+func _clear_climate_roof_fade(animated: bool):
+	_enqueue("FADE_ROOF", {
+		"vehicle_id": current_vehicle_id,
+		"fade": false,
+		"animated": animated,
+		"duration": 0.75,
+	})
+	_set_local_roof_transparent(false)
+
+
+func _send_env_params(rotation: Vector3, energy: float, ambient: float, animated: bool, force: bool = false):
+	env_base_rotation = rotation
+	env_base_energy = energy
+	env_base_ambient = ambient
+	if lighting_mode == LIGHTING_VIEW_RELATIVE:
+		_reset_view_relative_lighting_reference()
+	_apply_current_lighting(animated, force)
+
+
+func _apply_current_lighting(animated: bool, force: bool = false):
+	var env_rotation = env_base_rotation
+	var env_energy = env_base_energy
+	var env_ambient = env_base_ambient
+
+	if lighting_mode == LIGHTING_AMBIENT_FILL:
+		env_energy = max(env_energy, 4.5)
+		env_ambient = max(env_ambient, 7.0)
+	elif lighting_mode == LIGHTING_VIEW_RELATIVE:
+		env_rotation = _view_relative_env_rotation()
+		last_view_relative_env_yaw = env_rotation.y
+
+	_enqueue("SET_ENV_PARAMS", {
+		"rotation": [env_rotation.x, env_rotation.y, env_rotation.z],
+		"env_energy": env_energy,
+		"amb_energy": env_ambient,
+		"animated": animated,
+		"duration": 0.75,
+	})
+
+
+func _reset_view_relative_lighting_reference():
+	var pivot = _get_camera_pivot()
+	if pivot != null:
+		lighting_reference_pivot_yaw = pivot.rotation_degrees.y
+	else:
+		lighting_reference_pivot_yaw = 0.0
+	lighting_reference_env_rotation = env_base_rotation
+	last_view_relative_env_yaw = UNSET_ENV_YAW
+
+
+func _view_relative_env_rotation() -> Vector3:
+	var env_rotation = lighting_reference_env_rotation
+	var pivot = _get_camera_pivot()
+	if pivot != null:
+		env_rotation.y = lighting_reference_env_rotation.y + (pivot.rotation_degrees.y - lighting_reference_pivot_yaw)
+	return env_rotation
+
+
+func _sync_view_relative_lighting():
+	if lighting_mode != LIGHTING_VIEW_RELATIVE:
+		return
+	var env_rotation = _view_relative_env_rotation()
+	if abs(env_rotation.y - last_view_relative_env_yaw) < VIEW_RELATIVE_ENV_YAW_THRESHOLD:
+		return
+	_apply_current_lighting(false, true)
+
+
+func _send_parked_view(animated: bool):
+	_send_env_params(Vector3(0, -7, 83), 4, 4, animated)
+	_enqueue("MOVE_CAMERA", {
+		"rotation": [68.6, -138, 0],
+		"offset": [-0.06, 6.7, 0],
+		"cam_fov": 40,
+		"animated": animated,
+		"duration": 0.75,
+		"animation_id": "local-camera-parked",
+	})
+
+
+func _send_plugged_view(animated: bool):
+	_send_env_params(Vector3(0, -7, 83), 4, 4, animated)
+	_enqueue("MOVE_CAMERA", {
+		"rotation": [74, -38, 0],
+		"offset": [0, 6.55, 0],
+		"cam_fov": 40,
+		"animated": animated,
+		"duration": 0.75,
+		"animation_id": "local-camera-plugged",
+	})
+
+
+func _send_top_down_view(animated: bool):
+	_send_env_params(Vector3(-10, -10, 0), 6, 2.5, animated)
+	_enqueue("MOVE_CAMERA", {
+		"rotation": [0, 0, 0],
+		"offset": [0, 10, 0],
+		"cam_fov": 40,
+		"animated": animated,
+		"duration": 0.75,
+		"animation_id": "local-camera-top-down",
+	})
+
+
+func _send_climate_view(animated: bool):
+	_send_env_params(Vector3(0, -7, 83), 4, 4, animated)
+	_enqueue("MOVE_CAMERA", {
+		"rotation": [0, 0, 0],
+		"offset": [0, 6, 0.6],
+		"cam_fov": 40,
+		"animated": animated,
+		"duration": 0.75,
+		"animation_id": "local-camera-climate",
+	})
+	_apply_climate_roof_fade(animated)
+
+
+func _apply_climate_roof_fade(animated: bool):
+	_enqueue("FADE_ROOF", {
+		"vehicle_id": current_vehicle_id,
+		"fade": true,
+		"animated": animated,
+		"duration": 0.75,
+	})
+	_set_local_roof_transparent(true)
+	call_deferred("_set_local_roof_transparent", true)
+
+
+func _set_local_roof_transparent(transparent: bool):
+	var vehicle = _get_active_vehicle()
+	if vehicle == null:
+		return
+
+	if vehicle.has_method("set_fade_roof"):
+		vehicle.set_fade_roof(transparent, false, 0.75)
+
+	if _is_current_bayberry():
+		_set_named_fade_nodes_visible(vehicle, not transparent)
+
+	var roof_fade_materials = vehicle.get("roof_fade_materials")
+	if roof_fade_materials is Array:
+		for mat in roof_fade_materials:
+			_set_local_fade_material_alpha(mat, transparent)
+
+
+func _set_named_fade_nodes_visible(node: Node, visible: bool):
+	if node.name == "Fade":
+		if node.has_method("set_visible"):
+			node.set_visible(visible)
+	for child in node.get_children():
+		_set_named_fade_nodes_visible(child, visible)
+
+
+func _is_current_bayberry() -> bool:
+	var config = vehicle_data.get("vehicle_config", {})
+	return config.get("car_type", "") == "modely" and String(config.get("fascia_type", "")).findn("Bayberry") >= 0
+
+
+func _set_local_fade_material_alpha(mat, transparent: bool):
+	if mat == null:
+		return
+	if not local_fade_original_alpha.has(mat):
+		if mat is SpatialMaterial:
+			local_fade_original_alpha[mat] = mat.albedo_color.a
+		elif mat is ShaderMaterial:
+			var original_color = mat.get_shader_param("color")
+			if original_color is Color:
+				local_fade_original_alpha[mat] = original_color.a
+
+	var alpha = 0.0 if transparent else local_fade_original_alpha.get(mat, 1.0)
+	if mat is SpatialMaterial:
+		mat.flags_transparent = true
+		mat.params_depth_draw_mode = SpatialMaterial.DEPTH_DRAW_ALPHA_OPAQUE_PREPASS
+		mat.albedo_color.a = alpha
+	elif mat is ShaderMaterial:
+		var color = mat.get_shader_param("color")
+		if color is Color:
+			color.a = alpha
+			mat.set_shader_param("color", color)
+
+
+func _get_active_vehicle():
+	var product_switcher = get_node_or_null("/root/Mobile/MainViewContainer/Viewport/root/ProductSwitcher")
+	if product_switcher != null and product_switcher.product_node != null:
+		return product_switcher.product_node
+	product_switcher = get_node_or_null("/root/Mobile/ProductSwitcher")
+	if product_switcher != null and product_switcher.product_node != null:
+		return product_switcher.product_node
+	var vehicle_manager = get_node_or_null("/root/Mobile/VehicleManager")
+	if vehicle_manager == null:
+		return null
+	return vehicle_manager.selected_vehicle
+
+
+func _capture_camera_state() -> Dictionary:
+	var pivot = _get_camera_pivot()
+	var camera = _get_main_camera()
+	if pivot == null or camera == null:
+		return {}
+	return {
+		"pivot_rotation": pivot.rotation_degrees,
+		"camera_translation": camera.translation,
+		"camera_fov": camera.fov,
+	}
+
+
+func _restore_camera_state(state: Dictionary):
+	if state.empty():
+		return
+	_stop_camera_tween()
+	var pivot = _get_camera_pivot()
+	var camera = _get_main_camera()
+	if pivot != null:
+		pivot.rotation_degrees = state.get("pivot_rotation", pivot.rotation_degrees)
+	if camera != null:
+		camera.translation = state.get("camera_translation", camera.translation)
+		camera.fov = state.get("camera_fov", camera.fov)
+
+
+func _get_camera_pivot():
+	var pivot = get_node_or_null("/root/Mobile/MainViewContainer/Viewport/CameraManager/CameraPivot")
+	if pivot != null:
+		return pivot
+	return get_node_or_null("/root/Mobile/CameraManager/CameraPivot")
+
+
+func _get_main_camera():
+	var camera = get_node_or_null("/root/Mobile/MainViewContainer/Viewport/CameraManager/CameraPivot/Camera")
+	if camera != null:
+		return camera
+	return get_node_or_null("/root/Mobile/CameraManager/CameraPivot/Camera")
+
+
+func _stop_camera_tween():
+	var tween = get_node_or_null("/root/Mobile/MainViewContainer/Viewport/CameraManager/Tween")
+	if tween == null:
+		tween = get_node_or_null("/root/Mobile/CameraManager/Tween")
+	if tween != null and tween.has_method("remove_all"):
+		tween.remove_all()
+
+
+func _send_update(label: String):
+	print("[LocalDevMessageInjector] UPDATE_PRODUCT %s" % label)
+	_enqueue("UPDATE_PRODUCT", vehicle_data)
+	call_deferred("_apply_local_plate_visuals", 8)
+	call_deferred("_apply_manual_light_state", "")
+
+
+func _enqueue(type: String, data: Dictionary):
+	var message = JSON.print({
+		"type": type,
+		"data": data,
+	})
+
+	if comm_interface != null and comm_interface.has_method("addMessage"):
+		comm_interface.addMessage(message)
+	elif mobile_comm != null and mobile_comm.has_method("_on_message"):
+		mobile_comm._on_message(message)

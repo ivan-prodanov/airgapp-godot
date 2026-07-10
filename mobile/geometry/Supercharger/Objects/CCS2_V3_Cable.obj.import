@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/CCS2_V3_Cable.obj-fade8a2d8cea67aa30bd91268bf3e997.mesh"
+
+[deps]
+
+files=[ "res://.import/CCS2_V3_Cable.obj-fade8a2d8cea67aa30bd91268bf3e997.mesh" ]
+
+source_file="res://mobile/geometry/Supercharger/Objects/CCS2_V3_Cable.obj"
+dest_files=[ "res://.import/CCS2_V3_Cable.obj-fade8a2d8cea67aa30bd91268bf3e997.mesh", "res://.import/CCS2_V3_Cable.obj-fade8a2d8cea67aa30bd91268bf3e997.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

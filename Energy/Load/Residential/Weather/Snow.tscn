@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float point_size : hint_range(0,128);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+
+uniform float flake_size;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float alpha_factor = 0.7 - (length(UV - 0.5) * flake_size);
+	ALPHA = albedo.a * albedo_tex.a * alpha_factor;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/albedo = Color( 0.54902, 0.54902, 0.54902, 1 )
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/flake_size = 5.62
+
+[sub_resource type="PlaneMesh" id=3]
+
+[node name="Snow" type="Spatial"]
+transform = Transform( -2.35526e-08, 0.144565, -0.144565, -0.204446, -3.33085e-08, 0, -2.35526e-08, 0.144565, 0.144565, -0.203, 3.958, -0.113 )
+
+[node name="Flakes" type="CPUParticles" parent="."]
+transform = Transform( 1, -4.26326e-14, 0, 5.68434e-14, 1, 0, 0, 0, 1, 0, 10, 0 )
+material_override = SubResource( 2 )
+amount = 50
+lifetime = 13.0
+mesh = SubResource( 3 )
+emission_shape = 2
+emission_box_extents = Vector3( 3, 15, 15 )
+gravity = Vector3( 0.25, 0, 0.07 )
+scale_amount = 0.1
+scale_amount_random = 0.48

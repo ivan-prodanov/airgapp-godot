@@ -1,0 +1,269 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Modern/ModernPowerflow.glb" type="PackedScene" id=1]
+[ext_resource path="res://Energy/Powerflow/Wire/WireDisplay.gd" type="Script" id=2]
+[ext_resource path="res://Energy/Powerflow/Wire/WireDelegate.gd" type="Script" id=3]
+[ext_resource path="res://Energy/Powerflow/Wire/PowerflowWireMaterialNonClipping.tres" type="Material" id=4]
+[ext_resource path="res://Energy/Grid/OffGridX.tres" type="Material" id=5]
+[ext_resource path="res://Energy/Powerflow/Wire/WireRemapper-Grid.gd" type="Script" id=6]
+[ext_resource path="res://Energy/Powerflow/Wire/WireRemapper-Load.gd" type="Script" id=7]
+[ext_resource path="res://Energy/Grid/OffGridVisibility.gd" type="Script" id=8]
+[ext_resource path="res://Energy/Powerflow/Wire/WireRemapper-Solar.gd" type="Script" id=9]
+[ext_resource path="res://Energy/Powerflow/Wire/WireRemapper-Vehicle.gd" type="Script" id=10]
+[ext_resource path="res://Energy/Powerflow/Wire/WireRemapper-BatteryWithoutInverter.gd" type="Script" id=11]
+[ext_resource path="res://Energy/Powerflow/Wire/WireRemapper-BatteryWithInverter.gd" type="Script" id=12]
+[ext_resource path="res://Energy/Powerflow/Wire/OffGridSwitcher.gd" type="Script" id=13]
+[ext_resource path="res://Energy/Powerflow/Wire/BatteryWireSwitcher.gd" type="Script" id=14]
+[ext_resource path="res://Energy/Load/Residential/Modern/PowershareWireSwitcher.gd" type="Script" id=15]
+[ext_resource path="res://Energy/Powerflow/Wire/PowerflowWireMaterial.tres" type="Material" id=16]
+
+[sub_resource type="ArrayMesh" id=1]
+resource_name = "PowerflowGrid-2-B"
+surfaces/0 = {
+"aabb": AABB( -0.0153399, -3.95561, 0.00410283, 0.0384009, 3.94399, 0.33152 ),
+"array_data": PoolByteArray( 36, 84, 123, 188, 123, 135, 124, 192, 221, 244, 161, 62, 0, 0, 129, 0, 231, 132, 0, 127, 255, 0, 0, 255, 0, 64, 41, 65, 0, 192, 2, 63, 70, 246, 129, 60, 197, 40, 125, 192, 226, 244, 161, 62, 0, 0, 129, 0, 127, 0, 0, 129, 255, 0, 0, 255, 0, 64, 41, 65, 0, 192, 2, 63, 70, 246, 129, 60, 197, 40, 125, 192, 226, 244, 161, 62, 126, 0, 255, 0, 127, 0, 0, 129, 255, 0, 0, 255, 0, 64, 41, 65, 0, 192, 2, 63, 18, 150, 206, 186, 82, 193, 211, 191, 231, 244, 161, 62, 0, 0, 129, 0, 242, 130, 0, 127, 0, 0, 255, 255, 0, 32, 213, 64, 0, 192, 2, 63, 248, 23, 51, 58, 95, 19, 44, 189, 117, 3, 157, 62, 0, 135, 219, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 64, 118, 64, 0, 192, 2, 63, 248, 23, 51, 58, 31, 238, 51, 189, 141, 6, 159, 62, 0, 153, 184, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 224, 118, 64, 0, 192, 2, 63, 24, 24, 51, 58, 223, 41, 64, 189, 254, 153, 160, 62, 0, 181, 155, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 96, 120, 64, 0, 192, 2, 63, 56, 24, 51, 58, 31, 148, 79, 189, 127, 154, 161, 62, 0, 217, 136, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 128, 121, 64, 0, 192, 2, 63, 88, 24, 51, 58, 135, 170, 96, 189, 120, 242, 161, 62, 0, 246, 130, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 224, 122, 64, 0, 192, 2, 63, 88, 24, 51, 58, 122, 206, 40, 190, 237, 244, 161, 62, 0, 0, 129, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 64, 137, 64, 0, 192, 2, 63, 8, 24, 51, 58, 127, 94, 41, 189, 11, 192, 154, 62, 0, 130, 247, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 192, 116, 64, 0, 192, 2, 63, 190, 111, 169, 60, 120, 206, 40, 190, 241, 244, 161, 62, 126, 0, 0, 0, 0, 237, 131, 127, 0, 0, 0, 255, 0, 64, 137, 64, 0, 192, 2, 63, 190, 111, 169, 60, 120, 206, 40, 190, 241, 244, 161, 62, 0, 0, 129, 0, 241, 130, 0, 127, 0, 0, 255, 255, 0, 64, 137, 64, 0, 192, 2, 63, 116, 51, 163, 60, 48, 136, 84, 192, 228, 244, 161, 62, 126, 0, 0, 0, 0, 132, 23, 129, 255, 0, 0, 255, 0, 96, 17, 65, 0, 192, 2, 63, 116, 51, 163, 60, 48, 136, 84, 192, 228, 244, 161, 62, 0, 0, 129, 0, 236, 131, 0, 127, 255, 0, 255, 255, 0, 96, 17, 65, 0, 192, 2, 63, 102, 110, 15, 188, 231, 10, 84, 192, 223, 244, 161, 62, 0, 0, 129, 0, 237, 131, 0, 127, 255, 0, 255, 255, 0, 96, 17, 65, 0, 192, 2, 63, 40, 25, 51, 58, 115, 94, 41, 189, 75, 208, 172, 59, 0, 129, 0, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 64, 52, 64, 0, 192, 2, 63, 164, 200, 188, 60, 160, 70, 212, 191, 235, 244, 161, 62, 126, 0, 0, 0, 0, 236, 131, 129, 0, 0, 0, 255, 0, 32, 213, 64, 0, 192, 2, 63, 164, 200, 188, 60, 160, 70, 212, 191, 235, 244, 161, 62, 126, 0, 0, 0, 0, 237, 131, 127, 0, 0, 0, 255, 0, 32, 213, 64, 0, 192, 2, 63, 164, 200, 188, 60, 160, 70, 212, 191, 235, 244, 161, 62, 0, 0, 129, 0, 242, 130, 0, 127, 0, 0, 255, 255, 0, 32, 213, 64, 0, 192, 2, 63, 61, 162, 14, 188, 201, 217, 83, 192, 191, 214, 171, 62, 0, 0, 127, 0, 220, 135, 0, 129, 255, 0, 0, 255, 0, 96, 17, 65, 0, 192, 2, 63, 243, 152, 163, 60, 15, 87, 84, 192, 196, 214, 171, 62, 126, 0, 0, 0, 0, 132, 22, 129, 255, 0, 0, 255, 0, 96, 17, 65, 0, 192, 2, 63, 243, 152, 163, 60, 15, 87, 84, 192, 196, 214, 171, 62, 0, 0, 127, 0, 217, 136, 0, 129, 255, 0, 0, 255, 0, 96, 17, 65, 0, 192, 2, 63, 174, 119, 204, 186, 248, 94, 211, 191, 199, 214, 171, 62, 0, 0, 127, 0, 242, 130, 0, 129, 255, 0, 0, 255, 0, 32, 213, 64, 0, 192, 2, 63, 41, 11, 51, 58, 78, 167, 129, 188, 85, 111, 161, 62, 0, 122, 32, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 64, 118, 64, 0, 192, 2, 63, 57, 11, 51, 58, 191, 38, 141, 188, 3, 87, 163, 62, 0, 106, 68, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 224, 118, 64, 0, 192, 2, 63, 105, 11, 51, 58, 239, 108, 225, 188, 99, 155, 168, 62, 0, 70, 105, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 96, 120, 64, 0, 192, 2, 63, 105, 11, 51, 58, 31, 130, 25, 189, 129, 172, 170, 62, 0, 34, 122, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 128, 121, 64, 0, 192, 2, 63, 137, 11, 51, 58, 143, 93, 84, 189, 205, 214, 171, 62, 0, 9, 126, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 224, 122, 64, 0, 192, 2, 63, 137, 11, 51, 58, 60, 187, 37, 190, 205, 214, 171, 62, 0, 0, 127, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 64, 137, 64, 0, 192, 2, 63, 9, 11, 51, 58, 253, 4, 94, 188, 239, 192, 153, 62, 0, 126, 9, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 192, 116, 64, 0, 192, 2, 63, 104, 111, 169, 60, 58, 187, 37, 190, 209, 214, 171, 62, 0, 0, 127, 0, 241, 130, 0, 129, 0, 0, 0, 255, 0, 64, 137, 64, 0, 192, 2, 63, 104, 111, 169, 60, 58, 187, 37, 190, 209, 214, 171, 62, 126, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 64, 137, 64, 0, 192, 2, 63, 104, 111, 169, 60, 135, 93, 84, 189, 209, 214, 171, 62, 0, 9, 126, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 224, 122, 64, 0, 192, 2, 63, 104, 111, 169, 60, 135, 93, 84, 189, 209, 214, 171, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 224, 122, 64, 0, 192, 2, 63, 103, 111, 169, 60, 23, 130, 25, 189, 129, 172, 170, 62, 0, 34, 122, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 128, 121, 64, 0, 192, 2, 63, 103, 111, 169, 60, 23, 130, 25, 189, 129, 172, 170, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 128, 121, 64, 0, 192, 2, 63, 173, 111, 169, 60, 23, 148, 79, 189, 127, 154, 161, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 128, 121, 64, 0, 192, 2, 63, 173, 111, 169, 60, 23, 148, 79, 189, 127, 154, 161, 62, 0, 217, 136, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 128, 121, 64, 0, 192, 2, 63, 173, 111, 169, 60, 215, 41, 64, 189, 2, 154, 160, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 96, 120, 64, 0, 192, 2, 63, 173, 111, 169, 60, 215, 41, 64, 189, 2, 154, 160, 62, 0, 181, 155, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 96, 120, 64, 0, 192, 2, 63, 101, 111, 169, 60, 175, 38, 141, 188, 3, 87, 163, 62, 0, 106, 68, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 224, 118, 64, 0, 192, 2, 63, 101, 111, 169, 60, 175, 38, 141, 188, 3, 87, 163, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 224, 118, 64, 0, 192, 2, 63, 172, 111, 169, 60, 23, 238, 51, 189, 141, 6, 159, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 224, 118, 64, 0, 192, 2, 63, 172, 111, 169, 60, 23, 238, 51, 189, 141, 6, 159, 62, 0, 153, 184, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 224, 118, 64, 0, 192, 2, 63, 100, 111, 169, 60, 62, 167, 129, 188, 89, 111, 161, 62, 0, 122, 32, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 64, 118, 64, 0, 192, 2, 63, 100, 111, 169, 60, 62, 167, 129, 188, 89, 111, 161, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 64, 118, 64, 0, 192, 2, 63, 100, 111, 169, 60, 221, 4, 94, 188, 239, 192, 153, 62, 0, 126, 9, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 192, 116, 64, 0, 192, 2, 63, 100, 111, 169, 60, 221, 4, 94, 188, 239, 192, 153, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 192, 116, 64, 0, 192, 2, 63, 172, 111, 169, 60, 119, 94, 41, 189, 11, 192, 154, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 192, 116, 64, 0, 192, 2, 63, 172, 111, 169, 60, 119, 94, 41, 189, 11, 192, 154, 62, 0, 130, 247, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 192, 116, 64, 0, 192, 2, 63, 175, 111, 169, 60, 127, 170, 96, 189, 124, 242, 161, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 224, 122, 64, 0, 192, 2, 63, 175, 111, 169, 60, 127, 170, 96, 189, 124, 242, 161, 62, 0, 246, 130, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 224, 122, 64, 0, 192, 2, 63, 103, 111, 169, 60, 223, 108, 225, 188, 103, 155, 168, 62, 0, 70, 105, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 96, 120, 64, 0, 192, 2, 63, 103, 111, 169, 60, 223, 108, 225, 188, 103, 155, 168, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 96, 120, 64, 0, 192, 2, 63, 172, 111, 169, 60, 87, 19, 44, 189, 121, 3, 157, 62, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 64, 118, 64, 0, 192, 2, 63, 172, 111, 169, 60, 87, 19, 44, 189, 121, 3, 157, 62, 0, 135, 219, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 64, 118, 64, 0, 192, 2, 63, 121, 15, 51, 58, 157, 109, 62, 188, 6, 113, 134, 59, 0, 126, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 64, 52, 64, 0, 192, 2, 63, 181, 111, 169, 60, 107, 94, 41, 189, 134, 208, 172, 59, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 64, 52, 64, 0, 192, 2, 63, 181, 111, 169, 60, 107, 94, 41, 189, 134, 208, 172, 59, 0, 129, 0, 0, 127, 0, 0, 129, 0, 0, 255, 255, 0, 64, 52, 64, 0, 192, 2, 63, 136, 111, 169, 60, 125, 109, 62, 188, 70, 113, 134, 59, 0, 126, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 64, 52, 64, 0, 192, 2, 63, 136, 111, 169, 60, 125, 109, 62, 188, 70, 113, 134, 59, 127, 0, 0, 0, 127, 0, 0, 129, 0, 0, 0, 255, 0, 64, 52, 64, 0, 192, 2, 63, 188, 77, 116, 188, 2, 87, 124, 192, 189, 214, 171, 62, 0, 0, 127, 0, 208, 139, 0, 129, 255, 0, 0, 255, 0, 64, 41, 65, 0, 192, 2, 63, 170, 121, 133, 60, 76, 248, 124, 192, 194, 214, 171, 62, 0, 0, 127, 0, 127, 0, 0, 129, 255, 0, 0, 255, 0, 64, 41, 65, 0, 192, 2, 63, 170, 121, 133, 60, 76, 248, 124, 192, 194, 214, 171, 62, 126, 0, 255, 0, 0, 132, 27, 129, 255, 0, 0, 255, 0, 64, 41, 65, 0, 192, 2, 63, 102, 234, 188, 60, 68, 228, 211, 191, 203, 214, 171, 62, 126, 0, 0, 0, 0, 237, 131, 127, 0, 0, 0, 255, 0, 32, 213, 64, 0, 192, 2, 63, 102, 234, 188, 60, 68, 228, 211, 191, 203, 214, 171, 62, 126, 0, 0, 0, 0, 237, 131, 129, 255, 0, 0, 255, 0, 32, 213, 64, 0, 192, 2, 63, 102, 234, 188, 60, 68, 228, 211, 191, 203, 214, 171, 62, 0, 0, 127, 0, 242, 130, 0, 129, 255, 0, 0, 255, 0, 32, 213, 64, 0, 192, 2, 63 ),
+"array_index_data": PoolByteArray( 9, 0, 19, 0, 12, 0, 9, 0, 3, 0, 19, 0, 5, 0, 56, 0, 4, 0, 5, 0, 44, 0, 56, 0, 9, 0, 52, 0, 8, 0, 9, 0, 12, 0, 52, 0, 4, 0, 50, 0, 10, 0, 4, 0, 56, 0, 50, 0, 7, 0, 40, 0, 6, 0, 7, 0, 38, 0, 40, 0, 8, 0, 38, 0, 7, 0, 8, 0, 52, 0, 38, 0, 6, 0, 44, 0, 5, 0, 6, 0, 40, 0, 44, 0, 15, 0, 1, 0, 14, 0, 15, 0, 0, 0, 1, 0, 10, 0, 59, 0, 16, 0, 10, 0, 50, 0, 59, 0, 3, 0, 14, 0, 19, 0, 3, 0, 15, 0, 14, 0, 21, 0, 2, 0, 64, 0, 21, 0, 13, 0, 2, 0, 27, 0, 33, 0, 28, 0, 27, 0, 35, 0, 33, 0, 25, 0, 53, 0, 26, 0, 25, 0, 41, 0, 53, 0, 30, 0, 45, 0, 24, 0, 30, 0, 47, 0, 45, 0, 24, 0, 41, 0, 25, 0, 24, 0, 45, 0, 41, 0, 26, 0, 35, 0, 27, 0, 26, 0, 53, 0, 35, 0, 57, 0, 47, 0, 30, 0, 57, 0, 60, 0, 47, 0, 28, 0, 31, 0, 29, 0, 28, 0, 33, 0, 31, 0, 34, 0, 11, 0, 32, 0, 34, 0, 51, 0, 11, 0, 42, 0, 39, 0, 54, 0, 42, 0, 43, 0, 39, 0, 36, 0, 51, 0, 34, 0, 36, 0, 37, 0, 51, 0, 46, 0, 43, 0, 42, 0, 46, 0, 55, 0, 43, 0, 61, 0, 49, 0, 48, 0, 61, 0, 58, 0, 49, 0, 48, 0, 55, 0, 46, 0, 48, 0, 49, 0, 55, 0, 54, 0, 37, 0, 36, 0, 54, 0, 39, 0, 37, 0, 32, 0, 18, 0, 65, 0, 32, 0, 11, 0, 18, 0, 20, 0, 63, 0, 62, 0, 20, 0, 22, 0, 63, 0, 29, 0, 67, 0, 23, 0, 29, 0, 31, 0, 67, 0, 66, 0, 13, 0, 21, 0, 66, 0, 17, 0, 13, 0, 23, 0, 22, 0, 20, 0, 23, 0, 67, 0, 22, 0 ),
+"blend_shape_data": [  ],
+"format": 89375,
+"index_count": 180,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 68
+}
+
+[node name="ModernPowerflow" instance=ExtResource( 1 )]
+
+[node name="PowerflowBatteryWithInverter" parent="." index="0"]
+script = ExtResource( 12 )
+
+[node name="PowerflowBatteryWithInverter-1" parent="PowerflowBatteryWithInverter" index="0"]
+script = ExtResource( 3 )
+
+[node name="PowerflowBatteryWithInverter-1-A" parent="PowerflowBatteryWithInverter/PowerflowBatteryWithInverter-1" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithInverter-2" parent="PowerflowBatteryWithInverter" index="1"]
+script = ExtResource( 3 )
+
+[node name="PowerflowBatteryWithInverter-2-A" parent="PowerflowBatteryWithInverter/PowerflowBatteryWithInverter-2" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithInverter-2-B" parent="PowerflowBatteryWithInverter/PowerflowBatteryWithInverter-2" index="1"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithInverter-3" parent="PowerflowBatteryWithInverter" index="2"]
+script = ExtResource( 3 )
+
+[node name="PowerflowBatteryWithInverter-3-A" parent="PowerflowBatteryWithInverter/PowerflowBatteryWithInverter-3" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithInverter-3-B" parent="PowerflowBatteryWithInverter/PowerflowBatteryWithInverter-3" index="1"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithInverter-3-C" parent="PowerflowBatteryWithInverter/PowerflowBatteryWithInverter-3" index="2"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowLoad" parent="." index="1"]
+script = ExtResource( 7 )
+
+[node name="PowerflowLoad-1" parent="PowerflowLoad" index="0"]
+script = ExtResource( 3 )
+
+[node name="PowerflowLoad-1-A" parent="PowerflowLoad/PowerflowLoad-1" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowLoad-2" parent="PowerflowLoad" index="1"]
+script = ExtResource( 3 )
+
+[node name="PowerflowLoad-2-A" parent="PowerflowLoad/PowerflowLoad-2" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowLoad-2-B" parent="PowerflowLoad/PowerflowLoad-2" index="1"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowLoad-3" parent="PowerflowLoad" index="2"]
+script = ExtResource( 3 )
+
+[node name="PowerflowLoad-3-A" parent="PowerflowLoad/PowerflowLoad-3" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowLoad-3-B" parent="PowerflowLoad/PowerflowLoad-3" index="1"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowLoad-3-C" parent="PowerflowLoad/PowerflowLoad-3" index="2"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="OffGridX" parent="." index="2"]
+material/0 = ExtResource( 5 )
+script = ExtResource( 8 )
+
+[node name="PowerflowGridBroken-Display" parent="PowerflowGridBroken" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowVehicle" parent="." index="4"]
+script = ExtResource( 10 )
+
+[node name="PowerflowVehicle-1" parent="PowerflowVehicle" index="0"]
+script = ExtResource( 3 )
+
+[node name="PowerflowVehicle-1-A" parent="PowerflowVehicle/PowerflowVehicle-1" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+phase_offset = 1.72
+
+[node name="PowerflowVehiclePowershare" parent="." index="5"]
+script = ExtResource( 10 )
+
+[node name="PowerflowVehiclePowershare-1" parent="PowerflowVehiclePowershare" index="0"]
+script = ExtResource( 3 )
+
+[node name="PowerflowVehiclePowershare-1-A" parent="PowerflowVehiclePowershare/PowerflowVehiclePowershare-1" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.201, -0.005, -0.903 )
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithoutInverter" parent="." index="6"]
+script = ExtResource( 11 )
+
+[node name="PowerflowBatteryWithoutInverter-1" parent="PowerflowBatteryWithoutInverter" index="0"]
+script = ExtResource( 3 )
+
+[node name="PowerflowBatteryWithoutInverter-1-A" parent="PowerflowBatteryWithoutInverter/PowerflowBatteryWithoutInverter-1" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithoutInverter-2" parent="PowerflowBatteryWithoutInverter" index="1"]
+script = ExtResource( 3 )
+
+[node name="PowerflowBatteryWithoutInverter-2-A" parent="PowerflowBatteryWithoutInverter/PowerflowBatteryWithoutInverter-2" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithoutInverter-2-B" parent="PowerflowBatteryWithoutInverter/PowerflowBatteryWithoutInverter-2" index="1"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithoutInverter-3" parent="PowerflowBatteryWithoutInverter" index="2"]
+script = ExtResource( 3 )
+
+[node name="PowerflowBatteryWithoutInverter-3-A" parent="PowerflowBatteryWithoutInverter/PowerflowBatteryWithoutInverter-3" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithoutInverter-3-B" parent="PowerflowBatteryWithoutInverter/PowerflowBatteryWithoutInverter-3" index="1"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowBatteryWithoutInverter-3-C" parent="PowerflowBatteryWithoutInverter/PowerflowBatteryWithoutInverter-3" index="2"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowSolarMeter" parent="." index="7"]
+script = ExtResource( 9 )
+
+[node name="PowerflowSolarMeter-1" parent="PowerflowSolarMeter" index="0"]
+script = ExtResource( 3 )
+
+[node name="PowerflowSolarMeter-1-A" parent="PowerflowSolarMeter/PowerflowSolarMeter-1" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="PowerflowGrid" parent="." index="8"]
+visible = false
+
+[node name="PowerflowGrid-1" parent="PowerflowGrid" index="0"]
+visible = false
+
+[node name="PowerflowGrid-1-A" parent="PowerflowGrid/PowerflowGrid-1" index="0"]
+visible = false
+material/0 = ExtResource( 16 )
+
+[node name="PowerflowGrid-2" parent="PowerflowGrid" index="1"]
+visible = false
+
+[node name="PowerflowGrid-2-A" parent="PowerflowGrid/PowerflowGrid-2" index="0"]
+visible = false
+material/0 = ExtResource( 4 )
+
+[node name="PowerflowGrid-2-B" parent="PowerflowGrid/PowerflowGrid-2" index="1"]
+visible = false
+material/0 = ExtResource( 4 )
+
+[node name="PowerflowSolarBattery" parent="." index="9"]
+script = ExtResource( 9 )
+
+[node name="PowerflowSolarBattery-1" parent="PowerflowSolarBattery" index="0"]
+script = ExtResource( 3 )
+
+[node name="PowerflowSolarBattery-1-A" parent="PowerflowSolarBattery/PowerflowSolarBattery-1" index="0"]
+material/0 = ExtResource( 4 )
+script = ExtResource( 2 )
+phase_offset = 1.63
+
+[node name="PowerflowLogic" type="Node" parent="." index="10"]
+
+[node name="BatteryWireSwitcher" type="Node" parent="PowerflowLogic" index="0"]
+script = ExtResource( 14 )
+battery_with_inverter_path = NodePath("../../PowerflowBatteryWithInverter")
+battery_without_inverter_path = NodePath("../../PowerflowBatteryWithoutInverter")
+
+[node name="SolarWireSwitcher" type="Node" parent="PowerflowLogic" index="1"]
+script = ExtResource( 14 )
+battery_with_inverter_path = NodePath("../../PowerflowSolarBattery")
+battery_without_inverter_path = NodePath("../../PowerflowSolarMeter")
+
+[node name="GridWireSwitcher" type="Node" parent="PowerflowLogic" index="2"]
+script = ExtResource( 13 )
+grid_path = NodePath("../../GridLine/PowerflowGrid")
+off_grid_path = NodePath("../../PowerflowGridBroken")
+
+[node name="PowershareWireSwitcher" type="Node" parent="PowerflowLogic" index="3"]
+script = ExtResource( 15 )
+powershare_with_battery_path = NodePath("../../PowerflowVehicle")
+powershare_without_battery_path = NodePath("../../PowerflowVehiclePowershare")
+
+[node name="GridLine" type="Spatial" parent="." index="11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.20782, -0.00896561, -0.00357661, -0.183089 )
+
+[node name="PowerflowGrid" type="Spatial" parent="GridLine" index="0"]
+script = ExtResource( 6 )
+
+[node name="PowerflowGrid-1" type="Spatial" parent="GridLine/PowerflowGrid" index="0"]
+script = ExtResource( 3 )
+
+[node name="PowerflowGrid-1-A" type="MeshInstance" parent="GridLine/PowerflowGrid/PowerflowGrid-1" index="0"]
+transform = Transform( -0.0400221, -0.313008, 0.00366859, 0.0074537, -0.00215359, -0.556139, -1.04255, 0.0120006, -0.00411691, 0.20214, 0.191636, 0.964466 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 16 )
+script = ExtResource( 2 )
+phase_offset = -7.7
+
+[node name="PowerflowGrid-2" type="Spatial" parent="GridLine/PowerflowGrid" index="1"]
+script = ExtResource( 3 )
+
+[node name="PowerflowGrid-2-A" type="MeshInstance" parent="GridLine/PowerflowGrid/PowerflowGrid-2" index="0"]
+transform = Transform( -0.0400221, -0.313008, 0.00366859, 0.0074537, -0.00215359, -0.556139, -1.04255, 0.0120006, -0.00411691, 0.201775, 0.191704, 0.95497 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 16 )
+script = ExtResource( 2 )
+phase_offset = 0.2
+
+[node name="PowerflowGrid-2-B" type="MeshInstance" parent="GridLine/PowerflowGrid/PowerflowGrid-2" index="1"]
+transform = Transform( -0.0400221, -0.313008, 0.00366859, 0.0074537, -0.00215359, -0.556139, -1.04255, 0.0120006, -0.00411691, 0.202709, 0.19153, 0.979283 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 16 )
+script = ExtResource( 2 )
+phase_offset = 0.2

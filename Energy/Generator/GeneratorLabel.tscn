@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Energy/Labels/ComponentLabelUpdater.gd" type="Script" id=2]
+[ext_resource path="res://Energy/Labels/Label.tscn" type="PackedScene" id=3]
+
+[node name="GeneratorLabel" type="Spatial"]
+visible = false
+
+[node name="ComponentLabel" type="Node" parent="."]
+script = ExtResource( 2 )
+component_name = "GENERATOR"
+label_path = NodePath("../../GeneratorLabel/Label")
+
+[node name="Label" parent="." instance=ExtResource( 3 )]
+margin_right = 223.0
+margin_bottom = 86.0
+identifier = "generator"
+reference_position_path = NodePath("../../GeneratorLabel")

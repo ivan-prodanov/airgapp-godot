@@ -1,0 +1,90 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Energy/Load/Industrial/Generic/IndustrialGeneric.glb" type="PackedScene" id=1]
+[ext_resource path="res://Energy/Generator/GeneratorSwitcher.gd" type="Script" id=2]
+[ext_resource path="res://Energy/Load/Industrial/Generic/IndustrialGenericMaterial.tres" type="Material" id=3]
+[ext_resource path="res://Energy/Load/BuildingTheme.gd" type="Script" id=4]
+[ext_resource path="res://Energy/GenericShaders/CompactShadow.shader" type="Shader" id=5]
+[ext_resource path="res://Energy/Load/Industrial/Generic/Shadow.png" type="Texture" id=6]
+[ext_resource path="res://Energy/Load/Industrial/IndustrialWindow.shader" type="Shader" id=7]
+[ext_resource path="res://Energy/Powerflow/PowerflowMaterial.tres" type="Material" id=8]
+[ext_resource path="res://Energy/Solar/SolarSwitcher.gd" type="Script" id=9]
+[ext_resource path="res://Energy/Gateway/Meter.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Energy/Battery/BatterySwitcher.gd" type="Script" id=11]
+[ext_resource path="res://Energy/Powerflow/PowerflowDisplay.gd" type="Script" id=12]
+[ext_resource path="res://Energy/Powerflow/PowerflowRemapper.gd" type="Script" id=13]
+[ext_resource path="res://Energy/Load/LoadLabelManager.gd" type="Script" id=14]
+[ext_resource path="res://Energy/Grid/GridSwitcher.gd" type="Script" id=15]
+[ext_resource path="res://Energy/View/PointcloudParent.gd" type="Script" id=16]
+[ext_resource path="res://Energy/View/ComponentPointcloudToggle.gd" type="Script" id=17]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 5 )
+shader_param/strength = 2.0
+shader_param/exponent = 1.0
+shader_param/texture_shadow = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 7 )
+shader_param/window_color = Color( 0, 0, 0, 0.627451 )
+
+[node name="IndustrialGeneric" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2 )
+
+[node name="PointcloudRegular" parent="." index="0"]
+script = ExtResource( 16 )
+pointcloud_name = "primary"
+enabled = true
+
+[node name="PointcloudGrid" parent="." index="1"]
+script = ExtResource( 16 )
+pointcloud_name = "grid"
+
+[node name="PointcloudToggle" type="Node" parent="PointcloudGrid" index="1"]
+script = ExtResource( 17 )
+component_name = "GRID"
+pointcloud_path = NodePath("..")
+
+[node name="Battery" parent="." index="2"]
+script = ExtResource( 11 )
+
+[node name="Powerflow" parent="." index="3"]
+material/0 = ExtResource( 8 )
+script = ExtResource( 12 )
+
+[node name="Remapper" type="Node" parent="Powerflow" index="0"]
+script = ExtResource( 13 )
+powerflow_display_path = NodePath("..")
+
+[node name="Meter" parent="Gateway" index="0" instance=ExtResource( 10 )]
+
+[node name="Generator" parent="." index="5"]
+script = ExtResource( 2 )
+generator_resource_path = "res://Energy/Generator/Residential/Generator.tscn"
+generator_standalone_node = NodePath(".")
+generator_with_grid_node = NodePath(".")
+
+[node name="Load" parent="." index="6"]
+script = ExtResource( 14 )
+
+[node name="Grid" parent="." index="7"]
+script = ExtResource( 15 )
+grid_standalone_path = NodePath(".")
+grid_with_generator_path = NodePath("GridGenerator")
+
+[node name="Solar" parent="." index="8"]
+script = ExtResource( 9 )
+no_solar_resource_path = "res://Energy/Load/Industrial/Generic/NoSolar.tscn"
+solar_roof_resource_path = "res://Energy/Load/Industrial/Generic/SolarPanels.tscn"
+solar_panel_resource_path = "res://Energy/Load/Industrial/Generic/SolarPanels.tscn"
+
+[node name="Building" parent="." index="9"]
+material/0 = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Shadow" parent="." index="10"]
+material/0 = SubResource( 1 )
+
+[node name="Windows" parent="." index="11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82, 0, -0.1 )
+material/0 = SubResource( 2 )

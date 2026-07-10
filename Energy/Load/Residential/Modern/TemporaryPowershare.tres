@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Energy/Powerflow/Wire/PowerflowWire.shader" type="Shader" id=1]
+[ext_resource path="res://Energy/Load/Residential/Modern/PowerflowForV2HTemporary.gd" type="Script" id=2]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/pulse_length = null
+shader_param/pulse_frequency = null
+shader_param/phase_offset = null
+shader_param/snake_fraction = null
+shader_param/snake_exponent = 2.0
+shader_param/powerflow_state = -1.0
+shader_param/base_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+shader_param/flow_color = null
+shader_param/current_time = 0.0
+shader_param/wire_terminate_at = 1000.0
+script = ExtResource( 2 )
+flow_color = Color( 0, 0, 0, 1 )
+powerflow_state = 0
+phase_offset = 0.0

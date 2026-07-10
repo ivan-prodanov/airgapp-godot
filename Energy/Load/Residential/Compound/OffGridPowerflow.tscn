@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Energy/Powerflow/Wire/WireDisplay.gd" type="Script" id=1]
+[ext_resource path="res://Energy/Load/Residential/Compound/OffGridPowerflow.glb" type="PackedScene" id=2]
+[ext_resource path="res://Energy/Powerflow/Wire/PowerflowWireMaterial.tres" type="Material" id=3]
+[ext_resource path="res://Energy/Grid/OffGridVisibility.gd" type="Script" id=4]
+[ext_resource path="res://Energy/Grid/OffGridX.tres" type="Material" id=5]
+
+[node name="OffGridPowerflow" instance=ExtResource( 2 )]
+
+[node name="OffGridX" parent="." index="0"]
+material/0 = ExtResource( 5 )
+script = ExtResource( 4 )
+
+[node name="PowerflowGridBroken-Display" parent="PowerflowGridBroken" index="0"]
+material/0 = ExtResource( 3 )
+script = ExtResource( 1 )

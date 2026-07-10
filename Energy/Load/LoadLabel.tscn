@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Energy/Labels/Label.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Energy/Labels/ComponentLabelUpdater.gd" type="Script" id=2]
+
+[node name="LoadLabel" type="Spatial"]
+visible = false
+
+[node name="ComponentLabel" type="Node" parent="."]
+script = ExtResource( 2 )
+component_name = "LOAD"
+label_path = NodePath("../Label")
+
+[node name="Label" parent="." instance=ExtResource( 1 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_right = 223.0
+margin_bottom = 86.0
+identifier = "load"
+reference_position_path = NodePath("../../LoadLabel")

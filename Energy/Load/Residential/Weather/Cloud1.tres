@@ -1,0 +1,157 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float point_size : hint_range(0,128);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec2 uv2_scale;
+
+
+void vertex() {
+	UV2 =UV*uv2_scale;
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+uniform float alpha_factor : hint_range(0.0, 1.0) = 1.0;
+uniform float scale : hint_range(0.1, 20.0) = 3.0;
+uniform float speed : hint_range(0.0, 1.0) = 0.05;
+uniform float coverage : hint_range(0.0, 2.0) = 1.0;
+uniform float softness : hint_range(0.1, 2.0) = 0.5;
+uniform float fluffiness : hint_range(0.1, 1.0) = 0.6;
+uniform vec4 lit_color : hint_color = vec4(1.0);
+uniform vec4 shadow_color : hint_color = vec4(0.0);
+uniform float shade_strength : hint_range(0.0, 5.0) = 3.0;
+uniform vec2 light_offset = vec2(0.0, -0.05); // Negative y for light from above
+uniform int worley_octaves : hint_range(1, 4) = 2;
+uniform float worley_lacunarity : hint_range(1.0, 4.0) = 2.0;
+uniform float detail_scale : hint_range(1.0, 20.0) = 10.0;
+uniform float detail_strength : hint_range(0.0, 1.0) = 0.3;
+uniform float warp_scale : hint_range(0.0, 10.0) = 0.5;
+uniform float warp_strength : hint_range(0.0, 2.0) = 0.5;
+
+// Random hash function for Worley
+vec2 random2(vec2 p) {
+    return fract(sin(vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)))) * 43758.5453);
+}
+
+// 2D Worley (Cellular) Noise
+float worley(vec2 st, float freq) {
+    st *= freq;
+    vec2 i_st = floor(st);
+    vec2 f_st = fract(st);
+    float m_dist = 1.0;
+    for (int y = -1; y <= 1; y++) {
+        for (int x = -1; x <= 1; x++) {
+            vec2 neighbor = vec2(float(x), float(y));
+            vec2 point = random2(i_st + neighbor);
+            vec2 diff = neighbor + point - f_st;
+            float dist = length(diff);
+            m_dist = min(m_dist, dist);
+        }
+    }
+    return m_dist;
+}
+
+// Simple Perlin noise for detail and warp
+float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    float a = fract(sin(dot(i + vec2(0.0, 0.0), vec2(127.1, 311.7))) * 43758.5453);
+    float b = fract(sin(dot(i + vec2(1.0, 0.0), vec2(127.1, 311.7))) * 43758.5453);
+    float c = fract(sin(dot(i + vec2(0.0, 1.0), vec2(127.1, 311.7))) * 43758.5453);
+    float d = fract(sin(dot(i + vec2(1.0, 1.0), vec2(127.1, 311.7))) * 43758.5453);
+    return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+// Layered Worley for base shape with warping
+float layered_worley(vec2 p) {
+    // Compute warp displacement using low-frequency Perlin
+    vec2 warp = vec2(noise(p * warp_scale), noise(p * warp_scale + vec2(5.2, 1.3))) * warp_strength;
+    p += warp;
+    
+    float value = 0.0;
+    float amplitude = 0.5;
+    float freq = 1.0;
+    for (int i = 0; i < worley_octaves; i++) {
+        value += amplitude * (1.0 - worley(p, freq)); // Invert for cloud density
+        freq *= worley_lacunarity;
+        amplitude *= fluffiness;
+    }
+    return value;
+}
+
+// FBM for added detail
+float fbm_detail(vec2 p) {
+    float value = 0.0;
+    float amplitude = 0.5;
+    for (int i = 0; i < 4; i++) {
+        value += amplitude * (noise(p) * 0.5 + 0.5);
+        p *= 2.0;
+        amplitude *= 0.5;
+    }
+    return value;
+}
+
+void fragment() {
+    // Animate UVs
+    vec2 uv = UV * scale + TIME * speed * vec2(1.0, 0.3);
+    
+    // Base cloud shape from layered Worley with warping
+    float base_density = layered_worley(uv);
+    
+    // Add high-frequency detail
+    float detail = fbm_detail(uv * detail_scale) * detail_strength;
+    float density = base_density + detail;
+    
+    // Shape the cloud with coverage and softness
+    float cloud = smoothstep(coverage - softness, coverage, density);
+    
+    // Enhance fluffiness with power function
+    cloud = pow(cloud, 1.0 / fluffiness);
+    
+    // Shadow sampling for lighting
+    float shadow_density = layered_worley(uv + light_offset) + fbm_detail((uv + light_offset) * detail_scale) * detail_strength;
+    float shading = clamp((density - shadow_density) * shade_strength, -0.5, 0.5);
+    
+    // Normalize shading to 0-1
+    float shade_norm = shading + 0.5;
+    
+    // Blend between shadow and lit colors
+    vec3 color = mix(shadow_color.rgb, lit_color.rgb, shade_norm);
+    
+    // Add highlight for sunlit edges
+    float highlight = smoothstep(0.8, 1.0, density) * 0.3;
+    color += highlight * lit_color.rgb;
+    color = clamp(color, 0.0, 1.0);
+    
+	ALBEDO = color;
+	ALPHA = cloud * alpha_factor * (1.0 - length(UV2 - 0.5) * 2.0);
+}
+"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/point_size = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = null
+shader_param/alpha_factor = 0.253
+shader_param/scale = 4.453
+shader_param/speed = 0.072
+shader_param/coverage = 0.83
+shader_param/softness = 0.384
+shader_param/fluffiness = 0.303
+shader_param/lit_color = Color( 1, 1, 1, 1 )
+shader_param/shadow_color = Color( 0, 0, 0, 0 )
+shader_param/shade_strength = 2.687
+shader_param/light_offset = Vector2( -0.054, -1.238 )
+shader_param/worley_octaves = 4
+shader_param/worley_lacunarity = 1.752
+shader_param/detail_scale = 6.555
+shader_param/detail_strength = 0.344
+shader_param/warp_scale = 0.5
+shader_param/warp_strength = 0.5

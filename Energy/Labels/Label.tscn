@@ -1,0 +1,148 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Energy/Labels/LabelHeaderFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Energy/Labels/LabelText.gd" type="Script" id=2]
+[ext_resource path="res://Energy/Labels/Label.gd" type="Script" id=3]
+[ext_resource path="res://Energy/Labels/LabelErrorIcon.svg" type="Texture" id=4]
+[ext_resource path="res://Energy/Labels/LabelBodyFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Energy/Labels/LabelLine.gd" type="Script" id=6]
+[ext_resource path="res://Energy/Labels/ChargeIcon.svg" type="Texture" id=7]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded; 
+
+uniform vec4 albedo : hint_color = vec4(1.0, 0.2, 0.3, 1.0);
+
+void fragment() {
+	vec4 original = texture(TEXTURE, UV);
+    COLOR = vec4(albedo.rgb, original.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/albedo = Color( 0.372549, 0.521569, 0.905882, 1 )
+
+[node name="Label" type="PanelContainer"]
+anchor_left = 0.25
+anchor_right = 0.356
+margin_right = 500.0
+margin_bottom = 115.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_icon = NodePath("CenterContainer/VBox/Header/ErrorIcon")
+minimum_line_length = 4.0
+reference_position_path = NodePath("..")
+tween_text_path = NodePath("CenterContainer/VBox/HBoxContainer/Body/TextTween")
+
+[node name="Line" type="Line2D" parent="."]
+z_index = -1
+points = PoolVector2Array( 0, 0, 0, 128, 0, 0 )
+width = 2.0
+default_color = Color( 1, 1, 1, 0.501961 )
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="Line"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 576.74
+margin_bottom = 108.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 149.0
+margin_right = 419.0
+margin_bottom = 101.0
+custom_constants/separation = -6
+alignment = 1
+
+[node name="Header" type="Label" parent="CenterContainer/VBox"]
+margin_right = 270.0
+margin_bottom = 39.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 1 )
+text = "Header Text"
+align = 1
+script = ExtResource( 2 )
+is_header = true
+
+[node name="Tween" type="Tween" parent="CenterContainer/VBox/Header"]
+
+[node name="ErrorIcon" type="TextureRect" parent="CenterContainer/VBox/Header"]
+visible = false
+anchor_right = 1.0
+margin_left = 153.214
+margin_top = 32.146
+margin_right = 37.214
+margin_bottom = 182.146
+size_flags_horizontal = 3
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBox"]
+margin_top = 33.0
+margin_right = 270.0
+margin_bottom = 101.0
+size_flags_horizontal = 4
+
+[node name="BodyLeft" type="Label" parent="CenterContainer/VBox/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 5 )
+text = "Body Text"
+align = 2
+
+[node name="VBoxContainer" type="Control" parent="CenterContainer/VBox/HBoxContainer"]
+margin_left = 104.0
+margin_right = 104.0
+rect_min_size = Vector2( 0, 68 )
+
+[node name="ChargeIcon" type="TextureRect" parent="CenterContainer/VBox/HBoxContainer/VBoxContainer"]
+visible = false
+material = SubResource( 2 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -48.0
+margin_right = 96.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 96, 96 )
+texture = ExtResource( 7 )
+stretch_mode = 6
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BodyRight" type="Label" parent="CenterContainer/VBox/HBoxContainer"]
+margin_left = 104.0
+margin_right = 220.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 5 )
+text = ""
+align = 0
+
+[node name="Body" type="Label" parent="CenterContainer/VBox/HBoxContainer"]
+visible = false
+margin_right = 266.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 5 )
+text = "Body Text"
+align = 1
+
+[node name="TextTween" type="Tween" parent="CenterContainer/VBox/HBoxContainer/Body"]
+
+[node name="VBoxContainer" type="Control" parent="CenterContainer/VBox/HBoxContainer"]
+visible = false
+margin_left = 270.0
+margin_right = 270.0
+rect_min_size = Vector2( 0, 68 )

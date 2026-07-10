@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://shaders/bev3d_voxels_shader.shader" type="Shader" id=2]
+
+[resource]
+shader = ExtResource( 2 )
+shader_param/voxel_origin = Vector3( 0, 0, 0 )
+shader_param/voxel_unit_x = Vector3( 1, 0, 0 )
+shader_param/voxel_unit_y = Vector3( 0, 1, 0 )
+shader_param/voxel_unit_z = Vector3( 0, 0, 1 )
+shader_param/voxel_radius_scale = 2.0
+shader_param/bg_white_pct = 1.0
+shader_param/fade_white_low = Color( 1, 1, 1, 1 )
+shader_param/fade_white_high = Color( 0.7, 0.7, 0.7, 1 )
+shader_param/fade_black_low = Color( 0.168627, 0.168627, 0.168627, 1 )
+shader_param/fade_black_high = Color( 0.215686, 0.215686, 0.215686, 1 )

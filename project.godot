@@ -1,0 +1,399 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "MeshInstance",
+"class": "Airflow",
+"language": "GDScript",
+"path": "res://mobile/scripts/Airflow.gd"
+}, {
+"base": "Node",
+"class": "AppConfigManager",
+"language": "GDScript",
+"path": "res://mobile/scripts/AppConfigManager.gd"
+}, {
+"base": "Node",
+"class": "CameraManager",
+"language": "GDScript",
+"path": "res://mobile/scripts/CameraManager.gd"
+}, {
+"base": "Spatial",
+"class": "ChargeCable",
+"language": "GDScript",
+"path": "res://mobile/geometry/Charging_Cable/ChargeCable.gd"
+}, {
+"base": "MeshInstance",
+"class": "DefrostFront",
+"language": "GDScript",
+"path": "res://mobile/scripts/DefrostFront.gd"
+}, {
+"base": "MeshInstance",
+"class": "DefrostRear",
+"language": "GDScript",
+"path": "res://mobile/scripts/DefrostRear.gd"
+}, {
+"base": "EnergyComponentSwitcher",
+"class": "EnergyBatterySwitcher",
+"language": "GDScript",
+"path": "res://Energy/Battery/BatterySwitcher.gd"
+}, {
+"base": "Spatial",
+"class": "EnergyComponentSwitcher",
+"language": "GDScript",
+"path": "res://Energy/Switcher/ComponentSwitcher.gd"
+}, {
+"base": "EnergyComponentSwitcher",
+"class": "EnergyGeneratorSwitcher",
+"language": "GDScript",
+"path": "res://Energy/Generator/GeneratorSwitcher.gd"
+}, {
+"base": "Spatial",
+"class": "EnergyGridLabelManager",
+"language": "GDScript",
+"path": "res://Energy/Grid/GridSwitcher.gd"
+}, {
+"base": "Control",
+"class": "EnergyLabel",
+"language": "GDScript",
+"path": "res://Energy/Labels/Label.gd"
+}, {
+"base": "Spatial",
+"class": "EnergyLoadLabelManager",
+"language": "GDScript",
+"path": "res://Energy/Load/LoadLabelManager.gd"
+}, {
+"base": "Spatial",
+"class": "EnergyPointcloudParent",
+"language": "GDScript",
+"path": "res://Energy/View/PointcloudParent.gd"
+}, {
+"base": "Spatial",
+"class": "EnergySite",
+"language": "GDScript",
+"path": "res://Energy/EnergySite.gd"
+}, {
+"base": "ProductData",
+"class": "EnergySiteData",
+"language": "GDScript",
+"path": "res://mobile/scripts/data/EnergySiteData.gd"
+}, {
+"base": "Spatial",
+"class": "EnergySitePowerflowWireDelegate",
+"language": "GDScript",
+"path": "res://Energy/Powerflow/Wire/WireDelegate.gd"
+}, {
+"base": "MeshInstance",
+"class": "EnergySitePowerflowWireDisplay",
+"language": "GDScript",
+"path": "res://Energy/Powerflow/Wire/WireDisplay.gd"
+}, {
+"base": "Node",
+"class": "EnergySitePowerflowWireRemapper",
+"language": "GDScript",
+"path": "res://Energy/Powerflow/Wire/WireRemapper.gd"
+}, {
+"base": "EnergyComponentSwitcher",
+"class": "EnergySolarSwitcher",
+"language": "GDScript",
+"path": "res://Energy/Solar/SolarSwitcher.gd"
+}, {
+"base": "Spatial",
+"class": "EnergyVehicleGarage2Manager",
+"language": "GDScript",
+"path": "res://Energy/Vehicle/VehicleGarage2Manager.gd"
+}, {
+"base": "Spatial",
+"class": "EnergyVehicleGarageManager",
+"language": "GDScript",
+"path": "res://Energy/Vehicle/VehicleGarageManager.gd"
+}, {
+"base": "Node",
+"class": "GlassSkyboxConfig",
+"language": "GDScript",
+"path": "res://Ego/Cybertruck/GlassSkyboxConfig.gd"
+}, {
+"base": "Reference",
+"class": "GodotMsg",
+"language": "GDScript",
+"path": "res://mobile/scripts/GodotMsg.gd"
+}, {
+"base": "Node",
+"class": "LOG",
+"language": "GDScript",
+"path": "res://mobile/scripts/log.gd"
+}, {
+"base": "ViewportContainer",
+"class": "MainViewContainer",
+"language": "GDScript",
+"path": "res://mobile/scripts/MainViewContainer.gd"
+}, {
+"base": "Spatial",
+"class": "Marker",
+"language": "GDScript",
+"path": "res://mobile/scripts/Marker.gd"
+}, {
+"base": "Node",
+"class": "MobileComm",
+"language": "GDScript",
+"path": "res://mobile/scripts/MobileComm.gd"
+}, {
+"base": "Vehicle",
+"class": "Model_S",
+"language": "GDScript",
+"path": "res://mobile/scripts/Vehicles/Model_S.gd"
+}, {
+"base": "Vehicle",
+"class": "Model_X",
+"language": "GDScript",
+"path": "res://mobile/scripts/Vehicles/Model_X.gd"
+}, {
+"base": "",
+"class": "Model_X_Palladium",
+"language": "GDScript",
+"path": "res://mobile/scripts/Vehicles/Model_X_Palladium.gd"
+}, {
+"base": "Node",
+"class": "PaintMixConfig",
+"language": "GDScript",
+"path": "res://Ego/Cybertruck/PaintMixConfig.gd"
+}, {
+"base": "Vehicle",
+"class": "Palladium",
+"language": "GDScript",
+"path": "res://mobile/scripts/Vehicles/Palladium.gd"
+}, {
+"base": "Node",
+"class": "PoolManager",
+"language": "GDScript",
+"path": "res://mobile/scripts/PoolManager.gd"
+}, {
+"base": "MeshInstance",
+"class": "PowerflowDisplay",
+"language": "GDScript",
+"path": "res://Energy/Powerflow/PowerflowDisplay.gd"
+}, {
+"base": "Resource",
+"class": "ProductData",
+"language": "GDScript",
+"path": "res://mobile/scripts/data/ProductData.gd"
+}, {
+"base": "Node",
+"class": "ProductManager",
+"language": "GDScript",
+"path": "res://mobile/scripts/data/ProductManager.gd"
+}, {
+"base": "Reference",
+"class": "ReactMsg",
+"language": "GDScript",
+"path": "res://mobile/scripts/ReactMsg.gd"
+}, {
+"base": "Node",
+"class": "Road",
+"language": "GDScript",
+"path": "res://mobile/scripts/Road.gd"
+}, {
+"base": "Vehicle",
+"class": "Semi",
+"language": "GDScript",
+"path": "res://mobile/scripts/Vehicles/Semi.gd"
+}, {
+"base": "Resource",
+"class": "SkinColors",
+"language": "GDScript",
+"path": "res://scripts/skin_colors.gd"
+}, {
+"base": "Resource",
+"class": "SkinEnv",
+"language": "GDScript",
+"path": "res://scripts/skin_env.gd"
+}, {
+"base": "Node",
+"class": "SkinProps",
+"language": "GDScript",
+"path": "res://scripts/skin_values.gd"
+}, {
+"base": "Node",
+"class": "Snapshot",
+"language": "GDScript",
+"path": "res://mobile/scripts/Snapshots.gd"
+}, {
+"base": "Node",
+"class": "Terrain",
+"language": "GDScript",
+"path": "res://Ego/Cybertruck/Terrain/Terrain.gd"
+}, {
+"base": "Node",
+"class": "TerrainConfig",
+"language": "GDScript",
+"path": "res://Ego/Cybertruck/Terrain/TerrainConfig.gd"
+}, {
+"base": "Node",
+"class": "Testing",
+"language": "GDScript",
+"path": "res://mobile/scripts/Testing.gd"
+}, {
+"base": "Node",
+"class": "ThemeManager",
+"language": "GDScript",
+"path": "res://mobile/scripts/ThemeManager.gd"
+}, {
+"base": "Reference",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://mobile/scripts/data/Utils.gd"
+}, {
+"base": "Spatial",
+"class": "Vehicle",
+"language": "GDScript",
+"path": "res://mobile/scripts/Vehicles/Vehicle.gd"
+}, {
+"base": "ProductData",
+"class": "VehicleData",
+"language": "GDScript",
+"path": "res://mobile/scripts/data/VehicleData.gd"
+}, {
+"base": "Spatial",
+"class": "VehicleNodeVisible",
+"language": "GDScript",
+"path": "res://scripts/VehicleNodeVisible.gd"
+}, {
+"base": "Reference",
+"class": "VehicleOptions",
+"language": "GDScript",
+"path": "res://mobile/scripts/VehicleOptions.gd"
+} ]
+_global_script_class_icons={
+"Airflow": "",
+"AppConfigManager": "",
+"CameraManager": "",
+"ChargeCable": "",
+"DefrostFront": "",
+"DefrostRear": "",
+"EnergyBatterySwitcher": "",
+"EnergyComponentSwitcher": "",
+"EnergyGeneratorSwitcher": "",
+"EnergyGridLabelManager": "",
+"EnergyLabel": "",
+"EnergyLoadLabelManager": "",
+"EnergyPointcloudParent": "",
+"EnergySite": "",
+"EnergySiteData": "",
+"EnergySitePowerflowWireDelegate": "",
+"EnergySitePowerflowWireDisplay": "",
+"EnergySitePowerflowWireRemapper": "",
+"EnergySolarSwitcher": "",
+"EnergyVehicleGarage2Manager": "",
+"EnergyVehicleGarageManager": "",
+"GlassSkyboxConfig": "",
+"GodotMsg": "",
+"LOG": "",
+"MainViewContainer": "",
+"Marker": "",
+"MobileComm": "",
+"Model_S": "",
+"Model_X": "",
+"Model_X_Palladium": "",
+"PaintMixConfig": "",
+"Palladium": "",
+"PoolManager": "",
+"PowerflowDisplay": "",
+"ProductData": "",
+"ProductManager": "",
+"ReactMsg": "",
+"Road": "",
+"Semi": "",
+"SkinColors": "",
+"SkinEnv": "",
+"SkinProps": "",
+"Snapshot": "",
+"Terrain": "",
+"TerrainConfig": "",
+"Testing": "",
+"ThemeManager": "",
+"Utils": "",
+"Vehicle": "",
+"VehicleData": "",
+"VehicleNodeVisible": "",
+"VehicleOptions": ""
+}
+
+[application]
+
+config/name="Autopilot Visualizer"
+run/main_scene="res://mobile_web_local_dev.tscn"
+boot_splash/image="res://shared_misc_textures/1x1.png"
+run/main_scene.mobile="res://mobile.tscn"
+run/main_scene.web="res://mobile_web_local_dev.tscn"
+run/main_scene.web_local_dev="res://mobile_web_local_dev.tscn"
+run/main_scene.web_renderer="res://mobile_web_renderer.tscn"
+
+[audio]
+
+driver="Dummy"
+
+[debug]
+
+settings/fps/force_fps.apviz=60
+settings/stdout/print_fps.mobile=false
+
+[display]
+
+window/size/width=790
+window/size/height=875
+window/vsync/use_vsync.apviz=false
+window/energy_saving/keep_screen_on.mobile=false
+
+[importer_defaults]
+
+scene={
+"animation/storage": 1,
+"materials/storage": 2,
+"meshes/storage": 0
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+3d_physics/layer_15="Label Tap Target"
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=10000
+
+[physics]
+
+common/physics_jitter_fix=0.0
+common/enable_object_picking=false
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+quality/intended_usage/framebuffer_allocation=3
+quality/intended_usage/framebuffer_allocation.mobile=2
+vram_compression/import_etc2=false
+quality/directional_shadow/size=256
+quality/directional_shadow/size.mobile=256
+quality/shadow_atlas/size=256
+quality/shadow_atlas/size.mobile=256
+quality/reflections/texture_array_reflections=false
+gles2/compatibility/disable_half_float=true
+environment/default_clear_color=Color( 0, 0, 0, 1 )
+quality/reflections/atlas_size=0
+quality/filters/msaa=1
+environment/default_environment="res://env/ap_scene_env.tres"
+quality/shading/gles2_high_float_precision.mobile=true
+custom/shader/preload_unshaded=false
+custom/shader/preload_unshaded.apviz=true
+environment/default_environment.mobile="res://env/mobile.tres"
+quality/filters/msaa.mobile=0
+quality/filters/msaa.apviz=0

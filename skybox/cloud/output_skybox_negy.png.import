@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/output_skybox_negy.png-463a047a27f6f4aaaa5f34967580f393.image"
+
+[deps]
+
+source_file="res://skybox/cloud/output_skybox_negy.png"
+dest_files=[ "res://.import/output_skybox_negy.png-463a047a27f6f4aaaa5f34967580f393.image" ]
+
+[params]
+

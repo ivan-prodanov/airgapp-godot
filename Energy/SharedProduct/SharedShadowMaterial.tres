@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Energy/GenericShaders/CompactShadow.shader" type="Shader" id=1]
+[ext_resource path="res://Energy/SharedProduct/Shadow.png" type="Texture" id=2]
+
+[resource]
+render_priority = -15
+shader = ExtResource( 1 )
+shader_param/strength = 0.75
+shader_param/exponent = 1.0
+shader_param/alpha = 1.0
+shader_param/color = null
+shader_param/texture_shadow = ExtResource( 2 )

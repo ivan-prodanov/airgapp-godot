@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Energy/WallConnector/ShadedStowedWallConnectorCable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Energy/WallConnector/WallConnector.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Energy/Powerflow/Wire/WallConnectorSwitcher.gd" type="Script" id=3]
+[ext_resource path="res://Energy/WallConnector/ShadedWallConnectorCable.tscn" type="PackedScene" id=4]
+
+[node name="WallConnector1Manager" type="Spatial"]
+script = ExtResource( 3 )
+cable_stowed_path = NodePath("ShadedStowedWallConnectorCable")
+
+[node name="WallConnector1" parent="." instance=ExtResource( 2 )]
+transform = Transform( -8.96732e-08, 0, 0.55041, 0, 0.55041, 0, -0.55041, 0, -8.96732e-08, -0.223396, 0.360496, 1.0465 )
+
+[node name="ShadedStowedWallConnectorCable" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47866, 0, 0.00339028 )
+
+[node name="ShadedWallConnectorCable" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47829, 0, 0 )

@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/output_skybox_posz.png-71d7ea4f5cfb86087df2aa4110a26db0.image"
+
+[deps]
+
+source_file="res://skybox/cloud/output_skybox_posz.png"
+dest_files=[ "res://.import/output_skybox_posz.png-71d7ea4f5cfb86087df2aa4110a26db0.image" ]
+
+[params]
+

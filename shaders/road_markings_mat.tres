@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://models/road_markings/MARKING_ATLAS_512.png" type="Texture" id=1]
+[ext_resource path="res://shaders/colorize.shader" type="Shader" id=2]
+
+[resource]
+render_priority = -80
+shader = ExtResource( 2 )
+shader_param/invert_texture = 0.0
+shader_param/u_color = Color( 0.2, 0.2, 0.2, 0.2 )
+shader_param/u_texture = ExtResource( 1 )

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Charger_Handle_IEC.obj-eab54cbc6ff777f43bc954a2f8aa4776.mesh"
+
+[deps]
+
+files=[ "res://.import/Charger_Handle_IEC.obj-eab54cbc6ff777f43bc954a2f8aa4776.mesh" ]
+
+source_file="res://mobile/geometry/Charging_Cable/Objects/Charger_Handle_IEC.obj"
+dest_files=[ "res://.import/Charger_Handle_IEC.obj-eab54cbc6ff777f43bc954a2f8aa4776.mesh", "res://.import/Charger_Handle_IEC.obj-eab54cbc6ff777f43bc954a2f8aa4776.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

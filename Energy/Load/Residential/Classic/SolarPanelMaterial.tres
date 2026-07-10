@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Energy/Load/Residential/Classic/SolarPanelAlbedo.png" type="Texture" id=1]
+[ext_resource path="res://Energy/Load/Residential/Classic/SolarPanelMRA.png" type="Texture" id=2]
+[ext_resource path="res://Energy/Load/SolarPanel.shader" type="Shader" id=3]
+
+[resource]
+shader = ExtResource( 3 )
+shader_param/shine_angle = 67.0
+shader_param/shine_sharpness = 5.0
+shader_param/shine_color = Color( 0.407843, 0.458824, 0.596078, 1 )
+shader_param/shine_offset = 0.117
+shader_param/shine_factor = 1.0
+shader_param/ultra_highlight_color = Color( 0.235294, 0.207843, 0.560784, 1 )
+shader_param/alpha = 1.0
+shader_param/texture_albedo = ExtResource( 1 )
+shader_param/texture_mra = ExtResource( 2 )

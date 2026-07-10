@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode unshaded;
+
+void fragment() {
+    vec2 uv = clamp(UV2, 0.0, 1.0);
+
+    vec2 q = floor(uv * 4095.0 + 0.5);
+    float u12 = q.x;
+    float v12 = q.y;
+
+    float uHigh4 = floor(u12 / 256.0);
+    float uLow8  = u12 - uHigh4 * 256.0;
+
+    float vHigh4 = floor(v12 / 256.0);
+    float vLow8  = v12 - vHigh4 * 256.0;
+
+    // Combine high nibbles into one byte: gByte = (vHigh4 << 4) | uHigh4
+    float gByte = vHigh4 * 16.0 + uHigh4;       // 0..255
+
+    ALBEDO = vec3(uLow8 / 255.0,
+                  gByte / 255.0,
+                  vLow8 / 255.0);
+}"
+
+[resource]
+resource_local_to_scene = true
+resource_name = "PaintSkybox"
+shader = SubResource( 1 )

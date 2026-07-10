@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/output_skybox_posy.png-82c564d95e486bf583bb5c21b801c599.image"
+
+[deps]
+
+source_file="res://skybox/star/output_skybox_posy.png"
+dest_files=[ "res://.import/output_skybox_posy.png-82c564d95e486bf583bb5c21b801c599.image" ]
+
+[params]
+

@@ -1,0 +1,16 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode  unshaded,cull_disabled,depth_test_disable;
+
+uniform sampler2D u_noise;
+uniform float time;
+uniform vec4 color : hint_color;
+
+void fragment(){
+	ALBEDO = color.rgb;
+	float alpha = texture(u_noise,vec2(UV.x*0.2+time*0.5,UV.y)).r;
+	ALPHA = alpha * UV.x;
+}"

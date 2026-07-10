@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://shaders/bev_sdf_volume_shader.shader" type="Shader" id=1]
+[ext_resource path="res://misc_textures/radial_glow.png" type="Texture" id=2]
+
+[resource]
+render_priority = 100
+shader = ExtResource( 1 )
+shader_param/sdf_edge_min = 0.4
+shader_param/sdf_edge_max = 0.6
+shader_param/background_color = Color( 0.9, 0.9, 0.9, 1 )
+shader_param/curb_gray = 0.5
+shader_param/top_gray = 0.9
+shader_param/fade_floor_height = 0.15
+shader_param/fade_height = 2.0
+shader_param/fade_overall = 1.0
+shader_param/sdf_delta_to_shade = 2.5
+shader_param/uv_world_dx = Vector2( 0.1, 0 )
+shader_param/uv_world_dy = Vector2( 0, 0.25 )
+shader_param/uv_world_dz = Vector2( 0, 0.1 )
+shader_param/u_world_crop_offset = Vector3( 0, 0, 0 )
+shader_param/u_world_crop_unit = Vector3( 0.01, 1, 0.01 )
+shader_param/sdf_volume_tex = ExtResource( 2 )

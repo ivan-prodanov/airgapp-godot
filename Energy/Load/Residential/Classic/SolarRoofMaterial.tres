@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Energy/Load/SolarRoof.shader" type="Shader" id=1]
+[ext_resource path="res://Energy/Load/Residential/SolarRoofAlbedo.png" type="Texture" id=2]
+[ext_resource path="res://Energy/Load/Residential/SolarRoofMRA.png" type="Texture" id=3]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/shine_angle = 35.0
+shader_param/shine_sharpness = 3.0
+shader_param/shine_color = Color( 0.4225, 0.498333, 0.65, 1 )
+shader_param/shine_offset = -1.75
+shader_param/alpha = 1.0
+shader_param/texture_albedo = ExtResource( 2 )
+shader_param/texture_mra = ExtResource( 3 )
