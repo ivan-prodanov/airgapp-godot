@@ -1,0 +1,16 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Ego/BayberryE41/Textures/Trim/Trim_TrunkBar_Mixed_AO.png" type="Texture" id=1]
+[ext_resource path="res://Ego/BayberryE41/Textures/Trim/Trim_TrunkBar_Diffuse.png" type="Texture" id=2]
+
+[resource]
+resource_name = "Trim_TrunkBar"
+params_cull_mode = 2
+albedo_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+albedo_texture = ExtResource( 2 )
+roughness_texture_channel = 4
+ao_enabled = true
+ao_light_affect = 0.42
+ao_texture = ExtResource( 1 )
+ao_on_uv2 = false
+ao_texture_channel = 0

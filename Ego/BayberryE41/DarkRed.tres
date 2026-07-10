@@ -1,0 +1,7 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+resource_name = "DarkRed"
+params_cull_mode = 2
+albedo_color = Color( 0.164706, 0.054902, 0.0392157, 1 )
+metallic = 1.0

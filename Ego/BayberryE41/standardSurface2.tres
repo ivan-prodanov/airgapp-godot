@@ -1,0 +1,13 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Ego/BayberryE41/Textures/Light/BayberryE41_Headlight_bloom_standardSurface2_BaseColor.png" type="Texture" id=1]
+
+[resource]
+resource_name = "standardSurface2"
+render_priority = 2
+flags_transparent = true
+flags_unshaded = true
+params_blend_mode = 1
+params_cull_mode = 2
+albedo_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+albedo_texture = ExtResource( 1 )
