@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Ego/Bayberry/headlights_beam_glow.shader" type="Shader" id=1]
+[ext_resource path="res://Ego/Bayberry/Textures/Side_Glow.png" type="Texture" id=2]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/close_blend_start = 0.5
+shader_param/close_blend_end = 1.1
+shader_param/far_blend_start = 3.0
+shader_param/far_blend_end = 4.0
+shader_param/view_dot_normal_blend_start = 0.8
+shader_param/view_dot_normal_blend_end = 1.0
+shader_param/view_fwd_dot_normal_blend_start = 0.6
+shader_param/view_fwd_dot_normal_blend_end = 1.0
+shader_param/texture_albedo = ExtResource( 2 )

@@ -1,0 +1,7 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+resource_name = "Cover_Fade"
+flags_transparent = true
+params_depth_draw_mode = 1
+albedo_color = Color( 0, 0, 0, 1 )

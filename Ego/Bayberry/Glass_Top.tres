@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://shaders/glass_skybox.shader" type="Shader" id=1]
+
+[resource]
+render_priority = 1
+shader = ExtResource( 1 )
+shader_param/skybox_rot = 0.0
+shader_param/metalic = 0.0
+shader_param/roughness = 0.2
+shader_param/specular = 0.5
+shader_param/color = Color( 0, 0, 0, 0.784314 )
+shader_param/skybox_contrib = 0.0
+shader_param/skybox_intensity = 0.0
+shader_param/skybox_scroll = 0.0
+shader_param/in_editor = 1.0
