@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Standard_Tire_MRA.png-93fa413d4c8ca7bdfb8c2d2fe074ba39.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Ego/Cybertruck/Wheels/Textures/Standard_Tire_MRA.png"
+dest_files=[ "res://.import/Standard_Tire_MRA.png-93fa413d4c8ca7bdfb8c2d2fe074ba39.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=1.0
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

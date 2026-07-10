@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Glow_Plane_Front.obj-d2d101929ca339ce3d7d1a2cd5d609df.mesh"
+
+[deps]
+
+files=[ "res://.import/Glow_Plane_Front.obj-d2d101929ca339ce3d7d1a2cd5d609df.mesh" ]
+
+source_file="res://Ego/Cybertruck/Objects/Glow_Plane_Front.obj"
+dest_files=[ "res://.import/Glow_Plane_Front.obj-d2d101929ca339ce3d7d1a2cd5d609df.mesh", "res://.import/Glow_Plane_Front.obj-d2d101929ca339ce3d7d1a2cd5d609df.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

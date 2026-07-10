@@ -1,0 +1,1205 @@
+[gd_scene load_steps=82 format=2]
+
+[ext_resource path="res://Ego/Cybertruck/Cybertruck.fbx" type="PackedScene" id=1]
+[ext_resource path="res://Ego/Cybertruck/Glass_Interior.material" type="Material" id=2]
+[ext_resource path="res://Ego/Cybertruck/Glass_Tinted_Skybox.material" type="Material" id=4]
+[ext_resource path="res://Ego/Cybertruck/Glass_Interior_Tinted.material" type="Material" id=5]
+[ext_resource path="res://Ego/Cybertruck/Glass_Interior_Fade.material" type="Material" id=11]
+[ext_resource path="res://Ego/Cybertruck/Glass_Interior_Tinted_Fade.material" type="Material" id=12]
+[ext_resource path="res://Ego/Cybertruck/Glass_Rough.material" type="Material" id=13]
+[ext_resource path="res://Ego/Cybertruck/Glass_Skybox_Fade.material" type="Material" id=14]
+[ext_resource path="res://Ego/Cybertruck/script/Cybertruck.gd" type="Script" id=15]
+[ext_resource path="res://Ego/Cybertruck/Ground_Plane.material" type="Material" id=17]
+[ext_resource path="res://Ego/Cybertruck/decals.material" type="Material" id=18]
+[ext_resource path="res://Ego/Cybertruck/Glass_Tinted_Skybox_Fade.material" type="Material" id=19]
+[ext_resource path="res://Ego/Cybertruck/Glass_Tinted_Rough.material" type="Material" id=20]
+[ext_resource path="res://mobile/scenes/Plate_Viewport.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Ego/Cybertruck/Plates.material" type="Material" id=22]
+[ext_resource path="res://Ego/Cybertruck/Paint_Mix.material" type="Material" id=23]
+[ext_resource path="res://Ego/Cybertruck/Glass_Rough_Fade.material" type="Material" id=24]
+[ext_resource path="res://Ego/Cybertruck/Glass_Skybox.material" type="Material" id=25]
+[ext_resource path="res://Ego/Cybertruck/Tonneau.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Ego/Cybertruck/Objects/Defrost_Rear.obj" type="ArrayMesh" id=27]
+[ext_resource path="res://Ego/Cybertruck/Objects/Defrost_Front.obj" type="ArrayMesh" id=28]
+[ext_resource path="res://mobile/materials/defrost_rear.material" type="Material" id=29]
+[ext_resource path="res://mobile/materials/defrost_front.material" type="Material" id=30]
+[ext_resource path="res://mobile/scripts/DefrostFront.gd" type="Script" id=31]
+[ext_resource path="res://mobile/scripts/DefrostRear.gd" type="Script" id=32]
+[ext_resource path="res://Ego/Cybertruck/Headlights_Beam_Glow_Front.material" type="Material" id=33]
+[ext_resource path="res://Ego/Cybertruck/Headlights_Beam_Glow_Top.material" type="Material" id=34]
+[ext_resource path="res://Ego/Cybertruck/Headlights_Beam_Glow_Side.material" type="Material" id=35]
+[ext_resource path="res://Ego/Cybertruck/script/LightBeam.gd" type="Script" id=36]
+[ext_resource path="res://Ego/Cybertruck/Taillights_Projection.material" type="Material" id=37]
+[ext_resource path="res://Ego/Cybertruck/Headlights_Projection.material" type="Material" id=38]
+[ext_resource path="res://Ego/Cybertruck/Objects/Glow_Plane_Front.obj" type="ArrayMesh" id=39]
+[ext_resource path="res://mobile/scripts/Marker.gd" type="Script" id=40]
+[ext_resource path="res://mobile/materials/airflow.material" type="Material" id=41]
+[ext_resource path="res://mobile/scripts/Airflow.gd" type="Script" id=42]
+[ext_resource path="res://Ego/Cybertruck/PaintMixConfig.gd" type="Script" id=43]
+[ext_resource path="res://Ego/Cybertruck/GlassSkyboxConfig.gd" type="Script" id=44]
+[ext_resource path="res://Ego/Cybertruck/Lights1.material" type="Material" id=45]
+[ext_resource path="res://Ego/Cybertruck/Illumination.material" type="Material" id=46]
+[ext_resource path="res://Ego/Cybertruck/Paint_Black.material" type="Material" id=47]
+[ext_resource path="res://Ego/Cybertruck/MIC_Black.material" type="Material" id=48]
+[ext_resource path="res://Ego/Cybertruck/TPO_Black.material" type="Material" id=49]
+[ext_resource path="res://Ego/Cybertruck/Anodized_Black.material" type="Material" id=50]
+[ext_resource path="res://Ego/Cybertruck/PVC_Black.material" type="Material" id=51]
+[ext_resource path="res://Ego/Cybertruck/Fabric_Black.material" type="Material" id=52]
+[ext_resource path="res://Ego/Cybertruck/Plastic_Black_Exterior_Fade.material" type="Material" id=53]
+[ext_resource path="res://Ego/Cybertruck/Paint_Mix_Overlay.tres" type="Material" id=56]
+
+
+
+
+[sub_resource type="ConcavePolygonShape" id=1]
+data = PoolVector3Array( 2.1357, 0.8874, -1.0808, 2.4023, 0.6208, -1.0808, 2.1357, 0.8874, -0.7364, 2.1357, 0.8874, -0.7364, 2.4023, 0.6208, -1.0808, 2.4023, 0.6208, -0.7364, 1.7587, 0.8874, -1.0808, 2.1357, 0.8874, -1.0808, 1.7587, 0.8874, -0.7364, 1.7587, 0.8874, -0.7364, 2.1357, 0.8874, -1.0808, 2.1357, 0.8874, -0.7364, 1.4921, 0.6208, -1.0808, 1.7587, 0.8874, -1.0808, 1.4921, 0.6208, -0.7364, 1.4921, 0.6208, -0.7364, 1.7587, 0.8874, -1.0808, 1.7587, 0.8874, -0.7364, 1.4921, 0.2438, -1.0808, 1.4921, 0.6208, -1.0808, 1.4921, 0.2438, -0.7364, 1.4921, 0.2438, -0.7364, 1.4921, 0.6208, -1.0808, 1.4921, 0.6208, -0.7364, 1.7587, -0.0228, -1.0808, 1.4921, 0.2438, -1.0808, 1.7587, -0.0228, -0.7364, 1.7587, -0.0228, -0.7364, 1.4921, 0.2438, -1.0808, 1.4921, 0.2438, -0.7364, 2.1357, -0.0228, -1.0808, 1.7587, -0.0228, -1.0808, 2.1357, -0.0228, -0.7364, 2.1357, -0.0228, -0.7364, 1.7587, -0.0228, -1.0808, 1.7587, -0.0228, -0.7364, 2.4023, 0.2438, -1.0808, 2.1357, -0.0228, -1.0808, 2.4023, 0.2438, -0.7364, 2.4023, 0.2438, -0.7364, 2.1357, -0.0228, -1.0808, 2.1357, -0.0228, -0.7364, 2.4023, 0.6208, -1.0808, 2.4023, 0.2438, -1.0808, 2.4023, 0.6208, -0.7364, 2.4023, 0.6208, -0.7364, 2.4023, 0.2438, -1.0808, 2.4023, 0.2438, -0.7364, 2.4023, 0.6208, -1.0808, 2.1357, 0.8874, -1.0808, 1.9472, 0.4323, -1.0808, 2.1357, 0.8874, -1.0808, 1.7587, 0.8874, -1.0808, 1.9472, 0.4323, -1.0808, 1.7587, 0.8874, -1.0808, 1.4921, 0.6208, -1.0808, 1.9472, 0.4323, -1.0808, 1.4921, 0.6208, -1.0808, 1.4921, 0.2438, -1.0808, 1.9472, 0.4323, -1.0808, 1.4921, 0.2438, -1.0808, 1.7587, -0.0228, -1.0808, 1.9472, 0.4323, -1.0808, 1.7587, -0.0228, -1.0808, 2.1357, -0.0228, -1.0808, 1.9472, 0.4323, -1.0808, 2.1357, -0.0228, -1.0808, 2.4023, 0.2438, -1.0808, 1.9472, 0.4323, -1.0808, 2.4023, 0.2438, -1.0808, 2.4023, 0.6208, -1.0808, 1.9472, 0.4323, -1.0808 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.15, 0.15, 0.15 )
+
+[sub_resource type="ConcavePolygonShape" id=3]
+data = PoolVector3Array( 2.0671, 1.2843, 0.9601, 2.1397, 1.2872, 0.5512, 2.539, 1.1125, 0.9601, 2.539, 1.1125, 0.9601, 2.1397, 1.2872, 0.5512, 2.7674, 1.0565, 0.6043, 2.1397, 1.2872, -0.5512, 2.7674, 1.0565, -0.6043, 2.1698, 1.298, 0, 2.1698, 1.298, 0, 2.7674, 1.0565, -0.6043, 2.8343, 1.0539, -0.281, 2.8291, 1.0549, 0.2813, 2.1698, 1.298, 0, 2.8453, 1.0558, 0, 2.7674, 1.0565, -0.6043, 2.1397, 1.2872, -0.5512, 2.539, 1.1125, -0.9601, 2.539, 1.1125, -0.9601, 2.1397, 1.2872, -0.5512, 2.0671, 1.2843, -0.9601, 2.0671, 1.2843, 0.9601, 2.539, 1.1125, 0.9601, 2.0497, 1.2366, 0.9601, 2.0497, 1.2366, 0.9601, 2.539, 1.1125, 0.9601, 2.5216, 1.0648, 0.9601, 2.1397, 1.2872, 0.5512, 2.0671, 1.2843, 0.9601, 2.1223, 1.2395, 0.5512, 2.1223, 1.2395, 0.5512, 2.0671, 1.2843, 0.9601, 2.0497, 1.2366, 0.9601, 2.539, 1.1125, -0.9601, 2.0671, 1.2843, -0.9601, 2.5216, 1.0648, -0.9601, 2.5216, 1.0648, -0.9601, 2.0671, 1.2843, -0.9601, 2.0497, 1.2366, -0.9601, 2.1397, 1.2872, -0.5512, 2.1698, 1.298, 0, 2.1223, 1.2395, -0.5512, 2.1223, 1.2395, -0.5512, 2.1698, 1.298, 0, 2.1525, 1.2503, 0, 2.8343, 1.0539, -0.281, 2.7674, 1.0565, -0.6043, 2.8302, 1.0025, -0.2851, 2.8302, 1.0025, -0.2851, 2.7674, 1.0565, -0.6043, 2.7632, 1.0088, -0.6043, 2.539, 1.1125, -0.9601, 2.5216, 1.0648, -0.9601, 2.7674, 1.0565, -0.6043, 2.7674, 1.0565, -0.6043, 2.5216, 1.0648, -0.9601, 2.7632, 1.0088, -0.6043, 2.8291, 1.0549, 0.2813, 2.8453, 1.0558, 0, 2.8249, 1.0036, 0.2855, 2.8249, 1.0036, 0.2855, 2.8453, 1.0558, 0, 2.8341, 1.0081, 0, 2.7674, 1.0565, 0.6043, 2.7632, 1.0088, 0.6043, 2.539, 1.1125, 0.9601, 2.539, 1.1125, 0.9601, 2.7632, 1.0088, 0.6043, 2.5216, 1.0648, 0.9601, 2.1698, 1.298, 0, 2.1397, 1.2872, 0.5512, 2.1525, 1.2503, 0, 2.1525, 1.2503, 0, 2.1397, 1.2872, 0.5512, 2.1223, 1.2395, 0.5512, 2.0671, 1.2843, -0.9601, 2.1397, 1.2872, -0.5512, 2.0497, 1.2366, -0.9601, 2.0497, 1.2366, -0.9601, 2.1397, 1.2872, -0.5512, 2.1223, 1.2395, -0.5512, 2.8302, 1.0025, -0.2851, 2.7632, 1.0088, -0.6043, 2.7972, 0.6725, -0.285, 2.7972, 0.6725, -0.285, 2.7632, 1.0088, -0.6043, 2.7398, 0.673, -0.621, 2.5216, 0.6741, -0.9601, 2.7398, 0.673, -0.621, 2.5216, 1.0648, -0.9601, 2.5216, 1.0648, -0.9601, 2.7398, 0.673, -0.621, 2.7632, 1.0088, -0.6043, 2.8249, 1.0036, 0.2855, 2.8341, 1.0081, 0, 2.7955, 0.6726, 0.2851, 2.7955, 0.6726, 0.2851, 2.8341, 1.0081, 0, 2.8105, 0.6724, 0, 2.7398, 0.673, 0.621, 2.5216, 0.6741, 0.9601, 2.7632, 1.0088, 0.6043, 2.7632, 1.0088, 0.6043, 2.5216, 0.6741, 0.9601, 2.5216, 1.0648, 0.9601, 2.8343, 1.0539, -0.281, 2.8302, 1.0025, -0.2851, 2.8453, 1.0558, 0, 2.8453, 1.0558, 0, 2.8302, 1.0025, -0.2851, 2.8341, 1.0081, 0, 2.8302, 1.0025, -0.2851, 2.7972, 0.6725, -0.285, 2.8341, 1.0081, 0, 2.8341, 1.0081, 0, 2.7972, 0.6725, -0.285, 2.8105, 0.6724, 0, 2.8291, 1.0549, 0.2813, 2.8249, 1.0036, 0.2855, 2.7674, 1.0565, 0.6043, 2.7674, 1.0565, 0.6043, 2.8249, 1.0036, 0.2855, 2.7632, 1.0088, 0.6043, 2.8249, 1.0036, 0.2855, 2.7955, 0.6726, 0.2851, 2.7632, 1.0088, 0.6043, 2.7632, 1.0088, 0.6043, 2.7955, 0.6726, 0.2851, 2.7398, 0.673, 0.621, 2.1397, 1.2872, 0.5512, 2.1698, 1.298, 0, 2.7674, 1.0565, 0.6043, 2.7674, 1.0565, 0.6043, 2.1698, 1.298, 0, 2.8291, 1.0549, 0.2813, 2.1698, 1.298, 0, 2.8343, 1.0539, -0.281, 2.8453, 1.0558, 0 )
+
+[sub_resource type="QuadMesh" id=4]
+size = Vector2( 6.662, 2.708 )
+
+[sub_resource type="QuadMesh" id=5]
+size = Vector2( 5.582, 3.84 )
+
+[sub_resource type="ConcavePolygonShape" id=6]
+data = PoolVector3Array( 22.5104, 174.893, -82.9621, 28.7961, 131.041, -98.4673, 47.1827, 177.223, -82.1524, 47.1827, 177.223, -82.1524, 28.7961, 131.041, -98.4673, 112.321, 157.345, -92.9146, 112.321, 157.345, -92.9146, 28.7961, 131.041, -98.4673, 117.157, 127.668, -102.961, 117.157, 127.668, -102.961, 28.7961, 131.041, -98.4673, 117.108, 125.788, -98.055, 117.108, 125.788, -98.055, 28.7961, 131.041, -98.4673, 28.7474, 129.161, -93.5618, 28.7961, 131.041, -98.4673, 22.5104, 174.893, -82.9621, 28.7474, 129.161, -93.5618, 28.7474, 129.161, -93.5618, 22.5104, 174.893, -82.9621, 22.4617, 173.012, -78.0566, 112.321, 157.345, -92.9146, 117.157, 127.668, -102.961, 112.272, 155.465, -88.0091, 112.272, 155.465, -88.0091, 117.157, 127.668, -102.961, 117.108, 125.788, -98.055, 22.5104, 174.893, -82.9621, 47.1827, 177.223, -82.1524, 22.4617, 173.012, -78.0566, 22.4617, 173.012, -78.0566, 47.1827, 177.223, -82.1524, 47.134, 175.342, -77.2469, 47.1827, 177.223, -82.1524, 112.321, 157.345, -92.9146, 47.134, 175.342, -77.2469, 47.134, 175.342, -77.2469, 112.321, 157.345, -92.9146, 112.272, 155.465, -88.0091 )
+
+[sub_resource type="ConcavePolygonShape" id=7]
+data = PoolVector3Array( -69.0056, 163.493, -86.9472, -67.7908, 134.871, -99.0136, 11.0033, 173.828, -83.298, 11.0033, 173.828, -83.298, -67.7908, 134.871, -99.0136, 12.9045, 131.027, -98.58, 12.9045, 131.027, -98.58, -67.7908, 134.871, -99.0136, 12.8558, 129.147, -93.6745, 12.8558, 129.147, -93.6745, -67.7908, 134.871, -99.0136, -67.8394, 132.991, -94.1081, -67.7908, 134.871, -99.0136, -69.0056, 163.493, -86.9472, -67.8394, 132.991, -94.1081, -67.8394, 132.991, -94.1081, -69.0056, 163.493, -86.9472, -69.0543, 161.613, -82.0417, 11.0033, 173.828, -83.298, 12.9045, 131.027, -98.58, 10.9546, 171.948, -78.3925, 10.9546, 171.948, -78.3925, 12.9045, 131.027, -98.58, 12.8558, 129.147, -93.6745, -69.0056, 163.493, -86.9472, 11.0033, 173.828, -83.298, -69.0543, 161.613, -82.0417, -69.0543, 161.613, -82.0417, 11.0033, 173.828, -83.298, 10.9546, 171.948, -78.3925 )
+
+[sub_resource type="ConcavePolygonShape" id=8]
+data = PoolVector3Array( -2.8142, 1.3503, 0.931, -2.7571, 0.7158, 0.931, -2.8142, 1.3503, -0.931, -2.8142, 1.3503, -0.931, -2.7571, 0.7158, 0.931, -2.7571, 0.7158, -0.931, -2.7571, 0.7158, -0.931, -2.7571, 0.7158, 0.931, -2.6286, 0.7273, -0.931, -2.6286, 0.7273, -0.931, -2.7571, 0.7158, 0.931, -2.6286, 0.7273, 0.931, -2.7571, 0.7158, 0.931, -2.8142, 1.3503, 0.931, -2.6286, 0.7273, 0.931, -2.6286, 0.7273, 0.931, -2.8142, 1.3503, 0.931, -2.6857, 1.3619, 0.931, -2.8142, 1.3503, -0.931, -2.7571, 0.7158, -0.931, -2.6857, 1.3619, -0.931, -2.6857, 1.3619, -0.931, -2.7571, 0.7158, -0.931, -2.6286, 0.7273, -0.931, -2.8142, 1.3503, 0.931, -2.8142, 1.3503, -0.931, -2.6857, 1.3619, 0.931, -2.6857, 1.3619, 0.931, -2.8142, 1.3503, -0.931, -2.6857, 1.3619, -0.931 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="ArrayMesh" id=10]
+surfaces/0 = {
+"aabb": AABB( -2.78716, 1.20501, 0.801716, 0.0110049, 0.0147138, 0.1 ),
+"array_data": PoolByteArray( 223, 96, 50, 192, 176, 61, 154, 63, 59, 61, 77, 63, 155, 76, 0, 0, 0, 0, 127, 127, 0, 0, 0, 0, 0, 0, 128, 63, 223, 96, 50, 192, 176, 61, 154, 63, 213, 214, 102, 63, 155, 76, 0, 0, 0, 0, 127, 127, 0, 0, 128, 63, 0, 0, 128, 63, 145, 172, 49, 192, 212, 31, 156, 63, 59, 61, 77, 63, 155, 76, 0, 0, 0, 0, 127, 127, 0, 0, 0, 0, 0, 224, 80, 63, 145, 172, 49, 192, 212, 31, 156, 63, 213, 214, 102, 63, 155, 76, 0, 0, 0, 0, 127, 127, 0, 0, 128, 63, 0, 224, 80, 63 ),
+"array_index_data": PoolByteArray( 0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0 ),
+"blend_shape_data": [  ],
+"format": 89367,
+"index_count": 6,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 4
+}
+
+[sub_resource type="ArrayMesh" id=11]
+surfaces/0 = {
+"aabb": AABB( -2.75804, 0.781418, 0.708902, 0.00589252, 0.0711583, 0.14001 ),
+"array_data": PoolByteArray( 83, 35, 48, 192, 253, 10, 72, 63, 166, 81, 89, 63, 130, 246, 0, 0, 0, 0, 129, 129, 0, 0, 0, 0, 0, 32, 51, 63, 180, 131, 48, 192, 106, 66, 90, 63, 166, 81, 89, 63, 130, 246, 0, 0, 0, 0, 129, 129, 0, 0, 0, 0, 0, 128, 66, 62, 83, 35, 48, 192, 253, 10, 72, 63, 156, 122, 53, 63, 130, 246, 0, 0, 0, 0, 129, 129, 0, 0, 128, 63, 0, 32, 51, 63, 180, 131, 48, 192, 107, 66, 90, 63, 156, 122, 53, 63, 130, 246, 0, 0, 0, 0, 130, 129, 0, 0, 128, 63, 0, 128, 66, 62 ),
+"array_index_data": PoolByteArray( 0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0 ),
+"blend_shape_data": [  ],
+"format": 89367,
+"index_count": 6,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 4
+}
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="BoxShape" id=13]
+extents = Vector3( 0.1113, 0.0845387, 0.216622 )
+
+[sub_resource type="ConcavePolygonShape" id=14]
+data = PoolVector3Array( -1.1543, 1.6423, 0.7408, -2.6916, 1.4067, 0.7408, -1.1543, 1.6423, -0.7408, -1.1543, 1.6423, -0.7408, -2.6916, 1.4067, 0.7408, -2.6916, 1.4067, -0.7408, -2.6916, 1.4067, 0.7408, -1.1543, 1.6423, 0.7408, -2.6798, 1.3294, 0.7408, -2.6798, 1.3294, 0.7408, -1.1543, 1.6423, 0.7408, -1.1425, 1.5651, 0.7408, -2.6916, 1.4067, -0.7408, -2.6916, 1.4067, 0.7408, -2.6798, 1.3294, -0.7408, -2.6798, 1.3294, -0.7408, -2.6916, 1.4067, 0.7408, -2.6798, 1.3294, 0.7408, -1.1543, 1.6423, 0.7408, -1.1543, 1.6423, -0.7408, -1.1425, 1.5651, 0.7408, -1.1425, 1.5651, 0.7408, -1.1543, 1.6423, -0.7408, -1.1425, 1.5651, -0.7408, -1.1543, 1.6423, -0.7408, -2.6916, 1.4067, -0.7408, -1.1425, 1.5651, -0.7408, -1.1425, 1.5651, -0.7408, -2.6916, 1.4067, -0.7408, -2.6798, 1.3294, -0.7408 )
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="ConcavePolygonShape" id=16]
+data = PoolVector3Array( 0.4679, 1.8429, 0.7236, -0.4257, 1.747, 0.7749, 0.4679, 1.8429, -0.7236, 0.4679, 1.8429, -0.7236, -0.4257, 1.747, 0.7749, -0.4257, 1.747, -0.7749, 0.4679, 1.8429, 0.7236, 0.4679, 1.8429, -0.7236, 1.3962, 1.5569, 0.8467, 1.3962, 1.5569, 0.8467, 0.4679, 1.8429, -0.7236, 1.3962, 1.5569, -0.8467, -0.4257, 1.747, 0.7749, 0.4679, 1.8429, 0.7236, -0.4257, 1.6518, 0.7749, -0.4257, 1.6518, 0.7749, 0.4679, 1.8429, 0.7236, 0.4679, 1.7478, 0.7236, -0.4257, 1.747, -0.7749, -0.4257, 1.747, 0.7749, -0.4257, 1.6518, -0.7749, -0.4257, 1.6518, -0.7749, -0.4257, 1.747, 0.7749, -0.4257, 1.6518, 0.7749, 0.4679, 1.8429, -0.7236, -0.4257, 1.747, -0.7749, 0.4679, 1.7478, -0.7236, 0.4679, 1.7478, -0.7236, -0.4257, 1.747, -0.7749, -0.4257, 1.6518, -0.7749, 0.4679, 1.8429, 0.7236, 1.3962, 1.5569, 0.8467, 0.4679, 1.7478, 0.7236, 0.4679, 1.7478, 0.7236, 1.3962, 1.5569, 0.8467, 1.3962, 1.4618, 0.8467, 1.3962, 1.5569, -0.8467, 0.4679, 1.8429, -0.7236, 1.3962, 1.4618, -0.8467, 1.3962, 1.4618, -0.8467, 0.4679, 1.8429, -0.7236, 0.4679, 1.7478, -0.7236, 1.3962, 1.5569, 0.8467, 1.3962, 1.5569, -0.8467, 1.3962, 1.4618, 0.8467, 1.3962, 1.4618, 0.8467, 1.3962, 1.5569, -0.8467, 1.3962, 1.4618, -0.8467 )
+
+[sub_resource type="BoxShape" id=17]
+extents = Vector3( 0.169297, 0.153003, 0.1 )
+
+[sub_resource type="ConcavePolygonShape" id=18]
+data = PoolVector3Array( 2.8553, 1.0275, -0.6791, 2.8553, 0.4049, -0.6791, 2.8553, 1.0275, 0.6791, 2.8553, 1.0275, 0.6791, 2.8553, 0.4049, -0.6791, 2.8553, 0.4049, 0.6791, 0.4617, 1.8375, -0.7839, 1.4009, 1.5518, -0.9401, 0.4617, 1.8375, 0.7839, 0.4617, 1.8375, 0.7839, 1.4009, 1.5518, -0.9401, 1.4009, 1.5518, 0.9401, -1.1273, 1.6249, -0.8595, 0.4617, 1.8375, -0.7839, -1.1273, 1.6249, 0.8595, -1.1273, 1.6249, 0.8595, 0.4617, 1.8375, -0.7839, 0.4617, 1.8375, 0.7839, 1.4009, 1.5518, -0.9401, 2.6139, 1.1189, -1.0258, 1.4009, 1.5518, 0.9401, 1.4009, 1.5518, 0.9401, 2.6139, 1.1189, -1.0258, 2.6139, 1.1189, 1.0258, 2.6139, 1.1189, -1.0258, 2.8553, 1.0275, -0.6791, 2.6139, 1.1189, 1.0258, 2.6139, 1.1189, 1.0258, 2.8553, 1.0275, -0.6791, 2.8553, 1.0275, 0.6791, -2.8312, 1.3572, -0.9489, -1.1273, 1.6249, -0.8595, -2.8312, 1.3572, 0.9489, -2.8312, 1.3572, 0.9489, -1.1273, 1.6249, -0.8595, -1.1273, 1.6249, 0.8595, 1.4009, 1.5518, -0.9401, 0.4617, 1.8375, -0.7839, 1.4009, 1.1494, -1.058, 1.4009, 1.1494, -1.058, 0.4617, 1.8375, -0.7839, 0.4617, 1.2011, -1.0106, -1.1273, 1.6249, -0.8595, -2.8312, 1.3572, -0.9489, -1.1273, 1.279, -1.022, 2.6139, 1.1189, -1.0258, 1.4009, 1.5518, -0.9401, 2.6139, 1.0811, -1.0258, 2.6139, 1.0811, -1.0258, 1.4009, 1.5518, -0.9401, 1.4009, 1.1494, -1.058, 2.8553, 1.0275, -0.6791, 2.6139, 1.1189, -1.0258, 2.6139, 1.0811, -1.0258, 0.4617, 1.8375, -0.7839, -1.1273, 1.6249, -0.8595, 0.4617, 1.2011, -1.0106, 0.4617, 1.2011, -1.0106, -1.1273, 1.6249, -0.8595, -1.1273, 1.279, -1.022, 2.8553, 1.0275, -0.6791, 2.6139, 1.0811, -1.0258, 2.8553, 0.4049, -0.6791, 2.8553, 0.4049, -0.6791, 2.6139, 1.0811, -1.0258, 2.4846, 0.2175, -1.0392, 2.6139, 1.0811, -1.0258, 1.4009, 1.1494, -1.058, 2.4846, 0.2175, -1.0392, 2.4846, 0.2175, -1.0392, 1.4009, 1.1494, -1.058, 1.4009, 0.1794, -1.0986, 1.4009, 1.1494, -1.058, 0.4617, 1.2011, -1.0106, 1.4009, 0.1794, -1.0986, 1.4009, 0.1794, -1.0986, 0.4617, 1.2011, -1.0106, 0.4617, 0.1794, -1.0392, 0.4617, 1.2011, -1.0106, -1.1273, 1.279, -1.022, 0.4617, 0.1794, -1.0392, 0.4617, 0.1794, -1.0392, -1.1273, 1.279, -1.022, -1.1273, 0.1794, -1.0829, -1.1273, 1.279, -1.022, -2.8312, 1.3572, -0.9489, -1.1273, 0.1794, -1.0829, -1.1273, 0.1794, -1.0829, -2.8312, 1.3572, -0.9489, -2.1686, 0.1999, -1.0633, -2.8654, 0.712, 0.9723, -2.8654, 0.712, -0.9723, -2.8312, 1.3572, 0.9489, -2.8312, 1.3572, 0.9489, -2.8654, 0.712, -0.9723, -2.8312, 1.3572, -0.9489, 0.4617, 1.2011, 1.0106, 0.4617, 1.8375, 0.7839, 1.4009, 1.1494, 1.058, 1.4009, 1.1494, 1.058, 0.4617, 1.8375, 0.7839, 1.4009, 1.5518, 0.9401, -1.1273, 1.279, 1.022, -2.8312, 1.3572, 0.9489, -1.1273, 1.6249, 0.8595, 1.4009, 1.1494, 1.058, 1.4009, 1.5518, 0.9401, 2.6139, 1.0811, 1.0258, 2.6139, 1.0811, 1.0258, 1.4009, 1.5518, 0.9401, 2.6139, 1.1189, 1.0258, 2.6139, 1.0811, 1.0258, 2.6139, 1.1189, 1.0258, 2.8553, 1.0275, 0.6791, -1.1273, 1.279, 1.022, -1.1273, 1.6249, 0.8595, 0.4617, 1.2011, 1.0106, 0.4617, 1.2011, 1.0106, -1.1273, 1.6249, 0.8595, 0.4617, 1.8375, 0.7839, 2.4846, 0.2175, 1.0392, 2.6139, 1.0811, 1.0258, 2.8553, 0.4049, 0.6791, 2.8553, 0.4049, 0.6791, 2.6139, 1.0811, 1.0258, 2.8553, 1.0275, 0.6791, 1.4009, 0.1794, 1.0986, 1.4009, 1.1494, 1.058, 2.4846, 0.2175, 1.0392, 2.4846, 0.2175, 1.0392, 1.4009, 1.1494, 1.058, 2.6139, 1.0811, 1.0258, 0.4617, 0.1794, 1.0392, 0.4617, 1.2011, 1.0106, 1.4009, 0.1794, 1.0986, 1.4009, 0.1794, 1.0986, 0.4617, 1.2011, 1.0106, 1.4009, 1.1494, 1.058, -1.1273, 0.1794, 1.0829, -1.1273, 1.279, 1.022, 0.4617, 0.1794, 1.0392, 0.4617, 0.1794, 1.0392, -1.1273, 1.279, 1.022, 0.4617, 1.2011, 1.0106, -2.1686, 0.1999, 1.0633, -2.8312, 1.3572, 0.9489, -1.1273, 0.1794, 1.0829, -1.1273, 0.1794, 1.0829, -2.8312, 1.3572, 0.9489, -1.1273, 1.279, 1.022, -2.8654, 0.712, 0.9723, -2.8312, 1.3572, 0.9489, -2.1686, 0.1999, 1.0633, -2.1686, 0.1999, -1.0633, -2.8654, 0.712, -0.9723, -2.7918, 0.2922, -0.9808, -2.8654, 0.712, 0.9723, -2.1686, 0.1999, 1.0633, -2.7918, 0.2922, 0.9808, -2.8312, 1.3572, -0.9489, -2.8654, 0.712, -0.9723, -2.1686, 0.1999, -1.0633, -2.7918, 0.2922, 0.9808, -2.7918, 0.2922, -0.9808, -2.8654, 0.712, 0.9723, -2.8654, 0.712, 0.9723, -2.7918, 0.2922, -0.9808, -2.8654, 0.712, -0.9723 )
+
+[sub_resource type="BoxShape" id=19]
+extents = Vector3( 0.404997, 0.303852, 0.1 )
+
+[sub_resource type="Animation" id=20]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_LF_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.552704, 1.75303e-09, 1.25061 ), Vector3( 1.36349, -70.4282, -0.101732 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_LR_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.477103, -2.50013e-09, 2.21178 ), Vector3( 2.25316, -83.0793, -0.206825 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_RF_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.55313, -7.65168e-05, 1.25106 ), Vector3( -1.36398, 70.4722, -0.103032 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_RR_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.477339, -0.000424649, 2.21208 ), Vector3( -2.25355, 83.0598, -0.206276 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hood_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 70 ) ]
+}
+
+[sub_resource type="Animation" id=25]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Trunk_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 88 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Charge_Cap_Spatial:rotation_degrees:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -1.49586, -0.25, 0, 0.19821, 12.8201, 30.2938, -0.173996, -6.32466, 0.205472, 6.9248, 37.1704, -0.243672, -3.98314, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Charge_Cap_Spatial:rotation_degrees:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1.13427, -0.25, 0, 0.192994, 17.5854, 49.9697, -0.180516, -14.6579, 0.223728, 19.4856, 95.9542, -0.188903, -19.3642, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Charge_Cap_Spatial:rotation_degrees:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -37.1788, -0.25, 0, 0.200818, 3.2365, -24.6831, -0.217029, -10.9954, 0.268065, 13.8889, 1.72206, -0.211071, -10.2014, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=27]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_LF_Spatial/Door_LF_Mirror_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2.88542, -0.251368, -4.71664 ), Vector3( 5.3052, 42.0075, -1.5541 ) ]
+}
+
+[sub_resource type="Animation" id=28]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_RF_Spatial/Door_RF_Mirror_Spatial:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.8817, 0.291301, -4.71668 ), Vector3( -5.30348, -42.0045, -1.55321 ) ]
+}
+
+[sub_resource type="Animation" id=29]
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_LF_Spatial/Window_LF_Spatial:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.815062, 0.933955, 0.210735 ), Vector3( -0.8, 0.823, 0.161 ), Vector3( -0.783, 0.689, 0.112 ), Vector3( -0.775, 0.6, 0.085 ), Vector3( -0.766, 0.489, 0.058 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door_LF_Spatial/Window_LF_Spatial:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.552572, 0.0120635, -1.25067 ), Vector3( -4.229, 0.093, -1.257 ), Vector3( -8.401, 0.185, -1.265 ), Vector3( -10.865, 0.241, -1.276 ), Vector3( -14.565, 0.325, -1.293 ) ]
+}
+
+[sub_resource type="Animation" id=30]
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_LR_Spatial/Window_LR_Spatial:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25, 0.5, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.0686034, 0.886976, 0.197587 ), Vector3( -0.068, 0.849, 0.181 ), Vector3( -0.067, 0.791, 0.156 ), Vector3( -0.066, 0.695, 0.12 ), Vector3( -0.062, 0.598, 0.091 ), Vector3( -0.059, 0.502, 0.067 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door_LR_Spatial/Window_LR_Spatial:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.4, 0.5, 0.65, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.476748, 0.0184134, -2.21186 ), Vector3( -3.598, 0.139, -2.2 ), Vector3( -5.453, 0.211, -2.225 ), Vector3( -7.127, 0.276, -2.229 ), Vector3( -8.583, 0.335, -2.24 ), Vector3( -13.267, 0.521, -2.273 ) ]
+}
+
+[sub_resource type="Animation" id=31]
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_RF_Spatial/Window_RF_Spatial:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.815053, 0.933965, -0.210726 ), Vector3( -0.800289, 0.822647, -0.161237 ), Vector3( -0.782571, 0.689165, -0.112079 ), Vector3( -0.774997, 0.60033, -0.0854415 ), Vector3( -0.765529, 0.48934, -0.0577204 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door_RF_Spatial/Window_RF_Spatial:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.553, -0.0120006, -1.25112 ), Vector3( 4.22912, -0.092913, -1.25746 ), Vector3( 8.40112, -0.184718, -1.26463 ), Vector3( 10.865, -0.240851, -1.27589 ), Vector3( 14.5646, -0.325027, -1.2926 ) ]
+}
+
+[sub_resource type="Animation" id=32]
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door_RR_Spatial/Window_RR_Spatial:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25, 0.5, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.0686068, 0.886976, -0.197584 ), Vector3( -0.0680294, 0.84853, -0.180565 ), Vector3( -0.067163, 0.790871, -0.15629 ), Vector3( -0.0657178, 0.694805, -0.119576 ), Vector3( -0.0623679, 0.598203, -0.0914927 ), Vector3( -0.0590171, 0.501628, -0.0666031 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Door_RR_Spatial/Window_RR_Spatial:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.4, 0.5, 0.65, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.477, -0.0180006, -2.21215 ), Vector3( 3.59816, -0.139244, -2.22021 ), Vector3( 5.45267, -0.211229, -2.22467 ), Vector3( 7.12702, -0.276301, -2.2293 ), Vector3( 8.58339, -0.334581, -2.24001 ), Vector3( 13.2673, -0.521419, -2.27276 ) ]
+}
+
+[sub_resource type="QuadMesh" id=33]
+
+[sub_resource type="Animation" id=34]
+length = 5.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.055, -1.488 ), Vector3( 0, -0.04, -1.488 ), Vector3( 0, 0, -1.488 ), Vector3( 0, 0.06, -1.488 ), Vector3( 0, 0.1, -1.488 ), Vector3( 0, 0.16, -1.488 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Wheel_LF_Spatial:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.947, 0.487, -0.831 ), Vector3( 1.947, 0.472, -0.831 ), Vector3( 1.94718, 0.432316, -0.83065 ), Vector3( 1.947, 0.372, -0.831 ), Vector3( 1.947, 0.332, -0.831 ), Vector3( 1.947, 0.272, -0.831 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Wheel_RF_Spatial:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.947, 0.487, 0.831 ), Vector3( 1.947, 0.472, 0.831 ), Vector3( 1.94718, 0.43232, 0.83065 ), Vector3( 1.947, 0.372, 0.831 ), Vector3( 1.947, 0.332, 0.831 ), Vector3( 1.947, 0.272, 0.831 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Wheel_LR_Spatial:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.668, 0.487, -0.831 ), Vector3( -1.668, 0.472, -0.831 ), Vector3( -1.66825, 0.432316, -0.83065 ), Vector3( -1.668, 0.372, -0.831 ), Vector3( -1.668, 0.332, -0.831 ), Vector3( -1.668, 0.272, -0.831 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Wheel_RR_Spatial:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -1.668, 0.487, 0.831 ), Vector3( -1.668, 0.472, 0.831 ), Vector3( -1.66825, 0.43232, 0.83065 ), Vector3( -1.668, 0.372, 0.831 ), Vector3( -1.668, 0.332, 0.831 ), Vector3( -1.668, 0.272, 0.831 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Taillights_Projections2:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.055, 0 ), Vector3( 0, 0.04, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, -0.06, 0 ), Vector3( 0, -0.1, 0 ), Vector3( 0, -0.16, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Headlights_Projections2:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.055, 0 ), Vector3( 0, 0.04, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, -0.06, 0 ), Vector3( 0, -0.1, 0 ), Vector3( 0, -0.16, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Ground_Shadow2:translation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.055, 0 ), Vector3( 0, 0.04, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, -0.06, 0 ), Vector3( 0, -0.1, 0 ), Vector3( 0, -0.16, 0 ) ]
+}
+
+[sub_resource type="ArrayMesh" id=35]
+surfaces/0 = {
+"aabb": AABB( 0.0141295, -0.00977725, 0.0102552, 0.00161048, 0.0195545, 0.000360741 ),
+"array_data": PoolByteArray( 246, 214, 128, 60, 48, 76, 31, 60, 62, 5, 40, 60, 3, 126, 254, 0, 130, 3, 5, 129, 0, 0, 0, 0, 0, 0, 128, 63, 5, 128, 103, 60, 197, 23, 32, 60, 71, 30, 41, 60, 3, 126, 254, 0, 130, 3, 5, 129, 0, 0, 128, 63, 0, 0, 128, 63, 107, 180, 103, 60, 193, 48, 32, 60, 244, 237, 45, 60, 3, 126, 254, 0, 130, 3, 5, 129, 0, 0, 128, 63, 0, 224, 80, 63, 41, 241, 128, 60, 43, 101, 31, 60, 237, 212, 44, 60, 3, 126, 254, 0, 130, 3, 5, 129, 0, 0, 0, 0, 0, 224, 80, 63, 117, 127, 103, 60, 42, 101, 31, 188, 161, 30, 41, 60, 253, 130, 2, 0, 126, 253, 251, 129, 0, 0, 0, 0, 0, 0, 128, 63, 174, 214, 128, 60, 191, 48, 32, 188, 151, 5, 40, 60, 253, 130, 2, 0, 126, 253, 251, 129, 0, 0, 128, 63, 0, 0, 128, 63, 225, 240, 128, 60, 196, 23, 32, 188, 68, 213, 44, 60, 253, 130, 2, 0, 126, 253, 251, 129, 0, 0, 128, 63, 0, 224, 80, 63, 220, 179, 103, 60, 46, 76, 31, 188, 77, 238, 45, 60, 253, 130, 2, 0, 126, 253, 251, 129, 0, 0, 0, 0, 0, 224, 80, 63 ),
+"array_index_data": PoolByteArray( 3, 0, 2, 0, 1, 0, 3, 0, 1, 0, 0, 0, 7, 0, 6, 0, 5, 0, 7, 0, 5, 0, 4, 0 ),
+"blend_shape_data": [  ],
+"format": 89367,
+"index_count": 12,
+"name": "Plane.002",
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 8
+}
+
+[node name="ROOT" instance=ExtResource( 1 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
+script = ExtResource( 15 )
+vehicle_scale = 1.0
+has_us_plate = true
+skybox_enable = true
+allow_sourcing_roof_fade_material_from_mesh = true
+charging_cable_alpha_decrease_offset_begin = 0.0
+charging_cable_alpha_decrease_offset_end = 0.65
+adjust_paint_rough_for_skins = false
+paint_overlay_material = ExtResource( 56 )
+max_tint_color = 0.025
+body_path = NodePath("Body2")
+ground_shadow_path = NodePath("Ground_Shadow2")
+plate_us_path = NodePath("Plate_US2")
+plate_eu_path = NodePath("Plate_EU2")
+plate_viewport_path = NodePath("Plate_Viewport")
+reverse_lights_path = NodePath("Reverse_Lights2")
+turn_signal_r_path = NodePath("Right_Turn_Signal_Front2")
+turn_signal_l_path = NodePath("Left_Turn_Signal_Front2")
+drl_path = NodePath("Hood_Spatial/DRL2")
+headlights_path = NodePath("Headlights2")
+headlights_trunk_path = NodePath("Trunk_Spatial/Headlights_Trunk2")
+brake_lights_l_path = NodePath("Brake_Lights_Left2")
+brake_lights_r_path = NodePath("Brake_Lights_Right2")
+brake_lights_center_path = NodePath("Trunk_Spatial/Brake_Lights_Trunk2")
+taillights_projection_path = NodePath("Taillights_Projections2")
+headlights_projection_path = NodePath("Headlights_Projections2")
+charge_port_path = NodePath("Spatials/ChargeportMarker")
+lf_door_path = NodePath("Door_LF_Spatial/Door_LF2")
+lr_door_path = NodePath("Door_LR_Spatial/Door_LR2")
+rf_door_path = NodePath("Door_RF_Spatial/Door_RF2")
+rr_door_path = NodePath("Door_RR_Spatial/Door_RR2")
+trunk_path = NodePath("Trunk_Spatial/Trunk2")
+hood_path = NodePath("Hood_Spatial/Hood2")
+lf_wheel_path = NodePath("Wheel_LF_Spatial")
+lr_wheel_path = NodePath("Wheel_LR_Spatial")
+rf_wheel_path = NodePath("Wheel_RF_Spatial")
+rr_wheel_path = NodePath("Wheel_RR_Spatial")
+front_marker_path = NodePath("FrontMarker")
+rear_marker_path = NodePath("RearMarker")
+interior_rhd_path = NodePath("Interior_Body_RHD2")
+interior_lhd_path = NodePath("Interior_Body2")
+local_dir = "Ego/Cybertruck"
+defrost_front_path = NodePath("Defrost_Front")
+defrost_rear_path = NodePath("Defrost_Rear")
+marker_locators_paths = [ NodePath("Wheel_LF_Spatial/Wheels_Marker"), NodePath("Hood_Spatial/Frunk_Marker"), NodePath("Door_LF_Spatial/LF_Door_Marker"), NodePath("Door_RF_Spatial/RF_Door_Marker"), NodePath("Door_LR_Spatial/LR_Door_Marker"), NodePath("Door_RR_Spatial/RR_Door_Marker"), NodePath("Chargeport_Marker"), NodePath("Trunk_Spatial/Trunk_Marker"), NodePath("Body2/Tonneau_Marker"), NodePath("Body2/Lock_Marker"), NodePath("Plate_Marker") ]
+wheel_marker_locators_paths = [ NodePath("Wheel_LF_Spatial/Wheels_Marker") ]
+lock_lights_paths = [ NodePath("Door_LED_LF2"), NodePath("Door_LED_LR2"), NodePath("Door_LED_RR2"), NodePath("Door_LED_RF2") ]
+foundation_badges_paths = [ NodePath("Decals_exterior"), NodePath("Trunk_Spatial/Decal_liftgate_foundation") ]
+cerberus_decal_path = NodePath("Trunk_Spatial/Decal_liftgate_cerberus")
+headlight_beam_path = NodePath("Hood_Spatial/Headlights_Beam2")
+headlights_rear_left_path = NodePath("Headllights_Rear_Left2")
+headlights_rear_right_path = NodePath("Headllights_Rear_Right2")
+bed_light_path = NodePath("Bed_Light2")
+bed_light_rwd_path = NodePath("Bed_Light_RWD2")
+truck_bed_path = NodePath("Truck_Bed2")
+truck_bed_rwd_path = NodePath("Truck_Bed_RWD2")
+tonneau_path = NodePath("Tonneau")
+screen_rear_path = NodePath("Screen_Rear2")
+center_console_path = NodePath("Center_Console2")
+center_console_rwd_path = NodePath("Center_Console_RWD2")
+headlights_side_right_path = NodePath("Headlights_Side_Right2")
+headlights_side_left_path = NodePath("Headlights_Side_Left2")
+bed_light_on = true
+glass_skybox_material_to_config_path = {
+"res://Ego/Cybertruck/Glass_Skybox_Fade.material": NodePath("MaterialConfig/GlassSkyboxFadeConfig"),
+"res://Ego/Cybertruck/Glass_Tinted_Skybox.material": NodePath("MaterialConfig/GlassTintedSkyboxConfig"),
+"res://Ego/Cybertruck/Glass_Tinted_Skybox_Fade.material": NodePath("MaterialConfig/GlassTintedSkyboxFadeConfig")
+}
+glass_sky_box_material_to_mobile_config_path = {
+"res://Ego/Cybertruck/Glass_Skybox_Fade.material": NodePath("MaterialConfig/GlassSkyboxFadeMobileConfig"),
+"res://Ego/Cybertruck/Glass_Tinted_Skybox.material": NodePath("MaterialConfig/GlassTintedSkyboxMobileConfig"),
+"res://Ego/Cybertruck/Glass_Tinted_Skybox_Fade.material": NodePath("MaterialConfig/GlassTintedSkyboxFadeMobileConfig")
+}
+paint_mix_mat = ExtResource( 23 )
+paint_mix_config_path = NodePath("MaterialConfig/PaintMixConfig")
+paint_mix_mobile_config_path = NodePath("MaterialConfig/PaintMixMobileConfig")
+
+[node name="Tonneau" parent="." index="0" instance=ExtResource( 26 )]
+visible = false
+
+[node name="Suspension_Dynamic_Collision_Area" type="Area" parent="Wheel_LF_Spatial/Wheels_Marker" index="0"]
+visible = false
+
+[node name="Suspension_Collision" type="CollisionShape" parent="Wheel_LF_Spatial/Wheels_Marker/Suspension_Dynamic_Collision_Area" index="0"]
+transform = Transform( 1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -1.94718, -0.432316, 1.1 )
+shape = SubResource( 1 )
+
+[node name="Hood_Spatial" parent="." index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9289, 1.22923, 0 )
+
+[node name="Frunk_Marker_Dynamic_Collision_Area" type="Area" parent="Hood_Spatial/Frunk_Marker" index="0"]
+visible = false
+
+[node name="Frunk_Marker_Collision" type="CollisionShape" parent="Hood_Spatial/Frunk_Marker/Frunk_Marker_Dynamic_Collision_Area" index="0"]
+shape = SubResource( 2 )
+
+[node name="Frunk_Collision" type="CollisionShape" parent="Hood_Spatial/Frunk_Marker/Frunk_Marker_Dynamic_Collision_Area" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.756, -1.223, 0 )
+shape = SubResource( 3 )
+
+[node name="Hood2" parent="Hood_Spatial" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.929, -1.229, 1.32944e-13 )
+material/0 = ExtResource( 23 )
+
+[node name="DRL2" parent="Hood_Spatial" index="3"]
+visible = false
+
+[node name="Headlights_Beam2" parent="Hood_Spatial" index="4"]
+transform = Transform( 0.999634, 0.0270493, 0, -0.0270493, 0.999634, 0, 0, 0, 1, -1.958, -1.11, 0 )
+visible = false
+script = ExtResource( 36 )
+
+[node name="LeftGlow" type="MeshInstance" parent="Hood_Spatial/Headlights_Beam2" index="0"]
+transform = Transform( -0.746913, 0, -0.0906325, 0, 0.531, 2.32831e-10, 0.0679744, 0, -0.995884, 4.419, 0.983, -1.181 )
+visible = false
+mesh = SubResource( 4 )
+material/0 = ExtResource( 35 )
+
+[node name="RightGlow" type="MeshInstance" parent="Hood_Spatial/Headlights_Beam2" index="1"]
+transform = Transform( -0.746913, -4.35315e-08, -0.0906325, -6.55671e-08, 0.5, 0, -0.0679744, -3.96167e-09, 0.995884, 4.419, 0.982, 1.181 )
+visible = false
+mesh = SubResource( 4 )
+material/0 = ExtResource( 35 )
+
+[node name="HorizontalGlow" type="MeshInstance" parent="Hood_Spatial/Headlights_Beam2" index="2"]
+transform = Transform( 0.449, 0, 0, 0, -2.91118e-08, 1, 0, -0.666, -4.37114e-08, 3.6499, 0.94065, -5.68434e-14 )
+mesh = SubResource( 5 )
+material/0 = ExtResource( 34 )
+
+[node name="FaceOnGlow" type="MeshInstance" parent="Hood_Spatial/Headlights_Beam2" index="3"]
+transform = Transform( 1, 5.21523e-08, -4.8162e-13, -3.1665e-08, 1.647, -9.41509e-15, 4.68958e-13, 1.5099e-14, 1.027, 0.01, -0.648, 0 )
+mesh = ExtResource( 39 )
+material/0 = ExtResource( 33 )
+
+[node name="Door_LF_Spatial" parent="." index="7"]
+transform = Transform( 0.999762, -0.0218255, 3.05947e-11, 0.0218245, 0.999715, -0.00964635, 0.000210537, 0.00964405, 0.999953, 1.29491, 0.815283, -0.941651 )
+
+[node name="Door_LF_Mirror_Spatial" parent="Door_LF_Spatial" index="0"]
+transform = Transform( 0.996622, 0.082007, -0.00438163, -0.0821237, 0.99535, -0.0503387, 0.000233124, 0.0505285, 0.998723, -0.0895301, 0.464745, -0.094167 )
+
+[node name="MIrror_L2" parent="Door_LF_Spatial/Door_LF_Mirror_Spatial" index="0"]
+transform = Transform( 0.998178, -0.0603437, -0.000348008, 0.0602554, 0.996369, 0.0601452, -0.00328264, -0.0600565, 0.99819, -1.116, -1.284, 1.11 )
+
+[node name="Window_LF_Spatial" parent="Door_LF_Spatial" index="2"]
+transform = Transform( 0.999762, 0.0218246, 0.000210539, -0.0218256, 0.999716, 0.00964411, -1.03319e-09, -0.00964636, 0.99996, -0.815062, 0.933955, 0.210735 )
+
+[node name="Window_LF2" parent="Door_LF_Spatial/Window_LF_Spatial" index="0"]
+transform = Transform( 1, 3.49246e-09, 2.84217e-14, 6.98492e-09, 1, 1.86265e-09, 2.98023e-08, -2.32831e-09, 1, -0.46, -1.729, 0.722 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 25 )
+material/2 = ExtResource( 13 )
+
+[node name="Window_LF_Dynamic_Collision_Area" type="Area" parent="Door_LF_Spatial/Window_LF_Spatial/Window_LF2" index="0"]
+visible = false
+
+[node name="Window_Collision" type="CollisionShape" parent="Door_LF_Spatial/Window_LF_Spatial/Window_LF2/Window_LF_Dynamic_Collision_Area" index="0"]
+transform = Transform( 0.01, -8.53755e-10, -1.21717e-10, 5.61006e-10, 0.00993605, 0.00112908, 2.38275e-11, -0.00112908, 0.00993599, 0.000342296, 0.0748774, 0.217263 )
+shape = SubResource( 6 )
+
+[node name="Door_LF2" parent="Door_LF_Spatial" index="3"]
+transform = Transform( 0.999762, 0.0218246, 0.000210537, -0.0218256, 0.999715, 0.00964406, -4.51053e-11, -0.00964635, 0.999953, -1.3122, -0.777707, 0.949471 )
+material/0 = ExtResource( 23 )
+
+[node name="Door_RF_Spatial" parent="." index="8"]
+transform = Transform( 0.999762, -0.0218334, -1.33541e-06, 0.0218324, 0.999715, 0.00965379, -0.00020944, -0.00965152, 0.999953, 1.29491, 0.81528, 0.94165 )
+
+[node name="Door_RF_Mirror_Spatial" parent="Door_RF_Spatial" index="0"]
+transform = Transform( 0.996622, 0.0819728, 0.0050777, -0.0821247, 0.995353, 0.050274, -0.000933005, -0.0505211, 0.998723, -0.0895243, 0.464748, 0.0941712 )
+
+[node name="Window_RF_Spatial" parent="Door_RF_Spatial" index="1"]
+transform = Transform( 0.999761, 0.0218324, -0.00020944, -0.0218334, 0.999714, -0.00965151, -1.3354e-06, 0.00965378, 0.999952, -0.815053, 0.933965, -0.210726 )
+
+[node name="Window_RF2" parent="Door_RF_Spatial/Window_RF_Spatial" index="0"]
+transform = Transform( 1, -3.63798e-12, 1.81899e-12, 3.63798e-12, 1, -1.532e-08, -9.09495e-13, 1.44823e-08, 1, -0.46, -1.729, -0.722 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 25 )
+material/2 = ExtResource( 13 )
+
+[node name="Door_RF2" parent="Door_RF_Spatial" index="3"]
+material/0 = ExtResource( 23 )
+
+[node name="Doorcard_RF2" parent="Door_RF_Spatial" index="5"]
+transform = Transform( 0.999762, 0.0218323, -0.00020944, -0.0218333, 0.999715, -0.00965152, -1.33542e-06, 0.00965379, 0.999953, -1.3122, -0.777687, -0.949475 )
+
+[node name="Door_LR_Spatial" parent="." index="9"]
+transform = Transform( 0.999255, -0.0385932, -4.3634e-11, 0.0385919, 0.99922, -0.00832692, 0.000321363, 0.00832072, 0.999965, 0.194955, 0.814035, -0.952492 )
+
+[node name="Window_LR_Spatial" parent="Door_LR_Spatial" index="1"]
+transform = Transform( 0.999255, 0.038592, 0.000321365, -0.0385933, 0.99922, 0.00832076, 4.94765e-10, -0.00832693, 0.999969, -0.0686034, 0.886976, 0.197587 )
+
+[node name="Window_LR2" parent="Door_LR_Spatial/Window_LR_Spatial" index="0"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 4 )
+material/2 = ExtResource( 13 )
+
+[node name="Window_LR_Dynamic_Collision_Area" type="Area" parent="Door_LR_Spatial/Window_LR_Spatial/Window_LR2" index="0"]
+visible = false
+
+[node name="Window_Collision" type="CollisionShape" parent="Door_LR_Spatial/Window_LR_Spatial/Window_LR2/Window_LR_Dynamic_Collision_Area" index="0"]
+transform = Transform( 0.01, -1.43562e-09, -4.39038e-11, 4.44041e-10, 0.00999695, 0.000247288, 2.29816e-13, -0.000247287, 0.00999691, 3.97283e-07, -0.0100123, 0.0853803 )
+shape = SubResource( 7 )
+
+[node name="Door_LR2" parent="Door_LR_Spatial" index="2"]
+transform = Transform( 0.999255, 0.0385919, 0.000321364, -0.0385933, 0.99922, 0.00832072, -6.13909e-12, -0.00832693, 0.999965, -0.225919, -0.797951, 0.959237 )
+material/0 = ExtResource( 23 )
+
+[node name="Door_RR_Spatial" parent="." index="10"]
+transform = Transform( 0.999255, -0.0385984, -7.41127e-06, 0.0385971, 0.99922, 0.00833104, -0.000314159, -0.00832512, 0.999965, 0.19496, 0.81404, 0.95249 )
+
+[node name="Window_RR_Spatial" parent="Door_RR_Spatial" index="1"]
+transform = Transform( 0.999255, 0.0385971, -0.000314159, -0.0385984, 0.99922, -0.00832513, -7.41173e-06, 0.00833104, 0.999966, -0.0686068, 0.886976, -0.197584 )
+
+[node name="Window_RR2" parent="Door_RR_Spatial/Window_RR_Spatial" index="0"]
+transform = Transform( 1, -7.68341e-09, 0, -6.0536e-09, 1, 7.45058e-09, -1.49012e-08, 0, 1, -0.0919237, -1.69251, -0.747828 )
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 4 )
+material/2 = ExtResource( 13 )
+
+[node name="Door_RR2" parent="Door_RR_Spatial" index="2"]
+material/0 = ExtResource( 23 )
+
+[node name="Charge_Cap_Spatial" parent="." index="11"]
+transform = Transform( 0.79691, 0.603774, 0.0197887, -0.604099, 0.796482, 0.0261047, 3.72529e-09, -0.0327574, 0.999463, -2.05229, 1.0194, -0.952697 )
+
+[node name="ChargeCap2" parent="Charge_Cap_Spatial" index="0"]
+transform = Transform( 0.79691, -0.604099, -2.98023e-08, 0.603774, 0.796482, -0.0327573, 0.0197888, 0.0261047, 0.999463, 2.25131, 0.39598, 0.966187 )
+
+[node name="Trunk_Spatial" parent="." index="12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70352, 0.79622, 0 )
+
+[node name="Trunk_Marker_Dynamic_Collision_Area" type="Area" parent="Trunk_Spatial/Trunk_Marker" index="0"]
+visible = false
+
+[node name="Trunk_Collision" type="CollisionShape" parent="Trunk_Spatial/Trunk_Marker/Trunk_Marker_Dynamic_Collision_Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.844, -1.5, 0 )
+shape = SubResource( 8 )
+
+[node name="Trunk_Marker_Collision" type="CollisionShape" parent="Trunk_Spatial/Trunk_Marker/Trunk_Marker_Dynamic_Collision_Area" index="1"]
+shape = SubResource( 9 )
+
+[node name="Trunk2" parent="Trunk_Spatial" index="1"]
+material/1 = ExtResource( 23 )
+
+[node name="Lights_Trunk_RWD2" parent="Trunk_Spatial" index="2"]
+material/0 = ExtResource( 45 )
+
+[node name="Decal_liftgate_foundation" type="MeshInstance" parent="Trunk_Spatial" index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70352, -0.79622, 0 )
+visible = false
+mesh = SubResource( 10 )
+material/0 = ExtResource( 18 )
+
+[node name="TrunkMarker" type="Spatial" parent="Trunk_Spatial" index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0 )
+script = ExtResource( 40 )
+marker_name = "trunk"
+
+[node name="Decal_liftgate_cerberus" type="MeshInstance" parent="Trunk_Spatial" index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70352, -0.79622, 0 )
+visible = false
+mesh = SubResource( 11 )
+material/0 = ExtResource( 18 )
+
+[node name="Steering_Wheel_Spatial" parent="." index="13"]
+script = ExtResource( 40 )
+marker_name = "steeringWheel"
+
+[node name="Taillights_Projections2" parent="." index="17"]
+visible = false
+material/0 = ExtResource( 37 )
+
+[node name="Headlights_Projections2" parent="." index="18"]
+visible = false
+material/0 = ExtResource( 38 )
+
+[node name="Windows_Top2" parent="." index="19"]
+material/0 = ExtResource( 19 )
+material/1 = ExtResource( 24 )
+material/2 = ExtResource( 12 )
+material/3 = ExtResource( 11 )
+material/4 = ExtResource( 14 )
+material/5 = ExtResource( 20 )
+material/6 = ExtResource( 4 )
+material/7 = ExtResource( 25 )
+material/8 = ExtResource( 13 )
+material/9 = ExtResource( 2 )
+
+[node name="Ground_Shadow2" parent="." index="20"]
+material/0 = ExtResource( 17 )
+
+[node name="Bed_Light2" parent="." index="21"]
+visible = false
+
+[node name="Right_Turn_Signal_Front2" parent="." index="23"]
+visible = false
+
+[node name="Left_Turn_Signal_Front2" parent="." index="24"]
+visible = false
+
+[node name="Reverse_Lights2" parent="." index="25"]
+visible = false
+
+[node name="Headllights_Rear_Right2" parent="." index="26"]
+visible = false
+
+[node name="Brake_Lights_Left2" parent="." index="27"]
+visible = false
+
+[node name="Headllights_Rear_Left2" parent="." index="28"]
+visible = false
+
+[node name="Brake_Lights_Right2" parent="." index="29"]
+visible = false
+
+[node name="Door_LED_LF2" parent="." index="31"]
+visible = false
+
+[node name="Door_LED_LR2" parent="." index="32"]
+visible = false
+
+[node name="Plate_Marker" type="Spatial" parent="." index="33"]
+transform = Transform( 1, 0, 0, 0, 1, 1.88601e-28, 0, 1.88601e-28, 1, -2.86535, 0.631938, -9.27236e-08 )
+
+[node name="Plate_Marker_Dynamic_Collision_Area" type="Area" parent="Plate_Marker" index="0"]
+
+[node name="Plate_Marker_Collision" type="CollisionShape" parent="Plate_Marker/Plate_Marker_Dynamic_Collision_Area" index="0"]
+shape = SubResource( 12 )
+
+[node name="Plate_Collision" type="CollisionShape" parent="Plate_Marker/Plate_Marker_Dynamic_Collision_Area" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 1.88601e-28, 0, 1.88601e-28, 1, 0.141814, -0.0077697, 4.1034e-08 )
+shape = SubResource( 13 )
+
+[node name="Headlights2" parent="." index="34"]
+visible = false
+
+[node name="Door_LED_RR2" parent="." index="35"]
+visible = false
+
+[node name="Door_LED_RF2" parent="." index="36"]
+visible = false
+
+[node name="Headlights_Side_Right2" parent="." index="37"]
+visible = false
+
+[node name="Headlights_Side_Left2" parent="." index="38"]
+visible = false
+
+[node name="Park_Lights2" parent="." index="39"]
+visible = false
+
+[node name="Truck_Bed_RWD2" parent="." index="41"]
+visible = false
+material/0 = ExtResource( 53 )
+
+[node name="Center_Console_RWD2" parent="." index="42"]
+visible = false
+material/0 = ExtResource( 48 )
+material/1 = ExtResource( 48 )
+material/2 = ExtResource( 47 )
+material/3 = ExtResource( 52 )
+material/4 = ExtResource( 49 )
+material/5 = ExtResource( 51 )
+material/6 = ExtResource( 50 )
+
+[node name="Bed_Light_RWD2" parent="." index="43"]
+visible = false
+material/0 = ExtResource( 46 )
+
+[node name="Body2" parent="." index="44"]
+material/6 = ExtResource( 23 )
+
+[node name="Tonneau_Marker" parent="Body2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18307, 1.74957, 1.21017e-07 )
+
+[node name="Tonneau_Marker_Dynamic_Collision_Area" type="Area" parent="Body2/Tonneau_Marker" index="0"]
+
+[node name="Tonneau_Collision" type="CollisionShape" parent="Body2/Tonneau_Marker/Tonneau_Marker_Dynamic_Collision_Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1893, -1.77543, -3.67718e-08 )
+shape = SubResource( 14 )
+
+[node name="Tonneau_Marker_Collision" type="CollisionShape" parent="Body2/Tonneau_Marker/Tonneau_Marker_Dynamic_Collision_Area" index="1"]
+shape = SubResource( 15 )
+
+[node name="Lock_Marker_Dynamic_Collision_Area" type="Area" parent="Body2/Lock_Marker" index="0"]
+visible = false
+
+[node name="Lock_Collision" type="CollisionShape" parent="Body2/Lock_Marker/Lock_Marker_Dynamic_Collision_Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.465, -1.913, 0 )
+shape = SubResource( 16 )
+
+[node name="Lock_Marker_Collision" type="CollisionShape" parent="Body2/Lock_Marker/Lock_Marker_Dynamic_Collision_Area" index="1"]
+shape = SubResource( 17 )
+
+[node name="Blocker_Collision_Area" type="Area" parent="Body2" index="2"]
+visible = false
+
+[node name="Blocker_Collision" type="CollisionShape" parent="Body2/Blocker_Collision_Area" index="0"]
+transform = Transform( 0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.91, 0, 0, 0 )
+shape = SubResource( 18 )
+
+[node name="Window_R2" parent="." index="48"]
+material/0 = ExtResource( 5 )
+material/1 = ExtResource( 4 )
+
+[node name="Plate_EU2" parent="." index="49"]
+visible = false
+material/0 = ExtResource( 22 )
+
+[node name="Chargeport_Static_Collision_Area" type="Area" parent="." index="50"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.052, 1.019, -0.953 )
+visible = false
+
+[node name="Chargeport_Marker_Collision" type="CollisionShape" parent="Chargeport_Static_Collision_Area" index="0"]
+shape = SubResource( 19 )
+
+[node name="Frunk_Static_Collision_Area" type="Area" parent="." index="51"]
+visible = false
+
+[node name="Frunk_Collision" type="CollisionShape" parent="Frunk_Static_Collision_Area" index="0"]
+shape = SubResource( 3 )
+
+[node name="Trunk_Static_Collision_Area" type="Area" parent="." index="52"]
+visible = false
+
+[node name="Trunk_Collision" type="CollisionShape" parent="Trunk_Static_Collision_Area" index="0"]
+shape = SubResource( 8 )
+
+[node name="LFDoorAnimation" type="AnimationPlayer" parent="." index="53"]
+anims/LFDoor = SubResource( 20 )
+
+[node name="LRDoorAnimation" type="AnimationPlayer" parent="." index="54"]
+anims/LRDoor = SubResource( 21 )
+
+[node name="RFDoorAnimation" type="AnimationPlayer" parent="." index="55"]
+anims/RFDoor = SubResource( 22 )
+
+[node name="RRDoorAnimation" type="AnimationPlayer" parent="." index="56"]
+anims/RRDoor = SubResource( 23 )
+
+[node name="HoodAnimation" type="AnimationPlayer" parent="." index="57"]
+anims/Hood = SubResource( 24 )
+
+[node name="TrunkAnimation" type="AnimationPlayer" parent="." index="58"]
+anims/Trunk = SubResource( 25 )
+
+[node name="ChargeportAnimation" type="AnimationPlayer" parent="." index="59"]
+anims/Chargecap = SubResource( 26 )
+
+[node name="LFDoorMirrorAnimation" type="AnimationPlayer" parent="." index="60"]
+anims/LFMirror = SubResource( 27 )
+
+[node name="RFDoorMirrorAnimation" type="AnimationPlayer" parent="." index="61"]
+anims/RFDoor = SubResource( 28 )
+
+[node name="LFWindowAnimation" type="AnimationPlayer" parent="." index="62"]
+anims/LFWindow = SubResource( 29 )
+
+[node name="LRWindowAnimation" type="AnimationPlayer" parent="." index="63"]
+anims/LRWindow = SubResource( 30 )
+
+[node name="RFWindowAnimation" type="AnimationPlayer" parent="." index="64"]
+anims/RFWindow = SubResource( 31 )
+
+[node name="RRWindowAnimation" type="AnimationPlayer" parent="." index="65"]
+anims/RRWindow = SubResource( 32 )
+
+[node name="Defrost_Front" type="MeshInstance" parent="." index="66"]
+visible = false
+mesh = ExtResource( 28 )
+material/0 = ExtResource( 30 )
+script = ExtResource( 31 )
+
+[node name="Defrost_Rear" type="MeshInstance" parent="." index="67"]
+visible = false
+mesh = ExtResource( 27 )
+material/0 = ExtResource( 29 )
+script = ExtResource( 32 )
+
+[node name="Spatials" type="Spatial" parent="." index="68"]
+
+[node name="ChargeportMarker" type="Spatial" parent="Spatials" index="0"]
+transform = Transform( 0.79691, 0.603774, 0.0197887, -0.604099, 0.796482, 0.0261047, 6.47233e-09, -0.0327574, 0.999463, -2.01, 0.985, -0.94 )
+script = ExtResource( 40 )
+marker_name = "chargePort"
+
+[node name="OutletMarker" type="Spatial" parent="Spatials" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.558, 1.03, -0.715 )
+script = ExtResource( 40 )
+marker_name = "outlet"
+
+[node name="SeatRow1LMarker" type="Spatial" parent="Spatials" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.536, 0.825, -0.417 )
+script = ExtResource( 40 )
+marker_name = "seatRow1L"
+
+[node name="SeatRow1RMarker" type="Spatial" parent="Spatials" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.536, 0.825, 0.417 )
+script = ExtResource( 40 )
+marker_name = "seatRow1R"
+
+[node name="SeatRow2LMarker" type="Spatial" parent="Spatials" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.355, 0.825, -0.417 )
+script = ExtResource( 40 )
+marker_name = "seatRow2L"
+
+[node name="SeatRow2RMarker" type="Spatial" parent="Spatials" index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.355, 0.825, 0.417 )
+script = ExtResource( 40 )
+marker_name = "seatRow2R"
+
+[node name="LockMarker" type="Spatial" parent="Spatials" index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.259, 1.76, 0 )
+script = ExtResource( 40 )
+marker_name = "lock"
+
+[node name="Wheel_LF_Marker" type="Spatial" parent="Spatials" index="7"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.94718, 0.432316, -0.83065 )
+script = ExtResource( 40 )
+marker_name = "wheel_1_1"
+
+[node name="Wheel_RF_Spatial" type="Spatial" parent="Spatials" index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94718, 0.43232, 0.83065 )
+script = ExtResource( 40 )
+marker_name = "wheel_1_2"
+
+[node name="Wheel_LR_Marker" type="Spatial" parent="Spatials" index="9"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.66825, 0.432316, -0.83065 )
+script = ExtResource( 40 )
+marker_name = "wheel_2_1"
+
+[node name="Wheel_RR_Marker" type="Spatial" parent="Spatials" index="10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66825, 0.43232, 0.83065 )
+script = ExtResource( 40 )
+marker_name = "wheel_2_2"
+
+[node name="FrunkMarker" type="Spatial" parent="Spatials" index="11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4789, 1.22923, 0 )
+script = ExtResource( 40 )
+marker_name = "frunk"
+
+[node name="TrunkMarker" type="Spatial" parent="Spatials" index="12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.20352, 0.79622, 0 )
+script = ExtResource( 40 )
+marker_name = "trunk"
+
+[node name="LF_Door_Marker" type="Spatial" parent="Spatials" index="13"]
+transform = Transform( 1, 7.66593e-08, 8.01251e-10, -5.2154e-08, 1, 9.31323e-10, -9.67901e-11, -9.3131e-10, 0.999999, 0.749788, 0.98, -1.1 )
+script = ExtResource( 40 )
+marker_name = "doorFrontL"
+
+[node name="RF_Door_Marker" type="Spatial" parent="Spatials" index="14"]
+transform = Transform( 1, -5.60225e-08, 5.0288e-10, 6.72023e-08, 1, -1.21072e-08, -4.99682e-10, -3.7253e-09, 1, 0.74979, 0.98, 1.1 )
+script = ExtResource( 40 )
+marker_name = "doorFrontR"
+
+[node name="LR_Door_Marker" type="Spatial" parent="Spatials" index="15"]
+transform = Transform( 1, 7.68749e-08, 6.72685e-10, -3.35276e-08, 1, 6.51926e-09, -3.22387e-10, -2.79396e-09, 1, -0.232463, 0.98, -1.1 )
+script = ExtResource( 40 )
+marker_name = "doorRearL"
+
+[node name="RR_Door_Marker" type="Spatial" parent="Spatials" index="16"]
+transform = Transform( 1, -2.31335e-08, 2.37392e-10, 9.03652e-09, 1, -6.51926e-09, 1.40588e-10, 9.31319e-10, 1, -0.232463, 0.98, 1.1 )
+script = ExtResource( 40 )
+marker_name = "doorRearR"
+
+[node name="Steering_Wheel_Marker" type="Spatial" parent="Spatials" index="17"]
+transform = Transform( 0.92746, 0.373921, 0, -0.373921, 0.92746, 0, 0, 0, 1, 0.930359, 1.16559, -0.414988 )
+script = ExtResource( 40 )
+marker_name = "steeringWheel"
+
+[node name="Airflow_left" type="MeshInstance" parent="Spatials" index="18"]
+transform = Transform( -8.59359e-08, 0.754363, 0.173648, 3.07805e-08, -0.133014, 0.984808, 0.544, 1.26693e-07, -2.82909e-08, 0.81, 1.31, -0.41 )
+visible = false
+mesh = SubResource( 33 )
+material_override = ExtResource( 41 )
+script = ExtResource( 42 )
+
+[node name="Airflow_right" type="MeshInstance" parent="Spatials" index="19"]
+transform = Transform( -8.59359e-08, 0.754363, 0.173648, 3.07805e-08, -0.133014, 0.984808, 0.544, 1.26693e-07, -2.82909e-08, 0.81, 1.31, 0.41 )
+visible = false
+mesh = SubResource( 33 )
+material_override = ExtResource( 41 )
+script = ExtResource( 42 )
+
+[node name="Tween" type="Tween" parent="Spatials" index="20"]
+
+[node name="SuspensionAnimation" type="AnimationPlayer" parent="." index="69"]
+anims/Suspension = SubResource( 34 )
+
+[node name="Plate_US2" parent="." index="70"]
+material/0 = ExtResource( 22 )
+
+[node name="MaterialConfig" type="Node" parent="." index="79"]
+
+[node name="PaintMixConfig" type="Node" parent="MaterialConfig" index="0"]
+script = ExtResource( 43 )
+color_bright = Color( 0.215686, 0.215686, 0.215686, 1 )
+color_dark = Color( 0.156863, 0.156863, 0.156863, 1 )
+metallic_bright = 0.9
+metallic_dark = 1.0
+metallic_away_and_up = 1.2
+roughness_bright = 0.15
+roughness_dark = 0.15
+roughness_away_and_up = 1.2
+
+[node name="PaintMixMobileConfig" type="Node" parent="MaterialConfig" index="1"]
+script = ExtResource( 43 )
+color_bright = Color( 0.215686, 0.215686, 0.215686, 1 )
+color_dark = Color( 0.156863, 0.156863, 0.156863, 1 )
+metallic_bright = 0.9
+metallic_dark = 1.0
+metallic_away_and_up = 1.2
+roughness_bright = 0.15
+roughness_dark = 0.4
+roughness_away_and_up = 1.2
+
+[node name="GlassTintedSkyboxFadeConfig" type="Node" parent="MaterialConfig" index="2"]
+script = ExtResource( 44 )
+roughness_parallel = 0.5
+roughness_perpendicular = 0.625
+specular = 0.5
+alpha_perpendicular = 170.0
+
+[node name="GlassTintedSkyboxFadeMobileConfig" type="Node" parent="MaterialConfig" index="3"]
+script = ExtResource( 44 )
+roughness_parallel = 0.6
+roughness_perpendicular = 0.6
+specular = 0.5
+alpha_perpendicular = 180.0
+
+[node name="GlassTintedSkyboxConfig" type="Node" parent="MaterialConfig" index="4"]
+script = ExtResource( 44 )
+roughness_parallel = 0.01
+roughness_perpendicular = 0.01
+specular = 0.5
+alpha_perpendicular = 200.0
+
+[node name="GlassTintedSkyboxMobileConfig" type="Node" parent="MaterialConfig" index="5"]
+script = ExtResource( 44 )
+roughness_parallel = 0.01
+roughness_perpendicular = 0.01
+specular = 0.5
+alpha_perpendicular = 200.0
+
+[node name="GlassSkyboxFadeConfig" type="Node" parent="MaterialConfig" index="6"]
+script = ExtResource( 44 )
+roughness_parallel = 0.2
+roughness_perpendicular = 0.2
+specular = 0.5
+alpha_perpendicular = 120.0
+
+[node name="GlassSkyboxFadeMobileConfig" type="Node" parent="MaterialConfig" index="7"]
+script = ExtResource( 44 )
+roughness_parallel = 0.5
+roughness_perpendicular = 0.5
+specular = 0.5
+alpha_perpendicular = 200.0
+
+[node name="Decals_exterior" type="MeshInstance" parent="." index="80"]
+transform = Transform( 100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, -0.003 )
+visible = false
+mesh = SubResource( 35 )
+material/0 = ExtResource( 18 )
+
+[node name="Plate_Viewport" parent="." index="81" instance=ExtResource( 21 )]
+
+[node name="FrontMarker" type="Position3D" parent="." index="82"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.826, 0, 4.11373e-07 )
+visible = false
+
+[node name="RearMarker" type="Position3D" parent="." index="83"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.833, 0, -3.98644e-07 )
+visible = false
+
+[node name="FrontMarker" type="Position3D" parent="." index="85"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.806, 0, 3.82633e-07 )
+visible = false
+
+[node name="RearMarker" type="Position3D" parent="." index="86"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84, 0, 0 )
+visible = false
+
+[node name="LeftMarker" type="Position3D" parent="." index="87"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.015 )
+visible = false
+
+[node name="RightMarker" type="Position3D" parent="." index="88"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.015 )
+visible = false
+
+[node name="FrontLeftMarker" type="Position3D" parent="." index="89"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.538, 0, -1.0132 )
+visible = false
+
+[node name="RearLeftMarker" type="Position3D" parent="." index="90"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83625, 0, -0.96058 )
+visible = false
+
+[node name="FrontRightMarker" type="Position3D" parent="." index="91"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.538, 0, 1.013 )
+visible = false
+
+[node name="RearRightMarker" type="Position3D" parent="." index="92"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.836, 0, 0.961 )
+visible = false

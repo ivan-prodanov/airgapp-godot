@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Lock_Collision_Box.obj-3aae3618114848619ebb007228f0dc4d.mesh"
+
+[deps]
+
+files=[ "res://.import/Lock_Collision_Box.obj-3aae3618114848619ebb007228f0dc4d.mesh" ]
+
+source_file="res://Ego/Cybertruck/Collision/Lock_Collision_Box.obj"
+dest_files=[ "res://.import/Lock_Collision_Box.obj-3aae3618114848619ebb007228f0dc4d.mesh", "res://.import/Lock_Collision_Box.obj-3aae3618114848619ebb007228f0dc4d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

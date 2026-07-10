@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Tonneau_Collision_Box.obj-e1a78217a08856ab06d7bdd416e7608c.mesh"
+
+[deps]
+
+files=[ "res://.import/Tonneau_Collision_Box.obj-e1a78217a08856ab06d7bdd416e7608c.mesh" ]
+
+source_file="res://Ego/Cybertruck/Collision/Tonneau_Collision_Box.obj"
+dest_files=[ "res://.import/Tonneau_Collision_Box.obj-e1a78217a08856ab06d7bdd416e7608c.mesh", "res://.import/Tonneau_Collision_Box.obj-e1a78217a08856ab06d7bdd416e7608c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

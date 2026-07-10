@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/prism.obj-43bf9a800f89ea857f414a2f0480512f.mesh"
+
+[deps]
+
+files=[ "res://.import/prism.obj-43bf9a800f89ea857f414a2f0480512f.mesh" ]
+
+source_file="res://Ego/Cybertruck/BeastMode/models/prism.obj"
+dest_files=[ "res://.import/prism.obj-43bf9a800f89ea857f414a2f0480512f.mesh", "res://.import/prism.obj-43bf9a800f89ea857f414a2f0480512f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

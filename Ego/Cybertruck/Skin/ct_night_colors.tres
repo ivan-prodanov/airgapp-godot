@@ -1,0 +1,38 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/skin_colors.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+matcap_mul = Vector3( 0.8, 0.8, 0.81 )
+matcap_tint = Vector3( -0.15, -0.15, -0.15 )
+surround_obj_light_intensity = 10.0
+surround_obj_light_ambient = 0.014
+surround_obj_control_tint = Vector3( 2.3, 2.3, 2.3 )
+surround_obj_warning_tint = Vector3( 3, 0.25, 0.25 )
+lane_line_disengaged = Color( 0.45647, 0.45647, 0.465882, 1 )
+lane_line_unavailable = Color( 0.34902, 0.34902, 0.368627, 1 )
+stop_line = Color( 0.45647, 0.45647, 0.465882, 1 )
+don_desired_spline = Color( 0.321569, 0.321569, 0.341176, 1 )
+autopilot_blue = Color( 0, 0.423529, 1, 1 )
+construction = Color( 1, 0.5, 0, 1 )
+lane_line_warning = Color( 0.929412, 0.305882, 0.231373, 1 )
+eu_sign_content = Color( 0.137255, 0.137255, 0.137255, 1 )
+us_sign_content = Color( 0.109804, 0.109804, 0.109804, 1 )
+sign_white_text = Color( 0.835294, 0.835294, 0.835294, 1 )
+bev_roadway = Color( 0.129412, 0.133333, 0.141176, 1 )
+bev_roadway_ao = Color( 0, 0, 0, 0.152941 )
+bev_curb_top = Color( 0.298039, 0.298039, 0.298039, 1 )
+bev_curb_side = Color( 0.168627, 0.168627, 0.180392, 1 )
+bev_curb_outter = Color( 0.141176, 0.145098, 0.152941, 1 )
+bev_line_paint = Color( 0.270588, 0.270588, 0.270588, 1 )
+bev_point_edge = Color( 0.215686, 0.219608, 0.227451, 1 )
+bev_point_divider = Color( 0.215686, 0.219608, 0.227451, 1 )
+bev_yellow_line_paint = Color( 0.423529, 0.392157, 0.192157, 1 )
+bev_edge_divider = Color( 0.933333, 0.933333, 0.933333, 1 )
+bev_edge_island = Color( 0.933333, 0.933333, 0.933333, 1 )
+voxel_bottom_layer = Color( 0.933333, 0.933333, 0.933333, 1 )
+voxel_top_layer = Color( 0.933333, 0.933333, 0.933333, 1 )
+bev_cloud = Color( 0.933333, 0.933333, 0.933333, 1 )
+traffic_light_bulb_energy = 1.0
+projected_headlight_intensity = 1.0

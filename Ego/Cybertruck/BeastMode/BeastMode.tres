@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Ego/Cybertruck/BeastMode/shaders/BeastMode.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/ca_offset_factor = 0.0
+shader_param/speed_time_line = 1.0
+shader_param/travel_dist = 0.0
+shader_param/overall_brightness = 1.0
+shader_param/color_invert = 0.0
+shader_param/pulse_time = 0.0
+shader_param/triangle_fade = 1.0

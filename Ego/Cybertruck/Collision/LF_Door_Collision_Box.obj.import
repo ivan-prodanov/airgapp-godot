@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/LF_Door_Collision_Box.obj-4870d242167c519d05c190b6f7f187fa.mesh"
+
+[deps]
+
+files=[ "res://.import/LF_Door_Collision_Box.obj-4870d242167c519d05c190b6f7f187fa.mesh" ]
+
+source_file="res://Ego/Cybertruck/Collision/LF_Door_Collision_Box.obj"
+dest_files=[ "res://.import/LF_Door_Collision_Box.obj-4870d242167c519d05c190b6f7f187fa.mesh", "res://.import/LF_Door_Collision_Box.obj-4870d242167c519d05c190b6f7f187fa.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

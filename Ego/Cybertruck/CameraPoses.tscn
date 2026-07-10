@@ -1,0 +1,134 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/AssetGenCamera.gd" type="Script" id=1]
+[ext_resource path="res://scripts/skin_values.gd" type="Script" id=2]
+[ext_resource path="res://Ego/Cybertruck/Skin/ct_assetgen_topdown_colors.tres" type="Resource" id=3]
+[ext_resource path="res://Ego/Cybertruck/Skin/ct_assetgen_topdown_env.tres" type="Resource" id=4]
+
+[node name="CameraPoses" type="Node"]
+
+[node name="Park" type="Camera" parent="."]
+transform = Transform( -0.738726, 0.219635, -0.637216, 0, 0.945416, 0.325865, 0.674006, 0.240725, -0.698403, -4.281, 2.83, -6.841 )
+fov = 58.8
+
+[node name="SingleLane" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.984583, 0.17492, 0, -0.17492, 0.984583, 0, 5.84042, 18.1212 )
+fov = 40.0
+
+[node name="MultiLaneOriginal" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.982261, 0.187518, 0, -0.187518, 0.982261, 0, 7.13777, 23.5 )
+fov = 40.0
+
+[node name="MultiLane" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.952423, 0.304781, 0, -0.304781, 0.952423, 0, 10.492, 21.383 )
+fov = 45.0
+
+[node name="ParkAssist" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.0400446, 0.999198, 0, -0.999198, 0.0400446, 0, 24.1211, -0.333772 )
+keep_aspect = 0
+fov = 40.0
+
+[node name="ParkAssistFrontBSCCamTop" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.0400446, 0.999198, 0, -0.999198, 0.0400446, 0, 36.2633, -7.71412 )
+fov = 40.0
+
+[node name="MultiLaneM3CamTop" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 5.53316, 22.3791 )
+fov = 40.0
+
+[node name="ParkAssistM3CamBottom" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.0400446, 0.999196, 0, -0.999196, 0.0400446, 0, 27.5, 0.597 )
+fov = 40.0
+
+[node name="MultiLaneM3CamBottom" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.96508, 0.261953, 0, -0.261953, 0.96508, 0, 6.228, 20 )
+fov = 40.0
+
+[node name="ParkAssistRearCamTop" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.0400446, 0.999198, 0, -0.999198, 0.0400446, 0, 36.2633, -1.61193 )
+fov = 40.0
+
+[node name="ParkExpanded" type="Camera" parent="."]
+transform = Transform( -1.62921e-07, 0.0871558, -0.996195, 0, 0.996195, 0.0871558, 1, 1.41995e-08, -1.62301e-07, -5.287, 1.28663, -1.4 )
+fov = 58.8
+
+[node name="TonneauView" type="Camera" parent="."]
+transform = Transform( 0.86239, 0.192915, -0.468046, 0, 0.924546, 0.38107, 0.506245, -0.328631, 0.797319, -2.834, 3.393, 4.673 )
+fov = 58.8
+
+[node name="TonneauViewExpanded" type="Camera" parent="."]
+transform = Transform( 0.819152, 0.184655, -0.54304, 0, 0.946762, 0.321935, 0.573577, -0.263714, 0.775542, -2.99565, 2.57088, 3.80848 )
+fov = 58.8
+
+[node name="TrunkView" type="Camera" parent="."]
+transform = Transform( 0.877649, 0.188926, -0.4405, 0, 0.919039, 0.394166, 0.479305, -0.34594, 0.806593, -2.538, 3.159, 4.775 )
+fov = 58.8
+
+[node name="TrunkViewExpanded" type="Camera" parent="."]
+transform = Transform( 0.877649, 0.188926, -0.4405, 0, 0.919039, 0.394167, 0.479305, -0.34594, 0.806593, -1.919, 2.405, 3.471 )
+fov = 58.8
+
+[node name="FrunkView" type="Camera" parent="."]
+transform = Transform( -0.8153, 0.219206, -0.535943, 0, 0.925573, 0.378568, 0.579039, 0.308646, -0.754619, -3.618, 3.236, -7.307 )
+fov = 58.8
+
+[node name="FrunkViewExpanded" type="Camera" parent="."]
+transform = Transform( -0.80597, 0.187007, -0.561641, 0, 0.948788, 0.315914, 0.591957, 0.254617, -0.764694, -3.018, 2.212, -6.508 )
+fov = 58.8
+
+[node name="SuspensionView" type="Camera" parent="."]
+transform = Transform( -0.273942, 0.142686, -0.951103, 0, 0.988933, 0.148361, 0.961746, 0.0406424, -0.27091, -8.06546, 2.64923, -4.011 )
+fov = 58.8
+
+[node name="SuspensionViewExpanded" type="Camera" parent="."]
+transform = Transform( -1.62921e-07, 0.0871558, -0.996195, 0, 0.996195, 0.0871558, 1, 1.41995e-08, -1.62301e-07, -4.36, 1.115, -1.488 )
+fov = 58.8
+
+[node name="ChargeportView" type="Camera" parent="."]
+transform = Transform( 0.694796, 0.232868, -0.680464, 0, 0.94613, 0.323786, 0.719206, -0.224965, 0.657369, -5.157, 3.147, 4.22 )
+fov = 58.8
+
+[node name="ChargeportViewExpanded" type="Camera" parent="."]
+transform = Transform( 0.651767, 0.245565, -0.717564, 0, 0.946131, 0.323786, 0.758419, -0.211033, 0.616658, -3.592, 2.113, 2.374 )
+fov = 58.8
+
+[node name="LaunchModePrime" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.999847, 0.0174524, 0, -0.0174524, 0.999847, 0, 2, 14 )
+fov = 35.0
+far = 2600.0
+
+[node name="AssetGen" type="Spatial" parent="."]
+
+[node name="CarInteriorView" type="Camera" parent="AssetGen"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 6.907, -1.57 )
+fov = 22.0
+script = ExtResource( 1 )
+width = 625
+height = 900
+hide_roof = true
+day_skin_override = "skin_interior_view"
+night_skin_override = "skin_interior_view"
+time_of_day = 0
+
+[node name="LockScreen_Cybertruck" type="Camera" parent="AssetGen"]
+transform = Transform( -0.00872677, 0.00593386, -0.999945, 0, 0.999983, 0.00593409, 0.999962, 5.17854e-05, -0.00872662, -9.477, 1.515, -1.774 )
+current = true
+fov = 5.0
+script = ExtResource( 1 )
+width = 2600
+height = 1000
+hide_standard_ego = false
+transparent = true
+hide_roof = false
+day_skin_override = ""
+night_skin_override = ""
+day_bg = Color( 0, 0, 0, 1 )
+night_bg = Color( 0, 0, 0, 1 )
+preview_viewport = false
+time_of_day = 0
+ghost_car_config = 0
+
+[node name="skin_interior_view" type="Node" parent="AssetGen"]
+script = ExtResource( 2 )
+env = ExtResource( 4 )
+colors = ExtResource( 3 )

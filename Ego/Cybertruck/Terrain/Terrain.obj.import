@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Terrain.obj-93bb06045588fa61a6f46ddcca45e8e5.mesh"
+
+[deps]
+
+files=[ "res://.import/Terrain.obj-93bb06045588fa61a6f46ddcca45e8e5.mesh" ]
+
+source_file="res://Ego/Cybertruck/Terrain/Terrain.obj"
+dest_files=[ "res://.import/Terrain.obj-93bb06045588fa61a6f46ddcca45e8e5.mesh", "res://.import/Terrain.obj-93bb06045588fa61a6f46ddcca45e8e5.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ego/Cybertruck/script/Marker.gd" type="Script" id=2]
+[ext_resource path="res://Ego/Cybertruck/Textures/marker_day.png" type="Texture" id=3]
+[ext_resource path="res://Ego/Cybertruck/Textures/marker_night.png" type="Texture" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+render_priority = 10
+flags_transparent = true
+flags_unshaded = true
+params_depth_draw_mode = 2
+params_billboard_mode = 1
+params_billboard_keep_scale = true
+albedo_texture = ExtResource( 3 )
+
+[node name="MarkerScene" type="Spatial"]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
+script = ExtResource( 2 )
+day_texture = ExtResource( 3 )
+night_texture = ExtResource( 4 )
+marker_sprite_path = NodePath("MarkerSprite")
+tween_path = NodePath("Tween")
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="MarkerSprite" type="Sprite3D" parent="."]
+material_override = SubResource( 1 )
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture = ExtResource( 3 )

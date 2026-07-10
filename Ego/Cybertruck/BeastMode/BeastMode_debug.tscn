@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Ego/Cybertruck/BeastMode/scripts/BeastMode_debug.gd" type="Script" id=1]
+[ext_resource path="res://env/launch_mode_debug.tres" type="Environment" id=2]
+[ext_resource path="res://Ego/Cybertruck/BeastMode/BeastMode.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Ego/Cybertruck/Cybertruck.tscn" type="PackedScene" id=4]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.999661, -0.0260374, 0, 0.0260374, 0.999661, 0, 2.54, 6.128 )
+fov = 80.0
+near = 0.01
+far = 1000.0
+
+[node name="BeastMode" parent="." instance=ExtResource( 3 )]
+
+[node name="ROOT2" parent="." instance=ExtResource( 4 )]
+markers_to_collision_volumes_map_paths = {
+NodePath("Chargeport_Marker"): [ NodePath("Chargeport_Static_Collision_Area") ],
+NodePath("Hood_Spatial/Frunk_Marker"): [ NodePath("Hood_Spatial/Frunk_Marker/Frunk_Marker_Dynamic_Collision_Area"), NodePath("Frunk_Static_Collision_Area") ],
+NodePath("Door_LF_Spatial/LF_Door_Marker"): [ NodePath("Door_LF_Spatial/LF_Door_Marker/LF_Door_Marker_Dynamic_Collision_Area"), NodePath("LF_Door_Static_Collision_Area") ],
+NodePath("Door_LR_Spatial/LR_Door_Marker"): [ NodePath("Door_LR_Spatial/LR_Door_Marker/LR_Door_Marker_Dynamic_Collision_Area"), NodePath("LR_Door_Static_Collision_Area") ],
+NodePath("Door_RF_Spatial/RF_Door_Marker"): [ NodePath("Door_RF_Spatial/RF_Door_Marker/RF_Door_Marker_Dynamic_Collision_Area"), NodePath("RF_Door_Static_Collision_Area") ],
+NodePath("Door_RR_Spatial/RR_Door_Marker"): [ NodePath("Door_RR_Spatial/RR_Door_Marker/RR_Door_Marker_Dynamic_Collision_Area"), NodePath("RR_Door_Static_Collision_Area") ],
+NodePath("Body2/Tonneau_Marker"): [ NodePath("Body2/Tonneau_Marker/Tonneau_Marker_Dynamic_Collision_Area") ],
+NodePath("Trunk_Spatial/Trunk_Marker"): [ NodePath("Trunk_Spatial/Trunk_Marker/Trunk_Marker_Dynamic_Collision_Area"), NodePath("Trunk_Static_Collision_Area") ],
+NodePath("Wheel_LF_Spatial/Wheels_Marker"): [ NodePath("Wheel_LF_Spatial/Wheels_Marker/Suspension_Dynamic_Collision_Area") ],
+NodePath("Body2/Lock_Marker"): [ NodePath("Body2/Lock_Marker/Lock_Marker_Dynamic_Collision_Area") ]
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 2 )

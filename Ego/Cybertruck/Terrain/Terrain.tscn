@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Ego/Cybertruck/Terrain/TerrainConfig.gd" type="Script" id=1]
+[ext_resource path="res://Ego/Cybertruck/Terrain/Terrain.gd" type="Script" id=2]
+[ext_resource path="res://Ego/Cybertruck/Terrain/Terrain.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Ego/Cybertruck/Terrain/Terrain.tres" type="Material" id=5]
+
+[node name="ROOT" type="Spatial"]
+script = ExtResource( 2 )
+terrain_path = NodePath("Terrain")
+day_config_path = NodePath("DayConfig")
+day_dark_config_path = NodePath("DayDarkConfig")
+night_config_path = NodePath("NightConfig")
+mars_config_path = NodePath("MarsConfig")
+mobile_config_path = NodePath("MobileConfig")
+
+[node name="Terrain" type="MeshInstance" parent="."]
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 5 )
+
+[node name="DayConfig" type="Node" parent="."]
+script = ExtResource( 1 )
+color = Color( 0.941176, 0.941176, 0.941176, 1 )
+roughness = 0.48
+metallic = 0.74
+ao_light_affect = 0.62
+color_map_factor = -0.6
+color_map_flat_factor = -1.2
+
+[node name="DayDarkConfig" type="Node" parent="."]
+script = ExtResource( 1 )
+roughness = 0.25
+metallic = 1.0
+ao_light_affect = 0.9
+color_map_factor = 2.0
+color_map_flat_factor = 3.0
+distance_dim_factor = 1.0
+
+[node name="NightConfig" type="Node" parent="."]
+script = ExtResource( 1 )
+roughness = 0.25
+metallic = 1.0
+ao_light_affect = 0.9
+color_map_factor = 2.0
+color_map_flat_factor = 3.0
+distance_dim_factor = 1.0
+
+[node name="MarsConfig" type="Node" parent="."]
+script = ExtResource( 1 )
+color = Color( 0.521569, 0.466667, 0.435294, 1 )
+roughness = 0.25
+metallic = 1.0
+ao_light_affect = 0.9
+color_map_factor = 1.0
+color_map_flat_factor = 2.0
+distance_dim_factor = 1.0
+
+[node name="MobileConfig" type="Node" parent="."]
+script = ExtResource( 1 )
+roughness = 0.25
+metallic = 1.0
+ao_light_affect = 0.92
+color_map_factor = 2.0
+color_map_flat_factor = 3.0
+distance_dim_factor = 1.0

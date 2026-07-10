@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Trunk_Collision_Box.obj-823fc108596e890ff7ae907cc5b68fcc.mesh"
+
+[deps]
+
+files=[ "res://.import/Trunk_Collision_Box.obj-823fc108596e890ff7ae907cc5b68fcc.mesh" ]
+
+source_file="res://Ego/Cybertruck/Collision/Trunk_Collision_Box.obj"
+dest_files=[ "res://.import/Trunk_Collision_Box.obj-823fc108596e890ff7ae907cc5b68fcc.mesh", "res://.import/Trunk_Collision_Box.obj-823fc108596e890ff7ae907cc5b68fcc.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

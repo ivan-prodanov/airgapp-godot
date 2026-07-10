@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://scripts/skin_env.gd" type="Script" id=1]
+[ext_resource path="res://skybox/clouds_cubemap.tres" type="CubeMap" id=2]
+[ext_resource path="res://Ego/Cybertruck/Skin/Environment_Light.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+background_color = Color( 0.941176, 0.941176, 0.941176, 1 )
+background_energy_drive = 12.0
+background_energy_park = 14.0
+background_ambient_drive = 4.0
+background_ambient_park = 2.0
+background_rotation_drive = Vector3( 0, -22, 0 )
+background_rotation_park = Vector3( 0, -11, 0 )
+panorama = ExtResource( 3 )
+panorama_radiance_size = 4
+skybox = ExtResource( 2 )
+skybox_intensity = 0.1

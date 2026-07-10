@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Ego/Cybertruck/BeastMode/scripts/BeastMode.gd" type="Script" id=1]
+[ext_resource path="res://Ego/Cybertruck/BeastMode/models/prism.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Ego/Cybertruck/BeastMode/BeastMode.tres" type="Material" id=3]
+
+[node name="BeastMode" type="Spatial"]
+script = ExtResource( 1 )
+time_to_activate_easter_egg = 4.0
+
+[node name="Scaler" type="Spatial" parent="."]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -3, 0 )
+
+[node name="Tunnel" type="Spatial" parent="Scaler"]
+transform = Transform( 1, -1.50996e-07, 0, 1.50996e-07, 1, 0, 0, 0, 40, 0, 0.94, -35 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Scaler/Tunnel"]
+transform = Transform( 1, -1.98952e-13, 0, 1.98952e-13, 1, 0, 0, 0, 1, -7.10543e-15, 0.232, 0 )
+cast_shadow = 0
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="Scaler"]
+
+[node name="Timer" type="Timer" parent="Scaler"]
+wait_time = 3.0
+one_shot = true
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Scaler"]
+transform = Transform( 0.2, 0, 0, 0, 0.187987, 0.0682695, 0, -0.0682695, 0.187987, 0, 2, 4 )
+light_energy = 16.0
+light_indirect_energy = 1.5
+[connection signal="timeout" from="Scaler/Timer" to="." method="_on_Timer_timeout"]
