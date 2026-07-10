@@ -1,0 +1,19 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "ChargeportAnimation"
+length = 1.25
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Charge_Port_Spatial")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, -0.774981, 1.0778, 1.92251, -0.211741, 0.00673938, -0.737024, 0.641806, 1, 1, 1 )
+tracks/1/type = "transform"
+tracks/1/path = NodePath("Charge_Port_Spatial/Charge_Port_Cover")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = PoolRealArray( 0, 1, 0.0529887, -0.0424645, 0.151283, 0.194522, -0.0105948, 0.710326, 0.676377, 0.999999, 0.999999, 0.999998, 1.2, 1, 0.0452105, -0.0670698, 0.141932, 0.0131526, 0.0134673, 0.0588845, 0.998087, 1, 0.999999, 0.999999 )

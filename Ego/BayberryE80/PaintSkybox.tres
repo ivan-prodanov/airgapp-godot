@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Ego/BayberryE80/Textures/CarPaint_AO.png" type="Texture" id=1]
+[ext_resource path="res://shaders/opaque_skybox.shader" type="Shader" id=2]
+[ext_resource path="res://misc_textures/zero_alpha.png" type="Texture" id=3]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "PaintSkybox"
+shader = ExtResource( 2 )
+shader_param/skybox_rot = 0.0
+shader_param/metallic = 0.7
+shader_param/roughness = 0.1
+shader_param/color = Color( 0, 0.0627451, 0.14902, 1 )
+shader_param/skybox_contrib = true
+shader_param/skybox_intensity = 0
+shader_param/skybox_scroll = 0.0
+shader_param/ao_intensity = 1.0
+shader_param/ao = ExtResource( 1 )
+shader_param/custom_albedo_texture = ExtResource( 3 )

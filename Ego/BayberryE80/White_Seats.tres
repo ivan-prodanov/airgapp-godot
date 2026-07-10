@@ -1,0 +1,14 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Ego/BayberryE80/Textures/Seat/Seats_White_BaseColor.png" type="Texture" id=2]
+[ext_resource path="res://Ego/BayberryE80/Textures/Seat/Seats_MRA.png" type="Texture" id=3]
+
+
+[resource]
+resource_name = "Seats"
+albedo_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+albedo_texture = ExtResource( 2 )
+metallic = 1.0
+metallic_texture = ExtResource( 3 )
+roughness_texture = ExtResource( 3 )
+roughness_texture_channel = 1

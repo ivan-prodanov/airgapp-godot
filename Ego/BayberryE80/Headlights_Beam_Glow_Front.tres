@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Ego/BayberryE80/headlights_beam_glow.shader" type="Shader" id=1]
+[ext_resource path="res://Ego/BayberryE80/Textures/GroundPlane/BeamProjection.png" type="Texture" id=2]
+
+
+[resource]
+render_priority = 3
+shader = ExtResource( 1 )
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/close_blend_start = 0.5
+shader_param/close_blend_end = 1.1
+shader_param/far_blend_start = 8.0
+shader_param/far_blend_end = 15.0
+shader_param/view_dot_normal_blend_start = 0.0
+shader_param/view_dot_normal_blend_end = 1.0
+shader_param/view_fwd_dot_normal_blend_start = 0.0
+shader_param/view_fwd_dot_normal_blend_end = 1.0
+shader_param/texture_albedo = ExtResource( 2 )

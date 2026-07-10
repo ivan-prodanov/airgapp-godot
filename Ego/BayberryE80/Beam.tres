@@ -1,0 +1,11 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Ego/BayberryE80/Textures/GroundPlane/BeamProjection.png" type="Texture" id=1]
+
+
+[resource]
+resource_name = "Beam"
+render_priority = 2
+flags_transparent = true
+flags_unshaded = true
+albedo_texture = ExtResource( 1 )

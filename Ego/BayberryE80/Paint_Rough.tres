@@ -1,0 +1,13 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Ego/BayberryE80/Textures/CarPaint_AO.png" type="Texture" id=1]
+
+[resource]
+resource_name = "PaintRough"
+albedo_color = Color( 0, 0.0352941, 0.0980392, 1 )
+metallic = 0.7
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource( 1 )
+ao_on_uv2 = false
+ao_texture_channel = 2
