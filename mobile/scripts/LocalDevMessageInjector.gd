@@ -396,6 +396,7 @@ func _vehicle_config_model_y() -> Dictionary:
 	config["exterior_color"] = "UltraRed"
 	config["wheel_type"] = "ArachnidV221"
 	config["interior_trim_type"] = "White"
+	config["interior_upper_trim_materials"] = 1
 	config["spoiler_type"] = "CarbonFiber"
 	config["red_brake_calipers"] = true
 	config["window_tint_color"] = "0,0,0,153"
